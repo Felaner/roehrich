@@ -2,7 +2,6 @@
     max-width: 100%;
     height: 300px;
     background: rgba(51, 51, 51, 0.75);
-    border: 1px solid #FFFFFF;
 }
 .product-card:hover .productions-button{
     background: #000000;
