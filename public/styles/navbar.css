@@ -1,0 +1,38 @@
+.megamenu {
+    position: static
+}
+
+.megamenu .dropdown-menu {
+    background: none;
+    border: none;
+    width: 100%
+}
+
+.text-uppercase {
+    letter-spacing: 0.08em
+}
+
+.main-navbar{
+    background: #333333;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+.navbar-light .navbar-toggler {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.company-name{
+    color: #ffffff;
+}
+
+.company-name:hover{
+    color: #ffffff;
+}

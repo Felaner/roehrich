@@ -1,0 +1,47 @@
+.contacts-phone a{
+    color: #FFFFFF;
+}
+.contacts-phone a:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.contacts-block{
+    width: 100%;
+    height: 120px;
+    border: 1px solid #333333;
+    overflow: hidden;
+}
+.contacts-block a{
+    color: #FFFFFF;
+}
+.contacts-block a:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.contacts-map{
+    position: relative;
+    overflow: hidden;
+    right: -112%;
+    top: -40%;
+}
+.contacts-map-block{
+    border: 1px solid #333333;
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    right: 0;
+    transform: rotate(-40.67deg);
+    transition: 0.4s all;
+}
+.contacts-map-text{
+    position: absolute;
+    right: 153px;
+    top: 60px;
+    transition: 0.4s all;
+}
+.contacts-map:hover .contacts-map-block{
+    background: #FFFFFF;
+}
+.contacts-map:hover .contacts-map-text{
+    color: #000000;
+}

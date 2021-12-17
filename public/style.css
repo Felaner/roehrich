@@ -4,4 +4,11 @@
 @import url('bootstrap/css/bootstrap.min.css');
 @import url('styles/navbar.css');
 @import url('styles/footer.css');
+@import url('styles/home.css');
+@import url('styles/productions.css');
+@import url('styles/product.css');
+@import url('styles/service.css');
+@import url('styles/about.css');
+@import url('styles/contacts.css');
+@import url('styles/other.css');
 @import url('styles/media.css');

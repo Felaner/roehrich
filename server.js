@@ -11,6 +11,12 @@ const path = require('path');
 const app = express();
 
 const homeRoute = require('./routes/home');
+const productionsRoute = require('./routes/productions');
+const productRoute = require('./routes/product');
+const serviceRoute = require('./routes/service');
+const servicesCategoriesRoute = require('./routes/servicesCategories');
+const aboutRoute = require('./routes/about');
+const contactsRoute = require('./routes/contacts');
 
 const keys = require('./keys');
 
@@ -29,6 +35,12 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.urlencoded({extended: true}));
 
 app.use('/', homeRoute);
+app.use('/productions', productionsRoute);
+app.use('/product', productRoute);
+app.use('/service', serviceRoute);
+app.use('/servicesCategories', servicesCategoriesRoute);
+app.use('/about', aboutRoute);
+app.use('/contacts', contactsRoute);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
