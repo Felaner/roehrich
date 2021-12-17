@@ -1,0 +1,20 @@
+.footer{
+    height: 180px;
+}
+.logo{
+    width: 250px;
+}
+.organization{
+
+}
+.contacts a{
+  color: #FFFFFF;
+}
+.contacts a:hover{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.container-fluid .divider{
+    margin: 0;
+    margin-top: 30px;
+}

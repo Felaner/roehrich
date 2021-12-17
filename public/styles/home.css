@@ -1,0 +1,132 @@
+.card{
+    width: 250px;
+    height: 350px;
+    margin-top: 35px;
+    overflow: hidden;
+}
+.card img{
+    border: 1px solid #FFFFFF;
+}
+.sale{
+    position: absolute;
+    top: 25%;
+    height: 70px;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.85);
+}
+.card-button{
+    position: absolute;
+    bottom: 20px;
+    width: 170px;
+    height: 50px;
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    transition: 0.3s all;
+}
+.card-button:hover{
+    color: #FFFFFF;
+    background: #000000;
+    border: 1px solid #FFFFFF;
+}
+.catalog-button{
+    margin-top: 40px;
+    width: 170px;
+    height: 50px;
+    background: #FFFFFF;
+    color: #000000;
+    line-height: 36px;
+    border: none;
+    transition: 0.3s all;
+}
+.catalog-button:hover{
+    color: #FFFFFF;
+    background: #000000;
+    border: 1px solid #FFFFFF;
+}
+.product-name{
+    position: absolute;
+    background: #333333;
+    bottom: -3px;
+    height: 70px;
+    width: 100%;
+    transition: 0.4s all;
+}
+.card:hover .product-name{
+    height: 100px;
+}
+.card:hover .product-price{
+    bottom: 15px;
+}
+.product-price{
+    position: absolute;
+    bottom: -3px;
+    transition: 0.4s all;
+}
+.buy-link{
+    position: absolute;
+    bottom: -130px;
+    right: -130px;
+    color: #000000;
+    transition: 0.4s all;
+}
+.card:hover .buy-link{
+    bottom: -65px;
+    right: -65px;
+}
+.buy-link:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.buy{
+    border-radius: 100%;
+    width: 130px;
+    height: 130px;
+    background: #FFFFFF;
+    transform: rotate(-45deg)
+}
+.cart-link{
+    position: absolute;
+    bottom: -130px;
+    left: -130px;
+    color: #000000;
+    transition: 0.4s all;
+}
+.card:hover .cart-link{
+    bottom: -65px;
+    left: -65px;
+}
+.cart-link:hover{
+    color: #000000;
+    text-decoration: none;
+}
+.cart{
+    border-radius: 100%;
+    width: 130px;
+    height: 130px;
+    background: #FFFFFF;
+}
+.cart img{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+.service{
+    position: absolute;
+    bottom: 0;
+    background: #333333;
+    height: 50px;
+    width: 100%;
+    transition: 0.3s all;
+}
+.service button{
+    bottom: -50px;
+    left: 15%;
+}
+.card:hover .service{
+    height: 100px;
+}
+.card:hover .service button{
+    bottom: 3px;
+}
+
