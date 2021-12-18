@@ -60,7 +60,10 @@
                 <li class="nav-item"><a href="/about" class="nav-link font-weight-bold text-uppercase">О нас</a></li>
                 <li class="nav-item"><a href="/service" class="nav-link font-weight-bold text-uppercase">Страница услуги</a></li>
                 <li class="nav-item"><a href="/contacts" class="nav-link font-weight-bold text-uppercase">Контакы</a></li>
-
+                {{#if isAuth}}
+                    <li class="nav-item"><a href="/control" class="nav-link font-weight-bold text-uppercase">Управление сайтом</a></li>
+                    <li class="nav-item"><a href="/admin/logout" class="nav-link font-weight-bold text-uppercase">Выйти</a></li>
+                {{/if}}
             </ul>
         </div>
     </nav>

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row justify-content-center mb-5 mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Добавление услуги</h3>
+        </div>
+        {{#if addSuccess}}
+            <div class="alert alert-success text-center">{{addSuccess}}</div>
+        {{/if}}
+        {{#if fileError}}
+            <div class="alert alert-danger text-center">{{fileError}}</div>
+        {{/if}}
+        <form action="/control/add-service" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="serviceName">Название услуги</label>
+                <input name="serviceName" type="text" id="serviceName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="serviceDescription">Описание услуги</label>
+                <textarea name="serviceDescription" id="serviceDescription" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="servicePrice">Цена услуги</label>
+                <input name="servicePrice" type="text" id="servicePrice" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="serviceImage">Добавьте изображение</label>
+                <input name="serviceImage" type="file" id="serviceImage" class="form-control" multiple>
+                <label for="serviceImage">* Первое выбранное изображение будет отображаться на превью услуги</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
