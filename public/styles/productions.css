@@ -4,18 +4,22 @@
     background: rgba(51, 51, 51, 0.75);
 }
 .product-card:hover .productions-button{
-    background: #000000;
     color: #FFFFFF;
+    background: #000000;
     border: 1px solid #FFFFFF;
+    text-decoration: none;
 }
 .product-img{
     width: 40%;
 }
+
 .productions-button{
-    width: 170px;
-    height: 50px;
-    border: none;
+    font-size: 16px;
+    width: 150px;
+    height: 45px;
     background: #FFFFFF;
-    margin-bottom: 10px;
-    transition: 0.4s all;
+    color: #000000;
+    border: 1px solid transparent;
+    line-height: 40px;
+    transition: 0.3s all;
 }

@@ -15,34 +15,56 @@
     background: rgba(51, 51, 51, 0.85);
 }
 .card-button{
+    font-size: 16px;
     position: absolute;
     bottom: 20px;
-    width: 170px;
-    height: 50px;
+    width: 150px;
+    height: 45px;
     background: #FFFFFF;
     color: #000000;
-    border: none;
+    border: 1px solid transparent;
+    line-height: 40px;
     transition: 0.3s all;
 }
 .card-button:hover{
     color: #FFFFFF;
     background: #000000;
     border: 1px solid #FFFFFF;
+    text-decoration: none;
+}
+.service-button{
+    font-size: 16px;
+    position: absolute;
+    bottom: 20px;
+    width: 150px;
+    height: 45px;
+    background: #FFFFFF;
+    color: #000000;
+    border: 1px solid transparent;
+    line-height: 40px;
+    transition: 0.3s all;
+}
+.service-button:hover{
+    color: #FFFFFF;
+    background: #000000;
+    border: 1px solid #FFFFFF;
+    text-decoration: none;
 }
 .catalog-button{
     margin-top: 40px;
-    width: 170px;
+    width: 200px;
     height: 50px;
     background: #FFFFFF;
     color: #000000;
-    line-height: 36px;
-    border: none;
+    line-height: 48px;
     transition: 0.3s all;
+    border: 1px solid transparent;
 }
 .catalog-button:hover{
     color: #FFFFFF;
     background: #000000;
     border: 1px solid #FFFFFF;
+    text-decoration: none;
 }
 .product-name{
     position: absolute;
@@ -83,7 +105,9 @@
     width: 130px;
     height: 130px;
     background: #FFFFFF;
-    transform: rotate(-45deg)
+    transform: rotate(-45deg);
+    line-height: 50px;
+    font-size: 18px;
 }
 .cart-link{
     position: absolute;
@@ -108,8 +132,8 @@
 }
 .cart img{
     position: absolute;
-    right: 20px;
-    top: 20px;
+    right: 15%;
+    top: 20%;
 }
 .service{
     position: absolute;
@@ -119,14 +143,18 @@
     width: 100%;
     transition: 0.3s all;
 }
-.service button{
-    bottom: -50px;
-    left: 15%;
+.service .service-button{
+    bottom: -115%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-bottom: 8px;
 }
 .card:hover .service{
     height: 100px;
 }
-.card:hover .service button{
+.card:hover .service .service-button{
     bottom: 3px;
 }
 
