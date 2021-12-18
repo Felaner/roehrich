@@ -1,0 +1,23 @@
+.divide-button{
+    width: 300px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    color: #000000;
+    font-size: 18px;
+    line-height: 48px;
+    transition: 0.4s all;
+}
+.divide-button:hover{
+    text-decoration: none;
+    background: #000000;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
+.divide-button a{
+    color: #000000;
+}
+.divide-button:hover a{
+    color: #FFFFFF;
+    text-decoration: none;
+}

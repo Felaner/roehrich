@@ -1,0 +1,64 @@
+.form-control{
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 0;
+    color: #FFFFFF;
+}
+.form-control:focus{
+    background: #000000;
+    border-color:#FFFFFF;
+    color: #FFFFFF;
+}
+.fileinput-wrapper {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    padding: 0 150px 0 30px;
+    border: 1px solid #fff;
+    background: #000000;
+    color: #fff; }
+
+.filename {
+    width: 100%;
+    height: 50%;
+    margin-top: 12px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff; }
+
+.file-upload {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: -17px;
+    display: block;
+    padding: 15px;
+    height: 0;
+    border: 1px solid #fff;
+    color: #ffffff;
+    cursor: pointer; }
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload label {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer; }
+
+.file-upload span {
+    line-height: 36px;
+}
