@@ -50,13 +50,69 @@ const product = sequelize.define('Product', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    category: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     description: {
         type: Sequelize.TEXT,
         allowNull: false
     },
+    count: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    weight: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    volume: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    environ: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    temp: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    material: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    connect: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    diameter: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    dimension: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    gost: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    pressure: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
+    depth: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    externalDiameter: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },
     price: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     }
 })
 

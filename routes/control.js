@@ -117,6 +117,65 @@ router.get('/add-product', auth, (req, res) => {
     });
 });
 
+router.post('/add-product', auth, async (req, res) => {
+    try {
+        if (!req.files['productImage']) {
+            req.flash('fileError', "Добавьте изображения для товара");
+            return res.status(400).render('control/addProduct', {
+                title: 'Добавление товаров',
+                fileError: req.flash('fileError')
+            });
+        }
+        const {productName, productCategory, productDescription,
+            productCount, productWeight, productVolume,
+            productEnviron, productTemp, productMaterial,
+            productConnect, productDiameter, productDimension,
+            productGost, productPressure, productDepth, productExternalDiameter,
+            productPrice} = req.body
+        await Product.create({
+            name: productName, category: productCategory, description: productDescription,
+            count: productCount, weight: productWeight, volume: productVolume,
+            environ: productEnviron, temp: productTemp, material: productMaterial,
+            connect: productConnect, diameter: productDiameter, dimension: productDimension,
+            gost: productGost, pressure: productPressure, depth: productDepth,
+            externalDiameter: productExternalDiameter, price: productPrice
+        }).catch(err => {
+            console.log(err)
+        })
+        const productId = await Product.findOne({
+            attributes: ['id'],
+            where: {
+                name: productName
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+        const dirname = `public/images/products`
+        await req.files['productImage'].forEach(img => {
+            const filename = img.originalname.substr(0, img.originalname.lastIndexOf('.'));
+            sharp(img.buffer)
+                .rotate()
+                .toFormat('webp')
+                .webp({ quality: 90 })
+                .withMetadata()
+                .toFile(dirname + `/${filename}.webp`)
+            Image.create({
+                srcImage: dirname + `/${filename}.webp`,
+                ProductId: productId.id
+            }).catch(err => {
+                console.log(err)
+            });
+        })
+        req.flash('addSuccess', "Товар успешно добавлен");
+        res.status(200).render('control/addProduct', {
+            title: 'Добавление товаров',
+            addSuccess: req.flash('addSuccess')
+        });
+    } catch (e) {
+        console.log(e)
+    }
+});
+
 router.get('/add-video', auth, (req, res) => {
     res.render('control/addVideo', {
         title: 'Добавление видео'
