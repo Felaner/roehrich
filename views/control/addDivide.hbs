@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row justify-content-center mb-5 mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Добавление категории</h3>
+        </div>
+        {{#if addSuccess}}
+            <div class="alert alert-success text-center">{{addSuccess}}</div>
+        {{/if}}
+        {{#if fileError}}
+            <div class="alert alert-danger text-center">{{fileError}}</div>
+        {{/if}}
+        <form action="/control/add-divide" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="divideName">Название категории</label>
+                <input name="divideName" type="text" id="divideName" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="divideImage">Добавьте изображение</label>
+                <input name="divideImage" type="file" id="divideImage" class="form-control" multiple>
+                <label for="divideImage">Выбранное изображение будет отображаться на превью категории</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
