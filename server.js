@@ -83,7 +83,8 @@ app.use(session({
 
 app.use(fileMiddleware.fields([
     { name: 'divideImage', maxCount: 1 },
-    { name: 'serviceImage', maxCount: 5 }
+    { name: 'serviceImage', maxCount: 5 },
+    { name: 'productImage', maxCount: 5}
 ]));
 
 app.use(userMiddleware);
