@@ -11,11 +11,11 @@
         {{/if}}
         <form action="/control/add-divide" method="post" enctype="multipart/form-data">
             <div class="form-group mt-5">
-                <label class="f-22" for="divideName">Название категории</label>
+                <label class="f-18" for="divideName">Название категории</label>
                 <input name="divideName" type="text" id="divideName" class="form-control">
             </div>
             <div class="form-group">
-                <label class="f-22" for="divideImage">Добавьте изображение</label>
+                <label class="f-18" for="divideImage">Добавьте изображение</label>
                 <div class="fileinput-wrapper">
                     <div class="file-upload">
                         <label>
@@ -23,7 +23,7 @@
                             <span>Выбрать файл</span>
                         </label>
                     </div>
-                    <input type="text" id="filename" class="filename" placeholder="Название изображения">
+                    <input type="text" id="filename" class="filename" placeholder="Название изображения" disabled>
                 </div>
                 <label for="divideImage">Выбранное изображение будет отображаться на превью категории</label>
             </div>

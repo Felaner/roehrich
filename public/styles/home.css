@@ -164,6 +164,7 @@
     color: #FFFFFF;
     width: 100%;
     height: 45px;
+    padding-left: 10px;
 }
 .form-contacts:focus{
     background: #000000;
