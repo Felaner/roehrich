@@ -1,0 +1,10 @@
+<div class="container">
+    {{#if video}}
+        {{#each video}}
+            <a href="/control/edit-video/{{id}}">{{url}}</a>
+        {{/each}}
+    {{else}}
+        <h3 class="text-center">Видео отсутсвуют</h3>
+        <a href="/control/add-video">Добавить видео</a>
+    {{/if}}
+</div>

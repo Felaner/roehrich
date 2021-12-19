@@ -14,6 +14,7 @@ router.get('/', auth, (req, res) => {
     });
 });
 
+// Категории
 router.get('/add-divide', auth, (req, res) => {
     res.render('control/addDivide', {
         title: 'Добавление категорий'
@@ -54,6 +55,31 @@ router.post('/add-divide', auth, async (req, res) => {
     }
 });
 
+router.get('/edit-divide', auth, async (req, res) => {
+    const divide = await Divide.findAll()
+    res.render('control/divides', {
+        title: 'Редактирование категорий',
+        divide
+    });
+});
+
+router.get('/edit-divide/:id', auth, async (req, res) => {
+    const divide = await Divide.findByPk(req.params.id);
+    res.render('control/divides', {
+        title: `Редактирование ${divide.name}`,
+        divide
+    });
+});
+
+router.post('/edit-divide/:id', auth, async (req, res) => {
+    const divide = await Divide.findByPk(req.params.id);
+    res.render('control/divides', {
+        title: 'Редактирование категорий',
+        divide
+    });
+});
+
+// Услуги
 router.get('/add-service', auth, (req, res) => {
     res.render('control/addService', {
         title: 'Добавление услуг'
@@ -111,6 +137,15 @@ router.post('/add-service', auth, async (req, res) => {
     }
 });
 
+router.get('/edit-service', auth, async (req, res) => {
+    const service = await Service.findAll()
+    res.render('control/services', {
+        title: 'Редактирование услуг',
+        service
+    });
+});
+
+// Товары
 router.get('/add-product', auth, (req, res) => {
     res.render('control/addProduct', {
         title: 'Добавление товаров'
@@ -176,13 +211,22 @@ router.post('/add-product', auth, async (req, res) => {
     }
 });
 
+router.get('/edit-product', auth, async (req, res) => {
+    const product = await Product.findAll()
+    res.render('control/products', {
+        title: 'Редактирование товаров',
+        product
+    });
+});
+
+// Видео
 router.get('/add-video', auth, (req, res) => {
     res.render('control/addVideo', {
         title: 'Добавление видео'
     });
 });
 
-router.post('/add-product', auth, async (req, res) => {
+router.post('/add-video', auth, async (req, res) => {
     const {videoUrl, videoSelect} = req.body
     const productId = await Product.findOne({
         attributes: ['id'],
@@ -204,5 +248,13 @@ router.post('/add-product', auth, async (req, res) => {
         addSuccess: req.flash('addSuccess')
     });
 })
+
+router.get('/edit-video', auth, async (req, res) => {
+    const video = await Video.findAll()
+    res.render('control/videos', {
+        title: 'Редактирование видео',
+        video
+    });
+});
 
 module.exports = router;

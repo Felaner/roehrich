@@ -1,0 +1,10 @@
+<div class="container">
+    {{#if product}}
+        {{#each product}}
+            <a href="/control/edit-product/{{id}}">{{name}}</a>
+        {{/each}}
+    {{else}}
+        <h3 class="text-center">Товары отсутсвуют</h3>
+        <a href="/control/add-product">Добавить товар</a>
+    {{/if}}
+</div>
