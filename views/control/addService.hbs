@@ -10,7 +10,7 @@
             <div class="alert alert-danger text-center">{{fileError}}</div>
         {{/if}}
         <form action="/control/add-service" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="form-group mt-5">
                 <label for="serviceName">Название услуги</label>
                 <input name="serviceName" type="text" id="serviceName" class="form-control">
             </div>
@@ -24,11 +24,20 @@
             </div>
             <div class="form-group">
                 <label for="serviceImage">Добавьте изображение</label>
-                <input name="serviceImage" type="file" id="serviceImage" class="form-control" multiple>
-                <label for="serviceImage">* Первое выбранное изображение будет отображаться на превью услуги</label>
+                <label class="f-22" for="divideImage">Добавьте изображение</label>
+                <div class="fileinput-wrapper">
+                    <div class="file-upload">
+                        <label>
+                            <input type="file" name="file">
+                            <span>Выбрать файл</span>
+                        </label>
+                    </div>
+                    <input type="text" id="filename" class="filename" placeholder="Название изображения">
+                </div>
+                <label for="divideImage">Выбранное изображение будет отображаться на превью категории</label>
             </div>
             <div class="form-group">
-                <button type="submit" class="button">Добавить</button>
+                <button type="submit" class="divide-button">Добавить</button>
             </div>
         </form>
     </div>

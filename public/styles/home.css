@@ -157,4 +157,16 @@
 .card:hover .service .service-button{
     bottom: 3px;
 }
-
+.form-contacts{
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 0;
+    color: #FFFFFF;
+    width: 100%;
+    height: 45px;
+}
+.form-contacts:focus{
+    background: #000000;
+    border-color:#FFFFFF;
+    color: #FFFFFF;
+}
