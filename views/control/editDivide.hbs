@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="container">
+
         <div class="row justify-content-center mb-5 mt-5">
             <div class="col-12">
                 <h3 class="text-center">Редактирование "{{divide.name}}"</h3>
@@ -14,28 +14,29 @@
                     <div class="alert alert-danger text-center">{{fileError}}</div>
                 </div>
             {{/if}}
-            <form action="/control/edit-divide/{{divide.id}}" method="post" enctype="multipart/form-data">
-                <div class="form-group mt-5">
-                    <label class="f-18" for="divideName">Название категории</label>
-                    <input name="divideName" type="text" id="divideName" class="form-control" value="{{divide.name}}">
-                </div>
-                <div class="form-group">
-                    <label class="f-18" for="editDivideImage">Измените изображение (необязательно)</label>
-                    <div class="fileinput-wrapper">
-                        <div class="file-upload">
-                            <label>
-                                <input type="file" name="editDivideImage">
-                                <span>Выбрать файл</span>
-                            </label>
-                        </div>
-                        <input type="text" id="filename" class="filename" placeholder="Название изображения" disabled>
-                    </div>
-                    <label for="editDivideImage">* Выбранное изображение заменит превью категории</label>
-                </div>
-                <div class="form-group mt-5">
-                    <button type="submit" class="divide-button">Изменить</button>
-                </div>
-            </form>
+           <div class="col-6">
+               <form action="/control/edit-divide/{{divide.id}}" method="post" enctype="multipart/form-data">
+                   <div class="form-group mt-3">
+                       <label class="f-18" for="divideName">Название категории</label>
+                       <input name="divideName" type="text" id="divideName" class="form-control" value="{{divide.name}}">
+                   </div>
+                   <div class="form-group">
+                       <label class="f-18" for="editDivideImage">Измените изображение (необязательно)</label>
+                       <div class="fileinput-wrapper">
+                           <div class="file-upload">
+                               <label>
+                                   <input type="file" name="editDivideImage">
+                                   <span>Выбрать файл</span>
+                               </label>
+                           </div>
+                           <input type="text" id="filename" class="filename" placeholder="Название изображения" disabled>
+                       </div>
+                       <label for="editDivideImage">* Выбранное изображение заменит превью категории</label>
+                   </div>
+                   <div class="form-group mt-3">
+                       <button type="submit" class="divide-button">Изменить</button>
+                   </div>
+               </form>
+           </div>
         </div>
-    </div>
 </div>

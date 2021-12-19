@@ -41,7 +41,7 @@ router.post('/add-divide', auth, async (req, res) => {
             .toFile(dirname + `/${filename}.webp`)
         await Divide.create({
             name: divideName,
-            srcImage: dirname + `/${filename}.webp`,
+            srcImage: `images/divides/${filename}.webp`,
         }).catch(err => {
             console.log(err)
         });
