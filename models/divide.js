@@ -155,7 +155,7 @@ const video = sequelize.define('Video', {
         allowNull: false,
         type: Sequelize.INTEGER
     },
-    href: {
+    url: {
         type: Sequelize.STRING,
         allowNull: false
     },

@@ -182,4 +182,27 @@ router.get('/add-video', auth, (req, res) => {
     });
 });
 
+router.post('/add-product', auth, async (req, res) => {
+    const {videoUrl, videoSelect} = req.body
+    const productId = await Product.findOne({
+        attributes: ['id'],
+        where: {
+            name: videoSelect
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+    await Video.create({
+        url: videoUrl,
+        ProductId: productId.id
+    }).catch(err => {
+        console.log(err)
+    })
+    req.flash('addSuccess', "Видео успешно добавлено");
+    res.status(200).render('control/addVideo', {
+        title: 'Добавление видео',
+        addSuccess: req.flash('addSuccess')
+    });
+})
+
 module.exports = router;
