@@ -10,11 +10,11 @@
             <div class="alert alert-danger text-center">{{fileError}}</div>
         {{/if}}
         <form action="/control/add-product" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productName">Название товара</label>
                 <input name="productName" type="text" id="productName" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productCategory">Категория товара</label>
                 <select name="productCategory" id="productCategory" class="form-control">
                     <option value="">1 категория</option>
@@ -22,76 +22,84 @@
                     <option value="">3 категория</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productDescription">Описание товара</label>
                 <textarea name="productDescription" id="productDescription" class="form-control"></textarea>
             </div>
 <!--Характеристики-->
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productCount">Количество в упаковке</label>
                 <input name="productCount" type="number" id="productCount" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productWeight">Вес</label>
                 <input name="productWeight" type="number" step="0.1" id="productWeight" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productVolume">Объем</label>
                 <input name="productVolume" type="number" step="0.001" id="productVolume" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productEnviron">Рабочая среда</label>
                 <input name="productEnviron" type="text" id="productEnviron" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productTemp">Максимальная температура рабочей среды, C<sup>о</sup></label>
                 <input name="productTemp" type="number" id="productTemp" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productMaterial">Материал корпуса</label>
                 <input name="productMaterial" type="text" id="productMaterial" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productConnect">Тип соединения</label>
                 <input name="productConnect" type="text" id="productConnect" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productDiameter">Диаметр условный DN, мм</label>
                 <input name="productDiameter" type="number" id="productDiameter" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productDimension">Единица измерения</label>
                 <input name="productDimension" type="text" id="productDimension" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productGost">Соответствие ГОСТ</label>
                 <input name="productGost" type="text" id="productGost" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productPressure">Номинальное давление PN,МПа</label>
                 <input name="productPressure" type="number" step="0.1" id="productPressure" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productDepth">Толщина стенки, мм</label>
                 <input name="productDepth" type="number" id="productDepth" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productExternalDiameter">Внешний диаметр, мм</label>
                 <input name="productExternalDiameter" type="number" id="productExternalDiameter" class="form-control">
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group f-22">
                 <label for="productPrice">Цена товара</label>
                 <input name="productPrice" type="number" id="productPrice" class="form-control">
             </div>
             <div class="form-group">
-                <label for="productImage">Добавьте изображение</label>
-                <input name="productImage" type="file" id="productImage" class="form-control" multiple>
-                <label for="productImage">* Первое выбранное изображение будет отображаться на превью товара</label>
+                <label class="f-22" for="divideImage">Добавьте изображение</label>
+                <div class="fileinput-wrapper">
+                    <div class="file-upload">
+                        <label>
+                            <input type="file" name="file">
+                            <span>Выбрать файл</span>
+                        </label>
+                    </div>
+                    <input type="text" id="filename" class="filename" placeholder="Название изображения">
+                </div>
+                <label for="divideImage">Выбранное изображение будет отображаться на превью категории</label>
             </div>
             <div class="form-group">
-                <button type="submit" class="button">Добавить</button>
+                <button type="submit" class="divide-button">Добавить</button>
             </div>
         </form>
     </div>
