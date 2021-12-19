@@ -4,10 +4,14 @@
             <h3 class="text-center">Добавление категории</h3>
         </div>
         {{#if addSuccess}}
-            <div class="alert alert-success text-center">{{addSuccess}}</div>
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{addSuccess}}</div>
+            </div>
         {{/if}}
         {{#if fileError}}
-            <div class="alert alert-danger text-center">{{fileError}}</div>
+            <div class="col-7">
+                <div class="alert alert-danger text-center">{{fileError}}</div>
+            </div>
         {{/if}}
         <form action="/control/add-divide" method="post" enctype="multipart/form-data">
             <div class="form-group mt-5">
