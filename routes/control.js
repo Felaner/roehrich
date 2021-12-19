@@ -65,18 +65,63 @@ router.get('/edit-divide', auth, async (req, res) => {
 
 router.get('/edit-divide/:id', auth, async (req, res) => {
     const divide = await Divide.findByPk(req.params.id);
-    res.render('control/divides', {
-        title: `Редактирование ${divide.name}`,
+    res.render('control/editDivide', {
+        title: `Редактирование категории "${divide.name}"`,
+        editSuccess: req.flash('editSuccess'),
         divide
     });
 });
 
 router.post('/edit-divide/:id', auth, async (req, res) => {
-    const divide = await Divide.findByPk(req.params.id);
-    res.render('control/divides', {
-        title: 'Редактирование категорий',
-        divide
-    });
+    const {divideName} = req.body;
+
+    try {
+        if (req.files['editDivideImage']) {
+            await Divide.findOne({
+                attributes: ['srcImage'],
+                where: {
+                    id: req.params.id
+                }
+            }).then(result => {
+                fs.rmSync(result.srcImage, { recursive: true, force: true });
+            })
+            const dirname = `public/images/divides`
+            const filename = req.files['editDivideImage'][0].originalname.substr(0, req.files['editDivideImage'][0].originalname.lastIndexOf('.'));
+            await sharp(req.files['editDivideImage'][0].buffer)
+                .rotate()
+                .toFormat('webp')
+                .webp({ quality: 90 })
+                .withMetadata()
+                .toFile(dirname + `/${filename}.webp`)
+            await Divide.update(
+                {
+                    srcImage: dirname + `/${filename}.webp`,
+                },
+                {
+                    where: {
+                        id: req.params.id
+                    }
+                }
+            ).catch(err => {
+                console.log(err)
+            });
+        }
+        await Divide.update(
+            {
+                name: divideName
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(result => {
+            req.flash('editSuccess', "Категория успешно изменена")
+            res.redirect(`/control/edit-divide/${req.params.id}`);
+        })
+    } catch (e) {
+        console.dir(e)
+    }
 });
 
 // Услуги
@@ -143,6 +188,67 @@ router.get('/edit-service', auth, async (req, res) => {
         title: 'Редактирование услуг',
         service
     });
+});
+
+router.get('/edit-service/:id', auth, async (req, res) => {
+    const service = await Service.findByPk(req.params.id);
+    res.render('control/editService', {
+        title: `Редактирование услуги "${service.name}"`,
+        editSuccess: req.flash('editSuccess'),
+        service
+    });
+});
+
+router.post('/edit-service/:id', auth, async (req, res) => {
+    const {divideName} = req.body;
+
+    try {
+        if (req.files['editDivideImage']) {
+            await Divide.findOne({
+                attributes: ['srcImage'],
+                where: {
+                    id: req.params.id
+                }
+            }).then(result => {
+                fs.rmSync(result.srcImage, { recursive: true, force: true });
+            })
+            const dirname = `public/images/divides`
+            const filename = req.files['editDivideImage'][0].originalname.substr(0, req.files['editDivideImage'][0].originalname.lastIndexOf('.'));
+            await sharp(req.files['editDivideImage'][0].buffer)
+                .rotate()
+                .toFormat('webp')
+                .webp({ quality: 90 })
+                .withMetadata()
+                .toFile(dirname + `/${filename}.webp`)
+            await Divide.update(
+                {
+                    srcImage: dirname + `/${filename}.webp`,
+                },
+                {
+                    where: {
+                        id: req.params.id
+                    }
+                }
+            ).catch(err => {
+                console.log(err)
+            });
+        }
+        await Divide.update(
+            {
+                name: divideName
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(result => {
+            req.flash('editSuccess', "Категория успешно изменена")
+            res.redirect(`/control/edit-divide/${req.params.id}`);
+        })
+    } catch (e) {
+        console.dir(e)
+    }
 });
 
 // Товары
