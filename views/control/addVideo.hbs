@@ -1,23 +1,27 @@
 <div class="container">
     <div class="row justify-content-center mb-5 mt-5">
         <div class="col-12">
-            <h3 class="text-center">Добавление видео</h3>
+            <h3 class="text-center mb-5">Добавление видео</h3>
         </div>
         {{#if addSuccess}}
             <div class="alert alert-success text-center">{{addSuccess}}</div>
         {{/if}}
         <form action="/control/add-divide" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="videoUrl">Ссылка на видео из YouTube</label>
-                <input name="videoUrl" type="text" id="videoUrl" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="videoSelect">Выберите товар</label>
-                <select name="videoSelect" id="videoSelect" class="form-control">
-                    <option value="">Товар</option>
-                </select>
-            </div>
-            <div class="form-group">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="videoUrl">Ссылка на видео из YouTube</label>
+                        <input name="videoUrl" type="text" id="videoUrl" class="form-control">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="videoSelect">Выберите товар</label>
+                        <select name="videoSelect" id="videoSelect" class="form-control">
+                            <option value="">Товар</option>
+                        </select>
+                    </div>
+                </div>
+            <div class="form-group mt-5">
                 <button type="submit" class="divide-button">Добавить</button>
             </div>
         </form>
