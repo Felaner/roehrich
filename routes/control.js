@@ -309,7 +309,7 @@ router.post('/add-product', auth, async (req, res) => {
                 .withMetadata()
                 .toFile(dirname + `/${filename}.webp`)
             Image.create({
-                srcImage: dirname + `/${filename}.webp`,
+                srcImage: `images/products/${filename}.webp`,
                 ProductId: productId.id
             }).catch(err => {
                 console.log(err)
