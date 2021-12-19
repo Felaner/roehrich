@@ -77,7 +77,7 @@ app.use(session({
     saveUninitialized: false,
     path: '/',
     cookie: {
-        maxAge: 10 * 60 * 1000
+        maxAge: 60 * 60 * 1000
     }
 }));
 
@@ -85,6 +85,7 @@ app.use(fileMiddleware.fields([
     { name: 'divideImage', maxCount: 1 },
     { name: 'editDivideImage', maxCount: 1 },
     { name: 'serviceImage', maxCount: 5 },
+    { name: 'editServiceImage', maxCount: 5 },
     { name: 'productImage', maxCount: 5}
 ]));
 
