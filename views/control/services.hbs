@@ -1,0 +1,10 @@
+<div class="container">
+    {{#if service}}
+        {{#each service}}
+            <a href="/control/edit-service/{{id}}">{{name}}</a>
+        {{/each}}
+    {{else}}
+        <h3 class="text-center">Услуги отсутсвуют</h3>
+        <a href="/control/add-service">Добавить услугу</a>
+    {{/if}}
+</div>

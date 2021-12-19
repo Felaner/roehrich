@@ -1,0 +1,10 @@
+<div class="container">
+    {{#if divide}}
+        {{#each divide}}
+            <a href="/control/edit-divide/{{id}}">{{name}}</a>
+        {{/each}}
+    {{else}}
+        <h3 class="text-center">Категории отсутсвуют</h3>
+        <a href="/control/add-divide">Добавить категорию</a>
+    {{/if}}
+</div>
