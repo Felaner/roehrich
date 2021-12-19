@@ -5,10 +5,14 @@
                 <h3 class="text-center">Редактирование "{{divide.name}}"</h3>
             </div>
             {{#if editSuccess}}
-                <div class="alert alert-success text-center">{{editSuccess}}</div>
+                <div class="col-7">
+                    <div class="alert alert-success text-center">{{editSuccess}}</div>
+                </div>
             {{/if}}
             {{#if fileError}}
-                <div class="alert alert-danger text-center">{{fileError}}</div>
+                <div class="col-7">
+                    <div class="alert alert-danger text-center">{{fileError}}</div>
+                </div>
             {{/if}}
             <form action="/control/edit-divide/{{divide.id}}" method="post" enctype="multipart/form-data">
                 <div class="form-group mt-5">

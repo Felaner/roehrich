@@ -1,10 +1,12 @@
 <div class="container">
     <div class="row justify-content-center mb-5 mt-5">
         <div class="col-12">
-            <h3 class="text-center mb-5">Добавление видео</h3>
+            <h3 class="text-center mb-3">Добавление видео</h3>
         </div>
         {{#if addSuccess}}
-            <div class="alert alert-success text-center">{{addSuccess}}</div>
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{addSuccess}}</div>
+            </div>
         {{/if}}
         <form action="/control/add-divide" method="post" enctype="multipart/form-data">
                 <div class="col-12">
@@ -21,7 +23,7 @@
                         </select>
                     </div>
                 </div>
-            <div class="form-group mt-5">
+            <div class="form-group mt-3">
                 <button type="submit" class="divide-button">Добавить</button>
             </div>
         </form>

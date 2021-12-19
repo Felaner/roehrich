@@ -4,7 +4,9 @@
             <h3 class="text-center">Редактирование услуги {{service.name}}</h3>
         </div>
         {{#if editSuccess}}
-            <div class="alert alert-success text-center">{{addSuccess}}</div>
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{addSuccess}}</div>
+            </div>
         {{/if}}
         <form action="/control/edit-service/{{service.id}}" method="post" enctype="multipart/form-data">
             <div class="form-group mt-5">

@@ -1,10 +1,22 @@
 <div class="container">
     {{#if divide}}
+        <div class="row">
         {{#each divide}}
-            <a href="/control/edit-divide/{{id}}">{{name}}</a>
+            <div class="col-md-4 mt-4">
+                <div class="product-card row flex-column align-items-center justify-content-around">
+                    <div class="productions-title f-36 text-center">{{name}}</div>
+                    <div class="product-img"><img class="img-fluid" src="{{srcImage}}" alt="product-img"></div>
+                    <a href="control/edit-divide/{{id}}" class="productions-button text-center">Редактировать</a>
+                </div>
+            </div>
         {{/each}}
+        </div>
     {{else}}
-        <h3 class="text-center">Категории отсутсвуют</h3>
-        <a href="/control/add-divide">Добавить категорию</a>
+        <h3 class="text-center mt-3 mb-3">Категории отсутсвуют</h3>
+        <a class="divide-link" href="/control/add-divide">
+            <div class="divide-button text-center mx-auto">
+                Добавить категорию
+            </div>
+        </a>
     {{/if}}
 </div>

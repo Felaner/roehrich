@@ -4,13 +4,17 @@
             <h3 class="text-center">Добавление услуги</h3>
         </div>
         {{#if addSuccess}}
-            <div class="alert alert-success text-center">{{addSuccess}}</div>
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{addSuccess}}</div>
+            </div>
         {{/if}}
         {{#if fileError}}
-            <div class="alert alert-danger text-center">{{fileError}}</div>
+            <div class="col-7">
+                <div class="alert alert-danger text-center">{{fileError}}</div>
+            </div>
         {{/if}}
         <form action="/control/add-service" method="post" enctype="multipart/form-data">
-            <div class="form-group mt-5">
+            <div class="form-group mt-3">
                 <label for="serviceName">Название услуги</label>
                 <input name="serviceName" type="text" id="serviceName" class="form-control">
             </div>
@@ -35,7 +39,7 @@
                 </div>
                 <label for="divideImage">* Первое выбранное изображение будет отображаться на превью услуги</label>
             </div>
-            <div class="form-group mt-5">
+            <div class="form-group mt-3">
                 <button type="submit" class="divide-button">Добавить</button>
             </div>
         </form>
