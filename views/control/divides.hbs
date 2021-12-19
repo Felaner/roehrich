@@ -1,15 +1,15 @@
 <div class="container divides">
     {{#if divide}}
         <div class="row">
-        {{#each divide}}
-            <div class="col-md-4 mt-4">
-                <div class="product-card row flex-column align-items-center justify-content-around">
-                    <div class="productions-title f-36 text-center">{{name}}</div>
-                    <div class="product-img"><img class="img-fluid" src="../{{srcImage}}" alt="product-img"></div>
-                    <a href="/control/edit-divide/{{id}}" class="productions-button text-center">Редактировать</a>
+            {{#each divide}}
+                <div class="col-md-4 mt-4">
+                    <div class="product-card row flex-column align-items-center justify-content-around">
+                        <div class="productions-title f-36 text-center">{{name}}</div>
+                        <div class="product-img"><img class="img-fluid" src="../{{srcImage}}" alt="product-img"></div>
+                        <a href="/control/edit-divide/{{id}}" class="productions-button text-center">Редактировать</a>
+                    </div>
                 </div>
-            </div>
-        {{/each}}
+            {{/each}}
         </div>
     {{else}}
         <h3 class="text-center mt-3 mb-3">Категории отсутсвуют</h3>

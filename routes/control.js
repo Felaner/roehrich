@@ -326,11 +326,80 @@ router.post('/add-product', auth, async (req, res) => {
 });
 
 router.get('/edit-product', auth, async (req, res) => {
-    const product = await Product.findAll()
+    const product = await Product.findAll({
+        include: {
+            model: Image
+        },
+        order: [
+            [Image, 'id', 'ASC']
+        ]
+    })
     res.render('control/products', {
         title: 'Редактирование товаров',
         product
     });
+});
+
+router.get('/edit-product/:id', auth, async (req, res) => {
+    const product = await Product.findByPk(req.params.id);
+    res.render('control/editProduct', {
+        title: `Редактирование товара "${product.name}"`,
+        editSuccess: req.flash('editSuccess'),
+        product
+    });
+});
+
+router.post('/edit-product/:id', auth, async (req, res) => {
+    const {serviceName, serviceDescription, servicePrice} = req.body;
+
+    try {
+        if (req.files['editServiceImage']) {
+            await Image.findAll({
+                attributes: ['srcImage'],
+                where: {
+                    ServiceId: req.params.id
+                }
+            }).then(result => {
+                result.forEach(el => {
+                    fs.rmSync(el.srcImage, { recursive: true, force: true });
+                })
+            })
+            const dirname = `public/images/services`
+
+            await req.files['editServiceImage'].forEach(el => {
+                const filename = el.originalname.substr(0, el.originalname.lastIndexOf('.'));
+                sharp(el.buffer)
+                    .rotate()
+                    .toFormat('webp')
+                    .webp({ quality: 90 })
+                    .withMetadata()
+                    .toFile(dirname + `/${filename}.webp`)
+                Image.create({
+                    srcImage: `images/services/${filename}.webp`,
+                    ServiceId: req.params.id
+                }).catch(err => {
+                    console.log(err)
+                });
+            })
+        }
+        await Service.update(
+            {
+                name: serviceName,
+                description: serviceDescription,
+                price: servicePrice
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(result => {
+            req.flash('editSuccess', 'Услуга успешно изменена')
+            res.redirect(`/control/edit-service/${req.params.id}`);
+        })
+    } catch (e) {
+        console.dir(e)
+    }
 });
 
 // Видео
