@@ -95,7 +95,7 @@ router.post('/edit-divide/:id', auth, async (req, res) => {
                 .toFile(dirname + `/${filename}.webp`)
             await Divide.update(
                 {
-                    srcImage: dirname + `/${filename}.webp`,
+                    srcImage: `images/divides/${filename}.webp`,
                 },
                 {
                     where: {
@@ -166,7 +166,7 @@ router.post('/add-service', auth, async (req, res) => {
                 .withMetadata()
                 .toFile(dirname + `/${filename}.webp`)
             Image.create({
-                srcImage: dirname + `/${filename}.webp`,
+                srcImage: `images/services/${filename}.webp`,
                 ServiceId: serviceId.id
             }).catch(err => {
                 console.log(err)
@@ -200,42 +200,43 @@ router.get('/edit-service/:id', auth, async (req, res) => {
 });
 
 router.post('/edit-service/:id', auth, async (req, res) => {
-    const {divideName} = req.body;
+    const {serviceName, serviceDescription, servicePrice} = req.body;
 
     try {
-        if (req.files['editDivideImage']) {
-            await Divide.findOne({
+        if (req.files['editServiceImage']) {
+            await Image.findAll({
                 attributes: ['srcImage'],
                 where: {
-                    id: req.params.id
+                    ServiceId: req.params.id
                 }
             }).then(result => {
-                fs.rmSync(result.srcImage, { recursive: true, force: true });
+                result.forEach(el => {
+                    fs.rmSync(el.srcImage, { recursive: true, force: true });
+                })
             })
-            const dirname = `public/images/divides`
-            const filename = req.files['editDivideImage'][0].originalname.substr(0, req.files['editDivideImage'][0].originalname.lastIndexOf('.'));
-            await sharp(req.files['editDivideImage'][0].buffer)
-                .rotate()
-                .toFormat('webp')
-                .webp({ quality: 90 })
-                .withMetadata()
-                .toFile(dirname + `/${filename}.webp`)
-            await Divide.update(
-                {
-                    srcImage: dirname + `/${filename}.webp`,
-                },
-                {
-                    where: {
-                        id: req.params.id
-                    }
-                }
-            ).catch(err => {
-                console.log(err)
-            });
+            const dirname = `public/images/services`
+
+            await req.files['editServiceImage'].forEach(el => {
+                const filename = el.originalname.substr(0, el.originalname.lastIndexOf('.'));
+                sharp(el.buffer)
+                    .rotate()
+                    .toFormat('webp')
+                    .webp({ quality: 90 })
+                    .withMetadata()
+                    .toFile(dirname + `/${filename}.webp`)
+                Image.create({
+                        srcImage: `images/services/${filename}.webp`,
+                        ServiceId: req.params.id
+                }).catch(err => {
+                    console.log(err)
+                });
+            })
         }
-        await Divide.update(
+        await Service.update(
             {
-                name: divideName
+                name: serviceName,
+                description: serviceDescription,
+                price: servicePrice
             },
             {
                 where: {
@@ -243,8 +244,8 @@ router.post('/edit-service/:id', auth, async (req, res) => {
                 }
             }
         ).then(result => {
-            req.flash('editSuccess', "Категория успешно изменена")
-            res.redirect(`/control/edit-divide/${req.params.id}`);
+            req.flash('editSuccess', 'Услуга успешно изменена')
+            res.redirect(`/control/edit-service/${req.params.id}`);
         })
     } catch (e) {
         console.dir(e)
