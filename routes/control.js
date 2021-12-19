@@ -260,9 +260,13 @@ router.post('/edit-service/:id', auth, async (req, res) => {
 });
 
 // Товары
-router.get('/add-product', auth, (req, res) => {
+router.get('/add-product', auth, async (req, res) => {
+    const divides = await Divide.findAll({
+        attributes: ['name']
+    })
     res.render('control/addProduct', {
-        title: 'Добавление товаров'
+        title: 'Добавление товаров',
+        divides
     });
 });
 
@@ -281,13 +285,19 @@ router.post('/add-product', auth, async (req, res) => {
             productConnect, productDiameter, productDimension,
             productGost, productPressure, productDepth, productExternalDiameter,
             productPrice} = req.body
+        const divideId = await Divide.findOne({
+            attributes: ['id'],
+            where: {
+                name: productCategory
+            }
+        })
         await Product.create({
             name: productName, category: productCategory, description: productDescription,
             count: productCount, weight: productWeight, volume: productVolume,
             environ: productEnviron, temp: productTemp, material: productMaterial,
             connect: productConnect, diameter: productDiameter, dimension: productDimension,
             gost: productGost, pressure: productPressure, depth: productDepth,
-            externalDiameter: productExternalDiameter, price: productPrice
+            externalDiameter: productExternalDiameter, price: productPrice, DivideId: divideId.id
         }).catch(err => {
             console.log(err)
         })
@@ -340,6 +350,7 @@ router.get('/edit-product', auth, async (req, res) => {
             [Product, 'id', 'ASC']
         ]
     })
+    console.log(divide)
     res.render('control/products', {
         title: 'Редактирование товаров',
         divide

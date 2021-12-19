@@ -21,9 +21,14 @@
             <div class="form-group f-18">
                 <label for="productCategory">Категория товара</label>
                 <select name="productCategory" id="productCategory" class="form-control">
-                    <option value="">1 категория</option>
-                    <option value="">2 категория</option>
-                    <option value="">3 категория</option>
+                    {{#if divides}}
+                        <option value="" selected disabled>Выберите категорию</option>
+                        {{#each divides}}
+                            <option value="{{name}}">{{name}}</option>
+                        {{/each}}
+                    {{else}}
+                        <option value="" selected disabled>Категории отсутствуют</option>
+                    {{/if}}
                 </select>
             </div>
             <div class="form-group f-18">
