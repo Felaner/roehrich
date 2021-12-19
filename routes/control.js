@@ -183,7 +183,14 @@ router.post('/add-service', auth, async (req, res) => {
 });
 
 router.get('/edit-service', auth, async (req, res) => {
-    const service = await Service.findAll()
+    const service = await Service.findAll({
+        include: {
+            model: Image
+        },
+        order: [
+            [Image, 'id', 'ASC']
+        ]
+    })
     res.render('control/services', {
         title: 'Редактирование услуг',
         service
