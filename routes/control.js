@@ -326,17 +326,23 @@ router.post('/add-product', auth, async (req, res) => {
 });
 
 router.get('/edit-product', auth, async (req, res) => {
-    const product = await Product.findAll({
-        include: {
-            model: Image
-        },
+    const divide = await Divide.findAll({
+        include: [{
+            model: Product,
+            include: [{
+                model: Image
+            }],
+            order: [
+                [Image, 'id', 'ASC']
+            ]
+        }],
         order: [
-            [Image, 'id', 'ASC']
+            [Product, 'id', 'ASC']
         ]
     })
     res.render('control/products', {
         title: 'Редактирование товаров',
-        product
+        divide
     });
 });
 
