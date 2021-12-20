@@ -359,31 +359,36 @@ router.get('/edit-product', auth, async (req, res) => {
 
 router.get('/edit-product/:id', auth, async (req, res) => {
     const product = await Product.findByPk(req.params.id);
+    const divides = await Divide.findAll({
+        attributes: ['name']
+    })
     res.render('control/editProduct', {
         title: `Редактирование товара "${product.name}"`,
         editSuccess: req.flash('editSuccess'),
+        divides,
         product
     });
 });
 
 router.post('/edit-product/:id', auth, async (req, res) => {
-    const {serviceName, serviceDescription, servicePrice} = req.body;
+    const {productName, productCategory, productDescription,
+        productCount, productWeight, productVolume,
+        productEnviron, productTemp, productMaterial,
+        productConnect, productDiameter, productDimension,
+        productGost, productPressure, productDepth, productExternalDiameter,
+        productPrice} = req.body
 
+    const divideId = await Divide.findOne({
+        attributes: ['id'],
+        where: {
+            name: productCategory
+        }
+    })
     try {
-        if (req.files['editServiceImage']) {
-            await Image.findAll({
-                attributes: ['srcImage'],
-                where: {
-                    ServiceId: req.params.id
-                }
-            }).then(result => {
-                result.forEach(el => {
-                    fs.rmSync(el.srcImage, { recursive: true, force: true });
-                })
-            })
-            const dirname = `public/images/services`
+        if (req.files['editProductImage']) {
+            const dirname = `public/images/products`
 
-            await req.files['editServiceImage'].forEach(el => {
+            await req.files['editProductImage'].forEach(el => {
                 const filename = el.originalname.substr(0, el.originalname.lastIndexOf('.'));
                 sharp(el.buffer)
                     .rotate()
@@ -392,18 +397,21 @@ router.post('/edit-product/:id', auth, async (req, res) => {
                     .withMetadata()
                     .toFile(dirname + `/${filename}.webp`)
                 Image.create({
-                    srcImage: `images/services/${filename}.webp`,
-                    ServiceId: req.params.id
+                    srcImage: `images/products/${filename}.webp`,
+                    ProductId: req.params.id
                 }).catch(err => {
                     console.log(err)
                 });
             })
         }
-        await Service.update(
+        await Product.update(
             {
-                name: serviceName,
-                description: serviceDescription,
-                price: servicePrice
+                name: productName, category: productCategory, description: productDescription,
+                count: productCount, weight: productWeight, volume: productVolume,
+                environ: productEnviron, temp: productTemp, material: productMaterial,
+                connect: productConnect, diameter: productDiameter, dimension: productDimension,
+                gost: productGost, pressure: productPressure, depth: productDepth,
+                externalDiameter: productExternalDiameter, price: productPrice, DivideId: divideId.id
             },
             {
                 where: {
@@ -411,8 +419,8 @@ router.post('/edit-product/:id', auth, async (req, res) => {
                 }
             }
         ).then(result => {
-            req.flash('editSuccess', 'Услуга успешно изменена')
-            res.redirect(`/control/edit-service/${req.params.id}`);
+            req.flash('editSuccess', 'Товар успешно изменен')
+            res.redirect(`/control/edit-product/${req.params.id}`);
         })
     } catch (e) {
         console.dir(e)
@@ -420,9 +428,13 @@ router.post('/edit-product/:id', auth, async (req, res) => {
 });
 
 // Видео
-router.get('/add-video', auth, (req, res) => {
+router.get('/add-video', auth, async (req, res) => {
+    const products = await Product.findAll({
+        attributes: ['name']
+    })
     res.render('control/addVideo', {
-        title: 'Добавление видео'
+        title: 'Добавление видео',
+        products
     });
 });
 
@@ -455,6 +467,54 @@ router.get('/edit-video', auth, async (req, res) => {
         title: 'Редактирование видео',
         video
     });
+});
+
+router.get('/edit-video/:id', auth, async (req, res) => {
+    const video = await Video.findByPk(req.params.id);
+    const products = await Product.findAll({
+        attributes: ['id', 'name']
+    })
+    const productsSelected = await Product.findOne({
+        attributes: ['id', 'name'],
+        where: {
+            id: video.ProductId
+        }
+    })
+    res.render('control/editVideo', {
+        title: `Редактирование видео для товара "${productsSelected.name}"`,
+        editSuccess: req.flash('editSuccess'),
+        video,
+        productsSelected,
+        products
+    });
+});
+
+router.post('/edit-video/:id', auth, async (req, res) => {
+    const {videoUrl, videoSelect} = req.body;
+    const productId = await Product.findOne({
+        attributes: ['id'],
+        where: {
+            name: videoSelect
+        }
+    })
+    try {
+        await Video.update(
+            {
+                url: videoUrl,
+                ProductId: productId.id
+            },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
+        ).then(result => {
+            req.flash('editSuccess', "Видео успешно изменено")
+            res.redirect(`/control/edit-video/${req.params.id}`);
+        })
+    } catch (e) {
+        console.dir(e)
+    }
 });
 
 module.exports = router;

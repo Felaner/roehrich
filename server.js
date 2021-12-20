@@ -87,7 +87,8 @@ app.use(fileMiddleware.fields([
     { name: 'editDivideImage', maxCount: 1 },
     { name: 'serviceImage', maxCount: 5 },
     { name: 'editServiceImage', maxCount: 5 },
-    { name: 'productImage', maxCount: 5}
+    { name: 'productImage', maxCount: 5},
+    { name: 'editProductImage', maxCount: 5}
 ]));
 
 app.use(userMiddleware);
