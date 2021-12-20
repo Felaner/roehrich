@@ -59,6 +59,7 @@ router.get('/edit-divide', auth, async (req, res) => {
     const divide = await Divide.findAll()
     res.render('control/divides', {
         title: 'Редактирование категорий',
+        deleteSuccess: req.flash('deleteSuccess'),
         divide
     });
 });
@@ -121,6 +122,63 @@ router.post('/edit-divide/:id', auth, async (req, res) => {
         })
     } catch (e) {
         console.dir(e)
+    }
+});
+
+router.post('/edit-divide/:id/remove', auth, async (req, res) => {
+    try {
+        await Divide.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            try {
+                fs.rmSync('public/' + result.srcImage, { recursive: true, force: true });
+            } catch (error) {
+                console.error(error)
+            }
+        }).catch(e => {
+            console.log(e)
+        })
+        await Product.findAll({
+            include: {
+                model: Image
+            },
+            where: {
+                DivideId: req.params.id
+            }
+        }).then(result => {
+            result.forEach(el => {
+                try {
+                    el.Images.forEach(img => {
+                        fs.rmSync('public/' + img.srcImage, {recursive: true, force: true});
+                    })
+                    Image.destroy({
+                        where: {
+                            ProductId: el.id
+                        }
+                    })
+                } catch (error) {
+                    console.error(error)
+                }
+            });
+            Product.destroy({
+                where: {
+                    DivideId: req.params.id
+                }
+            }).then(result => {
+                Divide.destroy({
+                    where: {
+                        id: req.params.id
+                    }
+                }).then(result => {
+                    req.flash('deleteSuccess', 'Категория успешно удалена')
+                    res.redirect('/control/edit-divide');
+                });
+            })
+        })
+    } catch (e) {
+        console.log(e)
     }
 });
 
@@ -193,6 +251,7 @@ router.get('/edit-service', auth, async (req, res) => {
     })
     res.render('control/services', {
         title: 'Редактирование услуг',
+        deleteSuccess: req.flash('deleteSuccess'),
         service
     });
 });
@@ -259,6 +318,35 @@ router.post('/edit-service/:id', auth, async (req, res) => {
     }
 });
 
+router.post('/edit-service/:id/remove', auth, async (req, res) => {
+    try {
+        await Image.findAll({
+            where: {
+                ServiceId: req.params.id
+            }
+        }).then(result => {
+            result.forEach(el => {
+                fs.rmSync('public/' + el.srcImage, {recursive: true, force: true});
+                Image.destroy({
+                    where: {
+                        id: el.id
+                    }
+                })
+            });
+            Service.destroy({
+                where: {
+                    id: req.params.id
+                }
+            }).then(result => {
+                req.flash('deleteSuccess', 'Услуга успешно удалена')
+                res.redirect('/control/edit-service');
+            });
+        })
+    } catch (e) {
+        console.log(e)
+    }
+});
+
 // Товары
 router.get('/add-product', auth, async (req, res) => {
     const divides = await Divide.findAll({
@@ -266,6 +354,7 @@ router.get('/add-product', auth, async (req, res) => {
     })
     res.render('control/addProduct', {
         title: 'Добавление товаров',
+        addSuccess: req.flash('addSuccess'),
         divides
     });
 });
@@ -326,10 +415,7 @@ router.post('/add-product', auth, async (req, res) => {
             });
         })
         req.flash('addSuccess', "Товар успешно добавлен");
-        res.status(200).render('control/addProduct', {
-            title: 'Добавление товаров',
-            addSuccess: req.flash('addSuccess')
-        });
+        res.redirect('/control/add-product')
     } catch (e) {
         console.log(e)
     }
@@ -353,6 +439,7 @@ router.get('/edit-product', auth, async (req, res) => {
     console.log(divide)
     res.render('control/products', {
         title: 'Редактирование товаров',
+        deleteSuccess: req.flash('deleteSuccess'),
         divide
     });
 });
@@ -427,6 +514,44 @@ router.post('/edit-product/:id', auth, async (req, res) => {
     }
 });
 
+router.post('/edit-product/:id/remove', auth, async (req, res) => {
+    try {
+        await Product.findAll({
+            include: {
+                model: Image
+            },
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            result.forEach(el => {
+                try {
+                    el.Images.forEach(img => {
+                        fs.rmSync('public/' + img.srcImage, {recursive: true, force: true});
+                    })
+                    Image.destroy({
+                        where: {
+                            ProductId: el.id
+                        }
+                    })
+                } catch (error) {
+                    console.error(error)
+                }
+            });
+            Product.destroy({
+                where: {
+                    id: req.params.id
+                }
+            }).then(result => {
+                req.flash('deleteSuccess', 'Товар успешно удален')
+                res.redirect('/control/edit-product');
+            });
+        })
+    } catch (e) {
+        console.log(e)
+    }
+});
+
 // Видео
 router.get('/add-video', auth, async (req, res) => {
     const products = await Product.findAll({
@@ -434,6 +559,7 @@ router.get('/add-video', auth, async (req, res) => {
     })
     res.render('control/addVideo', {
         title: 'Добавление видео',
+        addSuccess: req.flash('addSuccess'),
         products
     });
 });
@@ -455,16 +581,31 @@ router.post('/add-video', auth, async (req, res) => {
         console.log(err)
     })
     req.flash('addSuccess', "Видео успешно добавлено");
-    res.status(200).render('control/addVideo', {
-        title: 'Добавление видео',
-        addSuccess: req.flash('addSuccess')
-    });
+    res.redirect('/control/add-video');
 })
 
 router.get('/edit-video', auth, async (req, res) => {
-    const video = await Video.findAll()
+    const video = await Video.findAll({
+        attributes: ['id'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name'],
+            include: [{
+                model: Image
+            }],
+            order: [
+                [Image, 'id', 'ASC']
+            ]
+        }],
+        order: [
+            [Product, 'id', 'ASC']
+        ]
+    }).catch(e => {
+        console.log(e)
+    })
     res.render('control/videos', {
         title: 'Редактирование видео',
+        deleteSuccess: req.flash('deleteSuccess'),
         video
     });
 });
@@ -514,6 +655,21 @@ router.post('/edit-video/:id', auth, async (req, res) => {
         })
     } catch (e) {
         console.dir(e)
+    }
+});
+
+router.post('/edit-video/:id/remove', auth, async (req, res) => {
+    try {
+        Video.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            req.flash('deleteSuccess', 'Видео успешно удалено')
+            res.redirect('/control/edit-video');
+        });
+    } catch (e) {
+        console.log(e)
     }
 });
 
