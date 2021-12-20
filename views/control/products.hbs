@@ -1,15 +1,18 @@
 <div class="container products">
-    {{#if product}}
+    {{#if divide}}
         <div class="row">
-            {{#each product}}
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="../{{Images.[0].srcImage}}" alt="card-img">
-                        <div class="service f-24 text-center">{{name}}
-                            <a href="/control/edit-product/{{id}}" class="service-button text-center">Редактировать</a>
+            {{#each divide}}
+                {{name}}
+                {{#each Products}}
+                    <div class="col-lg-4">
+                        <div class="card d-flex align-items-center mx-auto">
+                            <img class="img-fluid h-100" src="../{{Images.[0].srcImage}}" alt="card-img">
+                            <div class="service f-24 text-center">{{name}}
+                                <a href="/control/edit-product/{{id}}" class="service-button text-center">Редактировать</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{/each}}
             {{/each}}
         </div>
     {{else}}
