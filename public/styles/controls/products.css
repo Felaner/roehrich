@@ -4,3 +4,9 @@
 .products .service-button{
     bottom: 3px;
 }
+.products .nav-tabs{
+    border: none;
+}
+.products .nav-link{
+    color: #FFFFFF;
+}

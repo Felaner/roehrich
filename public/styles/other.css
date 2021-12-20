@@ -22,3 +22,6 @@ body{
     background: #000000;
     border: 1px solid #FFFFFF;
 }
+img{
+    object-fit: cover;
+}

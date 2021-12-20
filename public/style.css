@@ -10,10 +10,11 @@
 @import url('styles/service.css');
 @import url('styles/about.css');
 @import url('styles/contacts.css');
-@import url('styles/addDivide.css');
-@import url('styles/control.css');
-@import url('styles/divide.css');
-@import url('styles/services.css');
-@import url('styles/products.css');
+@import url('styles/controls/addDivide.css');
+@import url('styles/controls/control.css');
+@import url('styles/controls/divide.css');
+@import url('styles/controls/services.css');
+@import url('styles/controls/products.css');
+@import url('styles/admin.css');
 @import url('styles/other.css');
 @import url('styles/media.css');
