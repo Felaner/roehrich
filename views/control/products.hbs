@@ -1,28 +1,30 @@
 <div class="container products">
     {{#if divide}}
         <div class="row">
-            <ul class="nav nav-tabs" id="productsTabs" role="tablist">
-                {{#each divide}}
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link {{#ifeq @index "0"}}active{{else}}{{/ifeq}}" id="divide{{id}}-tab" data-toggle="tab" href="#divide{{id}}" role="tab" aria-controls="divide{{id}}" aria-selected="true">{{name}}</a>
-                    </li>
-                {{/each}}
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                {{#each divide}}
-                    <div class="tab-pane fade {{#ifeq @index "0"}}show active{{else}}{{/ifeq}}" id="divide{{id}}" role="tabpanel" aria-labelledby="divide{{id}}-tab">
-                        {{#each Products}}
-                            <div class="col-lg-4">
-                                <div class="card d-flex align-items-center mx-auto">
-                                    <img class="img-fluid h-100" src="../{{Images.[0].srcImage}}" alt="card-img">
-                                    <div class="service f-24 text-center">{{name}}
-                                        <a href="/control/edit-product/{{id}}" class="service-button text-center">Редактировать</a>
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="productsTabs" role="tablist">
+                    {{#each divide}}
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link {{#ifeq @index "0"}}active{{else}}{{/ifeq}}" id="divide{{id}}-tab" data-toggle="tab" href="#divide{{id}}" role="tab" aria-controls="divide{{id}}" aria-selected="true">{{name}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    {{#each divide}}
+                        <div class="tab-pane fade {{#ifeq @index "0"}}show active{{else}}{{/ifeq}}" id="divide{{id}}" role="tabpanel" aria-labelledby="divide{{id}}-tab">
+                            {{#each Products}}
+                                <div class="col-lg-4">
+                                    <div class="card d-flex align-items-center mx-auto">
+                                        <img class="img-fluid h-100" src="../{{Images.[0].srcImage}}" alt="card-img">
+                                        <div class="service f-24 text-center">{{name}}
+                                            <a href="/control/edit-product/{{id}}" class="service-button text-center">Редактировать</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {{/each}}
-                    </div>
-                {{/each}}
+                            {{/each}}
+                        </div>
+                    {{/each}}
+                </div>
             </div>
         </div>
     {{else}}
