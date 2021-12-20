@@ -1,5 +1,12 @@
 <div class="container divides">
     <h2 class="text-center mt-3">Редактирование категорий</h2>
+    {{#if deleteSuccess}}
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{deleteSuccess}}</div>
+            </div>
+        </div>
+    {{/if}}
     {{#if divide}}
         <div class="row">
             {{#each divide}}

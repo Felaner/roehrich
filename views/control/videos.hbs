@@ -1,10 +1,31 @@
-<div class="container">
+<div class="container videos">
+    <h2 class="text-center mt-3">Редактирование видео</h2>
+    {{#if deleteSuccess}}
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{deleteSuccess}}</div>
+            </div>
+        </div>
+    {{/if}}
     {{#if video}}
-        {{#each video}}
-            <a href="/control/edit-video/{{id}}">{{url}}</a>
-        {{/each}}
+        <div class="row">
+            {{#each video}}
+                <div class="col-lg-3">
+                    <div class="card d-flex align-items-center mx-auto">
+                        <img class="img-fluid h-100" src="../{{Product.Images.[0].srcImage}}" alt="card-img">
+                        <div class="service f-24 text-center">{{Product.name}}
+                            <a href="/control/edit-video/{{id}}" class="service-button text-center">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     {{else}}
-        <h3 class="text-center">Видео отсутсвуют</h3>
-        <a href="/control/add-video">Добавить видео</a>
+        <h3 class="text-center mt-3 mb-3">Видео отсутствуют</h3>
+        <a class="divide-link" href="/control/add-video">
+            <div class="divide-button text-center mx-auto">
+                Добавить видео
+            </div>
+        </a>
     {{/if}}
 </div>

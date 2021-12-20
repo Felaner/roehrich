@@ -1,12 +1,21 @@
-.products .service{
+.products .service, .videos .service{
     height: 100px;
 }
-.products .service-button{
+.products .service-button, .videos .service-button{
     bottom: 3px;
 }
-.products .nav-tabs{
+.products .nav-tabs, .videos{
     border: none;
 }
-.products .nav-link{
+.products .nav-link, .videos{
     color: #FFFFFF;
+}
+
+.products .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: black;
+    background-color: white;
+}
+
+.products .card {
+    margin-top: unset;
 }
