@@ -1,6 +1,6 @@
 node_modules
 keys/keys.dev.js
 .idea
-public/images/divides/*.webp
-public/images/services/*.webp
-public/images/products/*.webp
+#public/images/divides/*.webp
+#public/images/services/*.webp
+#public/images/products/*.webp
