@@ -19,10 +19,21 @@ router.get('/', async (req, res) => {
     });
 });
 
-router.get('/product', (req, res) => {
-    res.render('product', {
-        title: 'Товар №1',
-        isProduct: true
+router.get('/:id', async (req, res) => {
+    const divide = await Divide.findAll({
+        include: {
+            model: Product,
+            include: {
+                model: Image
+            }
+        },
+        where: {
+            id: req.params.id
+        }
+    })
+    res.render('divide', {
+        title: `Категория "${divide.name}"`,
+        divide
     });
 });
 
