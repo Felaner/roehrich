@@ -93,10 +93,10 @@ app.use(userMiddleware);
 app.use(varMiddleware);
 
 app.use('/', homeRoute);
-app.use('/divides', dividesRoute);
-app.use('/services', servicesRoute);
-app.use('/about', aboutRoute);
-app.use('/contacts', contactsRoute);
+app.use('/kategorii', dividesRoute);
+app.use('/uslugi', servicesRoute);
+app.use('/o-nas', aboutRoute);
+app.use('/kontakty', contactsRoute);
 app.use('/admin', adminRoute);
 app.use('/control', controlRoute);
 

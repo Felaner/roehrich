@@ -6,7 +6,7 @@ const fs = require('fs');
 const { divide: Divide, product: Product, image: Image, video: Video, size: Size } = require('../models/divide')
 
 router.get('/', async (req, res) => {
-    const divides = await Divides.findAll({
+    const divides = await Divide.findAll({
         include: {
             model: Product,
             attributes: ['id', 'name']
