@@ -2,6 +2,43 @@
 
 }
 
+@media (max-width: 991px) {
+    .card{
+        width: 210px;
+        height: 300px;
+    }
+    .f-48{
+        font-size: 42px;
+    }
+    .f-24{
+        font-size: 20px;
+    }
+    .buy-link{
+        bottom: -65px;
+        right: -65px;
+    }
+    .cart-link{
+        bottom: -65px;
+        left: -65px;
+    }
+    .product-name{
+        height: 100px;
+    }
+    .product-price{
+        bottom: 20px;
+    }
+    .card:hover .product-price{
+        bottom: 20px;
+    }
+    .service .service-button{
+        bottom: 3px;
+    }
+    .service{
+        height: 100px;
+    }
+
+}
+
 @media (max-width: 767px) {
     .f-26 {
         font-size: 20px;
