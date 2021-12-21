@@ -23,10 +23,8 @@ const path = require('path');
 const app = express();
 
 const homeRoute = require('./routes/home');
-const productionsRoute = require('./routes/productions');
-const productRoute = require('./routes/product');
-const serviceRoute = require('./routes/service');
-const servicesCategoriesRoute = require('./routes/servicesCategories');
+const dividesRoute = require('./routes/divides');
+const servicesRoute = require('./routes/services');
 const aboutRoute = require('./routes/about');
 const contactsRoute = require('./routes/contacts');
 const adminRoute = require('./routes/admin');
@@ -95,10 +93,8 @@ app.use(userMiddleware);
 app.use(varMiddleware);
 
 app.use('/', homeRoute);
-app.use('/productions', productionsRoute);
-app.use('/product', productRoute);
-app.use('/service', serviceRoute);
-app.use('/servicesCategories', servicesCategoriesRoute);
+app.use('/divides', dividesRoute);
+app.use('/services', servicesRoute);
 app.use('/about', aboutRoute);
 app.use('/contacts', contactsRoute);
 app.use('/admin', adminRoute);
