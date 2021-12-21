@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const divide = await Divide.findAll({
+    const divide = await Divide.findOne({
         include: {
             model: Product,
             include: {

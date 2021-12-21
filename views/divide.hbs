@@ -1,15 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">Категории</h2>
+            <h2 class="f-48 text-center">{{divide.name}}</h2>
             <div class="row">
-                {{#if divides}}
-                    {{#each divides}}
+                {{#if divide.Products}}
+                    {{#each divide.Products}}
                         <div class="col-md-4 mt-4">
                             <div class="product-card row flex-column align-items-center justify-content-around">
                                 <div class="productions-title f-36 text-center">{{name}}</div>
-                                <div class="product-img"><img class="img-fluid" src="{{srcImage}}" alt="product-img"></div>
-                                <a href="/divides/{{id}}" class="productions-button text-center">Посмотреть все</a>
+                                <div class="product-img"><img class="img-fluid" src="../{{Images.[0].srcImage}}" alt="product-img"></div>
+                                <a href="/kategorii/{{../divide.id}}/{{id}}" class="productions-button text-center">Посмотреть товар</a>
                             </div>
                         </div>
                     {{/each}}
