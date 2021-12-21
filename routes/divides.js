@@ -13,13 +13,13 @@ router.get('/', async (req, res) => {
         }
     })
     res.render('divides', {
-        title: 'Категория товаров',
+        title: 'Категории товаров',
         isProductions: true,
         divides
     });
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:divideId', async (req, res) => {
     const divide = await Divide.findOne({
         include: {
             model: Product,
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
             }
         },
         where: {
-            id: req.params.id
+            id: req.params.divideId
         }
     })
     res.render('divide', {
@@ -37,13 +37,14 @@ router.get('/:id', async (req, res) => {
     });
 });
 
-router.get('/:id/:id', async (req, res) => {
+router.get('/:divideId/tovary/:productId', async (req, res) => {
+    console.log(req.params)
     const product = await Product.findOne({
         include: {
             model: Image
         },
         where: {
-            id: req.params.id
+            id: req.params.productId
         }
     })
     res.render('product', {
