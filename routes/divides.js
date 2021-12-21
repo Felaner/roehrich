@@ -37,4 +37,19 @@ router.get('/:id', async (req, res) => {
     });
 });
 
+router.get('/:id/:id', async (req, res) => {
+    const product = await Product.findOne({
+        include: {
+            model: Image
+        },
+        where: {
+            id: req.params.id
+        }
+    })
+    res.render('product', {
+        title: `Товар "${product.name}"`,
+        product
+    });
+});
+
 module.exports = router;
