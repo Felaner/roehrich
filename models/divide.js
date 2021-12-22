@@ -161,13 +161,21 @@ const video = sequelize.define('Video', {
     },
     ProductId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
+        foreignKey : true
+    },
+    ServiceId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
         foreignKey : true
     }
 });
 
 product.hasMany(video, {foreignKey : 'ProductId'});
 video.belongsTo(product, {foreignKey : 'ProductId'});
+
+service.hasMany(video, {foreignKey : 'ServiceId'});
+video.belongsTo(service, {foreignKey : 'ServiceId'});
 
 const size = sequelize.define('Size', {
     id: {

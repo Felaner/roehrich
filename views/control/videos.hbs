@@ -10,14 +10,30 @@
     {{#if video}}
         <div class="row">
             {{#each video}}
-                <div class="col-lg-3">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/{{Product.Images.[0].srcImage}}" alt="card-img">
-                        <div class="service f-24 text-center">{{Product.name}}
-                            <a href="/control/edit-video/{{id}}" class="service-button text-center">Редактировать</a>
+                {{#if video.Product}}
+                    {{#each video.Product}}
+                        <div class="col-lg-3">
+                            <div class="card d-flex align-items-center mx-auto">
+                                <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
+                                <div class="service f-24 text-center">{{name}}
+                                    <a href="/control/edit-video/{{../id}}" class="service-button text-center">Редактировать</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    {{/each}}
+                {{/if}}
+                {{#if video.Service}}
+                    {{#each video.Service}}
+                        <div class="col-lg-3">
+                            <div class="card d-flex align-items-center mx-auto">
+                                <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
+                                <div class="service f-24 text-center">{{name}}
+                                    <a href="/control/edit-video/{{../id}}" class="service-button text-center">Редактировать</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{/if}}
             {{/each}}
         </div>
     {{else}}

@@ -27,6 +27,19 @@
                         {{/if}}
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="videoServiceSelect">Выберите услугу</label>
+                    <select name="videoServiceSelect" id="videoServiceSelect" class="form-control">
+                        {{#if services}}
+                            <option value="" selected disabled>Выберите услугу</option>
+                            {{#each services}}
+                                <option value="{{name}}">{{name}}</option>
+                            {{/each}}
+                        {{else}}
+                            <option value="" selected disabled>Услуги отсутствуют</option>
+                        {{/if}}
+                    </select>
+                </div>
                 <div class="form-group mt-3">
                     <button type="submit" class="divide-button">Добавить</button>
                 </div>

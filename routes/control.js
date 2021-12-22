@@ -556,29 +556,46 @@ router.get('/add-video', auth, async (req, res) => {
     const products = await Product.findAll({
         attributes: ['name']
     })
+    const services = await Service.findAll({
+        attributes: ['name']
+    })
     res.render('control/addVideo', {
         title: 'Добавление видео',
         addSuccess: req.flash('addSuccess'),
-        products
+        products, services
     });
 });
 
 router.post('/add-video', auth, async (req, res) => {
-    const {videoUrl, videoSelect} = req.body
-    const productId = await Product.findOne({
-        attributes: ['id'],
-        where: {
-            name: videoSelect
-        }
-    }).catch(err => {
-        console.log(err)
-    })
-    await Video.create({
-        url: videoUrl,
-        ProductId: productId.id
-    }).catch(err => {
-        console.log(err)
-    })
+    const {videoUrl, videoSelect, videoServiceSelect} = req.body
+    let productId, serviceId
+    if (videoSelect !== undefined) {
+        productId = await Product.findOne({
+            attributes: ['id'],
+            where: {
+                name: videoSelect
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    } else if (videoServiceSelect !== undefined) {
+        serviceId = await Service.findOne({
+            attributes: ['id'],
+            where: {
+                name: videoServiceSelect
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    } else {
+        await Video.create({
+            url: videoUrl,
+            ProductId: productId.id,
+            ServiceId: serviceId.id
+        }).catch(err => {
+            console.log(err)
+        })
+    }
     req.flash('addSuccess', "Видео успешно добавлено");
     res.redirect('/control/add-video');
 })
@@ -595,9 +612,19 @@ router.get('/edit-video', auth, async (req, res) => {
             order: [
                 [Image, 'id', 'ASC']
             ]
+        }, {
+            model: Service,
+            attributes: ['id', 'name'],
+            include: [{
+                model: Image
+            }],
+            order: [
+                [Image, 'id', 'ASC']
+            ]
         }],
         order: [
-            [Product, 'id', 'ASC']
+            [Product, 'id', 'ASC'],
+            [Service, 'id', 'ASC']
         ]
     }).catch(e => {
         console.log(e)
@@ -614,18 +641,37 @@ router.get('/edit-video/:id', auth, async (req, res) => {
     const products = await Product.findAll({
         attributes: ['id', 'name']
     })
+    const services = await Service.findAll({
+        attributes: ['id', 'name']
+    })
     const productsSelected = await Product.findOne({
         attributes: ['id', 'name'],
         where: {
             id: video.ProductId
         }
     })
+    const servicesSelected = await Service.findOne({
+        attributes: ['id', 'name'],
+        where: {
+            id: video.ServiceId
+        }
+    })
+    let selectedObj
+    if (!productsSelected) {
+        selectedObj = `услуги "${servicesSelected.name}"`
+    } else if (!servicesSelected) {
+        selectedObj = `товара "${productsSelected.name}"`
+    } else {
+        selectedObj = `товара "${productsSelected.name}" и услуги "${servicesSelected.name}"`
+    }
     res.render('control/editVideo', {
-        title: `Редактирование видео для товара "${productsSelected.name}"`,
+        title: `Редактирование видео для ${selectedObj}`,
         editSuccess: req.flash('editSuccess'),
         video,
         productsSelected,
-        products
+        products,
+        servicesSelected,
+        services
     });
 });
 
