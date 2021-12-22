@@ -59,15 +59,15 @@ const product = sequelize.define('Product', {
         allowNull: false
     },
     count: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     weight: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     volume: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     environ: {
@@ -75,7 +75,7 @@ const product = sequelize.define('Product', {
         allowNull: true
     },
     temp: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     material: {
@@ -87,7 +87,7 @@ const product = sequelize.define('Product', {
         allowNull: true
     },
     diameter: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     dimension: {
@@ -99,7 +99,7 @@ const product = sequelize.define('Product', {
         allowNull: true
     },
     pressure: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     depth: {
@@ -107,11 +107,11 @@ const product = sequelize.define('Product', {
         allowNull: true
     },
     externalDiameter: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     },
     price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: true
     }
 })
