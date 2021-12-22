@@ -46,7 +46,13 @@
 }
 
 @media (max-width: 575px) {
-
+    .logo{
+        display: flex;
+        justify-content: center;
+    }
+    .f-48{
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 380px) {
