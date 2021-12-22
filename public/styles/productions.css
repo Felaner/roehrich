@@ -10,7 +10,11 @@
     text-decoration: none;
 }
 .product-img{
+
     width: 40%;
+}
+.product-img img{
+    object-fit: cover;
 }
 
 .productions-button{
