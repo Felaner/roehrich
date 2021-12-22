@@ -1,13 +1,84 @@
-.product-select{
-    width: 100%;
-    height: 45px;
-    background: #000000;
-    border: 1px solid #FFFFFF;
-    color: #FFFFFF;
-    padding-left: 10px;
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
-.productions-button:hover{
-    background: #000000;
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+
+.scrolling-wrapper img {
+    margin: 0 5px;
+    flex: 0 0 auto;
+}
+
+.scrolling-wrapper img:first-child {
+    margin-left: 0;
+}
+.scrolling-wrapper img:last-child {
+    margin-right: 0;
+}
+
+.scrolling-img {
+    cursor: pointer;
+    width: 32%;
+    height: 100px;
+}
+
+.full-img-wrapper {
+    height: 300px;
+}
+
+.nav-pills .nav-link{
+    color: white;
+}
+
+.character-box {
+    width: 100%;
+    height: 112.5px;
+    background-color: #FFFFFF;
+    border-radius: .25rem;
+}
+
+.character-box p {
+    color: #000000;
+}
+
+.character-box p:first-child {
+    padding-top: 10px;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.character-box p:last-child {
+    font-size: 14px;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: unset;
+    border: none;
+    opacity: 1;
+}
+
+.productPriceBox {
+    font-size: 22px;
+}
+
+.productPriceBox .productPrice{
+    font-weight: bold;
+}
+
+.productBuy .divide-button {
+    width: 49%;
+}
+
+svg path {
+    fill:inherit;
+    stroke:inherit;
+    stroke-width:inherit;
+}
+.cartBuy svg {
+    margin-bottom: 5px;
+    margin-left: 15px;
+    transition: 0.4s;
+}
+.cartBuy:hover svg {
+    fill: white;
 }

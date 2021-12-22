@@ -436,7 +436,6 @@ router.get('/edit-product', auth, async (req, res) => {
             [Product, 'id', 'ASC']
         ]
     })
-    console.log(divide)
     res.render('control/products', {
         title: 'Редактирование товаров',
         deleteSuccess: req.flash('deleteSuccess'),
