@@ -29,9 +29,11 @@
                 </div>
                 {{#if product.Videos}}
                 <div class="tab-pane fade" id="pills-videos" role="tabpanel" aria-labelledby="pills-videos-tab">
+                    {{#each product.Videos}}
                     <div class="col-12 d-flex justify-content-center draft-video">
-                        <iframe width="560" height="315" src="{{product.Videos.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="{{url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
+                    {{/each}}
                 </div>
                 {{/if}}
             </div>
