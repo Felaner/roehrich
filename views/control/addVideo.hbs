@@ -19,6 +19,7 @@
                     <select name="videoSelect" id="videoSelect" class="form-control">
                         {{#if products}}
                             <option value="" selected disabled>Выберите товар</option>
+                            <option value="">Для товара не нужно</option>
                             {{#each products}}
                                 <option value="{{name}}">{{name}}</option>
                             {{/each}}
@@ -32,6 +33,7 @@
                     <select name="videoServiceSelect" id="videoServiceSelect" class="form-control">
                         {{#if services}}
                             <option value="" selected disabled>Выберите услугу</option>
+                            <option value="">Для услуги не нужно</option>
                             {{#each services}}
                                 <option value="{{name}}">{{name}}</option>
                             {{/each}}

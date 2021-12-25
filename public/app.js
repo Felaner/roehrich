@@ -18,3 +18,29 @@ function totalPrice(total, el, price) {
         total.innerText = parseInt(el.value) * parseInt(price)
     }
 }
+
+$(function () {
+    $('.megamenu-title span').fadeOut(300)
+    const megamenuBlock = $('.megamenu-block');
+    megamenuBlock.each(function () {
+        $(this).hover(function () {
+            $(this).find('.megamenu-title span').fadeIn(300)
+        }, function () {
+            $(this).find('.megamenu-title span').fadeOut(300)
+        })
+    })
+
+    $(".search-img").click(function(){
+        $(".search-wrap, .search-wrap .form-control").toggleClass("active").focus();
+    })
+    let clicks = 0;
+    $('.nav-link.dropdown-toggle').click(el => {
+        ++clicks
+        const menu = $('.megamenu .dropdown-menu')
+        if (!menu.hasClass('animate__fadeInLeft')) {
+            menu.removeClass('animate__fadeOutRight').css({'display': 'block'}).addClass('animate__fadeInLeft')
+        } else {
+            menu.removeClass('animate__fadeInLeft').addClass('animate__fadeOutRight')
+        }
+    })
+})
