@@ -25,3 +25,8 @@
 .divide-link:hover{
     text-decoration: none;
 }
+
+select.form-control:focus {
+    background: #000000;
+    box-shadow: unset;
+}
