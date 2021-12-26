@@ -30,3 +30,8 @@ img{
     background: none;
     box-shadow: unset;
 }
+.gold-text{
+    background-image: linear-gradient(123.23deg, #FFFB09 0%, #DD8D04 43.75%, #FEF70B 76.04%, #F8A403 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
