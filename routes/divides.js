@@ -12,10 +12,12 @@ router.get('/', async (req, res) => {
             attributes: ['id', 'name']
         }
     }).then(divides => {
+        const menuDivides = divides.slice(0, 4)
         res.render('divides', {
             title: 'Категории товаров',
             isProductions: true,
-            divides
+            divides,
+            menuDivides
         });
     })
 });
@@ -32,10 +34,19 @@ router.get('/:divideId', async (req, res) => {
             id: req.params.divideId
         }
     }).then(divide => {
-        res.render('divide', {
-            title: `Категория "${divide.name}"`,
-            divide
-        });
+        Divide.findAll({
+            include: {
+                model: Product,
+                attributes: ['id', 'name']
+            }
+        }).then(divides => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('divide', {
+                title: `Категория "${divide.name}"`,
+                divide,
+                menuDivides
+            });
+        })
     }).catch(e => {
         console.log(e)
     })
@@ -51,10 +62,19 @@ router.get('/:divideId/tovary/:productId', async (req, res) => {
             id: req.params.productId
         }
     }).then(product => {
-        res.render('product', {
-            title: `Товар "${product.name}"`,
-            product
-        });
+        Divide.findAll({
+            include: {
+                model: Product,
+                attributes: ['id', 'name']
+            }
+        }).then(divides => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('product', {
+                title: `Товар "${product.name}"`,
+                product,
+                menuDivides
+            });
+        })
     }).catch(e => {
         console.log(e)
     })
