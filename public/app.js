@@ -41,6 +41,9 @@ $(function () {
             menu.removeClass('animate__fadeOutRight').css({'display': 'block'}).addClass('animate__fadeInLeft')
         } else {
             menu.removeClass('animate__fadeInLeft').addClass('animate__fadeOutRight')
+            setTimeout(function () {
+                menu.css({'display': 'none'})
+            }, 550)
         }
     })
 })
