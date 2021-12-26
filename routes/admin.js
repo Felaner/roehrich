@@ -7,13 +7,24 @@ const {loginValidators} = require('../utils/validators');
 const Admin = require('../models/admin');
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
+const { divide: Divide, product: Product } = require('../models/divide')
 
-router.get('/', (req, res) => {
-    res.render('control/admin', {
-        title: 'Главная',
-        isAdmin: true,
-        loginError: req.flash('loginError')
-    });
+router.get('/', async (req, res) => {
+    await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    }).then(divides => {
+        const menuDivides = divides.slice(0, 4)
+        res.render('control/admin', {
+            title: 'Главная',
+            isAdmin: true,
+            loginError: req.flash('loginError'),
+            menuDivides
+        });
+    })
 });
 
 router.post('/', loginValidators, async (req, res) => {

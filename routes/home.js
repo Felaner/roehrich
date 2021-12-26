@@ -7,10 +7,13 @@ const { divide: Divide, service: Service, product: Product, image: Image } = req
 
 router.get('/', async (req, res) => {
     await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
         include: [{
             model: Product,
+            attributes: ['id', 'name', 'price'],
             include: {
-                model: Image
+                model: Image,
+                attributes: ['id', 'srcImage']
             },
             order: ['Image', 'id', 'ASC']
         }]

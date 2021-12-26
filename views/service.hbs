@@ -4,114 +4,10 @@
             <h2 class="m-3 pb-3 border-bottom"><span class="mr-2"><img src="/images/icons/double-arrow-right.svg" alt="" width="30px"></span>{{service.name}}</h2>
         </div>
         <div class="col-lg-6">
-            <h3>Описание</h3>
-                    <div class="row mr-3 ml-3 mt-3">
-                        <p>
-                            {{product.description}}
-                        </p>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-char" role="tabpanel" aria-labelledby="pills-char-tab">
-                    <div class="row mb-3 justify-content-center">
-                        {{#if product.pressure}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
-                                    <p>{{product.pressure}}</p>
-                                    <p>Номинальное давление PN, МПа</p>
-                                </div>
-                            </div>
-                        {{/if}}
-                        {{#if product.depth}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
-                                    <p>{{product.depth}}</p>
-                                    <p>Толщина стенки, мм</p>
-                                </div>
-                            </div>
-                        {{/if}}
-                        {{#if product.externalDiameter}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
-                                    <p>{{product.externalDiameter}}</p>
-                                    <p>Внешний диаметр, мм</p>
-                                </div>
-                            </div>
-                        {{/if}}
-                    </div>
-                    <h3 class="text-center">Характеристики</h3>
-                    {{#if product.weight}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Вес</p>
-                            <p class="mb-1">{{product.weight}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.volume}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Объем</p>
-                            <p class="mb-1">{{product.volume}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.environ}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Рабочая среда</p>
-                            <p class="mb-1">{{product.environ}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.temp}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Максимальная температура рабочей среды C</p>
-                            <p class="mb-1">{{product.temp}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.material}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Материал корпуса</p>
-                            <p class="mb-1">{{product.material}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.connect}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Тип соединения</p>
-                            <p class="mb-1">{{product.connect}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.diameter}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Диаметр условный DN,мм</p>
-                            <p class="mb-1">{{product.diameter}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.dimension}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Единица измерения</p>
-                            <p class="mb-1">{{product.dimension}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.gost}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Соответствие ГОСТ</p>
-                            <p class="mb-1">{{product.gost}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.pressure}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Номинальное давление PN, МПа</p>
-                            <p class="mb-1">{{product.pressure}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.depth}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Толщина стенки, мм</p>
-                            <p class="mb-1">{{product.depth}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.externalDiameter}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Внешний диаметр, мм</p>
-                            <p class="mb-1">{{product.externalDiameter}}</p>
-                        </div>
-                    {{/if}}
-                </div>
+            <h3 class="ml-3">Описание</h3>
+            <div class="divider ml-3 mt-4"></div>
+            <div class="row mr-3 ml-3 mt-3">
+                <p>{{service.description}}</p>
             </div>
         </div>
         <div class="col-lg-6">
@@ -119,7 +15,7 @@
                 <li class="nav-item col-6">
                     <a class="nav-link active text-center" id="pills-images-tab" data-toggle="pill" href="#pills-images" role="tab" aria-controls="pills-images" aria-selected="true">Изображения</a>
                 </li>
-                {{#if product.Videos}}
+                {{#if service.Videos}}
                     <li class="nav-item col-6">
                         <a class="nav-link text-center" id="pills-videos-tab" data-toggle="pill" href="#pills-videos" role="tab" aria-controls="pills-videos" aria-selected="false">Видео</a>
                     </li>
@@ -129,19 +25,19 @@
                 <div class="tab-pane fade show active" id="pills-images" role="tabpanel" aria-labelledby="pills-images-tab">
                     <div class="row">
                         <div class="full-img-wrapper mb-2 d-none d-sm-block col-12">
-                            <img id="product{{product.id}}" src="/{{product.Images.[0].srcImage}}" alt="image" class="full-img small-image" width="100%" height="100%">
+                            <img id="product{{service.id}}" src="/{{service.Images.[0].srcImage}}" alt="image" class="full-img small-image" width="100%" height="100%">
                         </div>
                         <div class="scrolling-wrapper col-12">
-                            {{#each product.Images}}
-                                <img loading="lazy" src="/{{srcImage}}" class="scrolling-img" alt="img{{@index}}" onclick="selectedImg(this, {{../product.id}})">
+                            {{#each service.Images}}
+                                <img loading="lazy" src="/{{srcImage}}" class="scrolling-img" alt="img{{@index}}" onclick="selectedImg(this, {{../service.id}})">
                             {{/each}}
                         </div>
                     </div>
                 </div>
-                {{#if product.Videos}}
+                {{#if service.Videos}}
                     <div class="tab-pane fade" id="pills-videos" role="tabpanel" aria-labelledby="pills-videos-tab">
                         <div class="tab-content col-12" id="pills-tabContent">
-                            {{#each product.Videos}}
+                            {{#each service.Videos}}
                                 <div class="tab-pane fade {{#ifeq @index '0'}}show active{{/ifeq}}" id="pills-video{{@index}}" role="tabpanel" aria-labelledby="pills-video{{@index}}">
                                     <div class="col-12 d-flex justify-content-center draft-video">
                                         <iframe width="560" height="315" src="{{url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -150,7 +46,7 @@
                             {{/each}}
                         </div>
                         <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-                            {{#each product.Videos}}
+                            {{#each service.Videos}}
                                 <li class="nav-item col-6">
                                     <a class="nav-link {{#ifeq @index '0'}}active{{/ifeq}} text-center" id="pills-video{{@index}}" data-toggle="pill" href="#pills-video{{@index}}" role="tab" aria-controls="pills-video{{@index}}" aria-selected="true">{{#ifeq @index '0'}}Первое{{/ifeq}}{{#ifeq @index '1'}}Второе{{/ifeq}} видео</a>
                                 </li>
@@ -162,14 +58,9 @@
 
 
             <!--            Инпуты-->
-            <div class="col-8 offset-4">
-                <div class="form-group mb-0 mt-3">
-                    <label for="productCount">Введите количество</label>
-                    <input id="productCount" class="form-control" name="productCount" type="number" min="{{product.count}}" value="{{product.count}}" onkeyup="totalPrice($('.productPrice')[0], this, {{product.price}})" onchange="totalPrice($('.productPrice')[0], this, {{product.price}})">
-                    <label for="productCount">* Минимальное количество заказа {{product.count}}{{product.dimension}}.</label>
-                </div>
+            <div class="col-8 offset-4 mt-5">
                 <div class="row justify-content-center">
-                    <p class="productPriceBox text-center">Стоимость: <span class="productPrice">{{product.price}}</span> руб.</p>
+                    <p class="productPriceBox text-center">Стоимость: <span class="productPrice">{{service.price}}</span> руб.</p>
                     <button type="button" class="divide-button cartBuy">В корзину<span><svg width="30" height="27" viewBox="0 0 30 27" fill="black" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_17_48)">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
