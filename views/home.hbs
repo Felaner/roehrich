@@ -46,7 +46,7 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-12">
-            <h2 class="f-48 text-center">Выгодные предложения</h2>
+            <h2 class="f-36 text-center">Выгодные предложения</h2>
             <div class="row mt-4">
                 <div class="col-md-4 mb-3 mb-md-0 col-sm-6">
                     <div class="card d-flex align-items-center mx-auto">
@@ -78,93 +78,27 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">Наши товары</h2>
+            <h2 class="f-36 text-center">Наши товары</h2>
             <div class="row mt-4">
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                        <div class="buy"></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                        <div class="buy"></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                        <div class="buy"></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                        <div class="buy"></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="product-name f-18 text-center">Наименование товара</div>
-                        <div class="product-price f-26 text-center">2000р</div>
-                        <a class="cart-link" href="#">
-                            <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                        </a>
-                        <a class="buy-link" href="#">
-                            <div class="buy text-center">Купить</div>
-                        </a>
-                        <div class="buy"></div>
-                    </div>
-                </div>
+                {{#if products}}
+                    {{#each products}}
+                        <div class="col-md-4 mb-4 col-sm-6">
+                            <div class="card d-flex align-items-center mx-auto">
+                                <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
+                                <div class="product-name f-18 text-center">{{Products.[0].name}}</div>
+                                <div class="product-price f-26 text-center">{{Products.[0].price}} руб.</div>
+                                <a class="cart-link" href="#">
+                                    <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
+                                </a>
+                                <a class="buy-link" href="/kategorii/{{id}}/{{Products.[0].id}}">
+                                    <div class="buy text-center">Купить</div>
+                                </a>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{/if}}
                 <div class="col-12 d-flex justify-content-center">
-                    <a href="#" class="catalog-button text-center">Каталог</a>
+                    <a href="/kategorii" class="catalog-button text-center">Каталог</a>
                 </div>
             </div>
         </div>
@@ -176,80 +110,20 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">Наши услуги</h2>
+            <h2 class="f-36 text-center">Наши услуги</h2>
             <div class="row mt-4">
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
+                {{#if homeServices}}
+                    {{#each homeServices}}
+                        <div class="col-md-4 mb-4 col-sm-6">
+                            <div class="card d-flex align-items-center mx-auto">
+                                <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
+                                <div class="service f-24 text-center">{{name}}
+                                    <a href="/uslugi/{{id}}" class="service-button text-center">Подробнее</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-12">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="#" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>
@@ -260,7 +134,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">Таблица скидок</h2>
+            <h2 class="f-36 text-center">Таблица скидок</h2>
             <div class="text-center f-26">Отводы 380р</div>
             <div class="divider"></div>
             <div class="text-center f-24">От 50 шт 2% скидка</div>
@@ -283,7 +157,7 @@
     <div class="row">
         <div class="col-12">
             <div class="gif">
-
+                <h1 class="text-center mt-5 mb-5">ТУТ БУДЕТ ГИФКА</h1>
             </div>
         </div>
     </div>
@@ -294,42 +168,46 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="text-center f-48">Свяжитесь с нами</h2>
-            <div class="form">
+            <h2 class="text-center f-36">Свяжитесь с нами</h2>
+            <form class="home-form pr-5 pl-5 pt-2">
                 <div class="row">
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="contactName">ФИО</label>
-                        <input name="contactName" type="text" id="contactName" class="form-contacts" placeholder="Ваше имя">
+                    <div class="col-lg-6 form-group">
+                        <label for="contactName">ФИО</label>
+                        <input name="contactName" type="text" id="contactName" class="form-control" placeholder="Ваше имя">
                     </div>
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="organizationName">Название организации</label>
-                        <input name="organizationName" type="text" id="organizationName" class="form-contacts" placeholder="Ваша организация">
-                    </div>
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="divideName">Контакты</label>
-                        <input name="divideName" type="text" id="divideName" class="form-contacts" placeholder="Номер телефона или email">
-                    </div>
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="divideName">Список товаров</label>
-                        <input name="divideName" type="text" id="divideName" class="form-contacts" placeholder="Выберите товар">
-                    </div>
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="divideName">Количество</label>
-                        <input name="divideName" type="text" id="divideName" class="form-contacts" placeholder="Введите количество товара">
-                    </div>
-                    <div class="col-lg-6 form-contacts-wrapper">
-                        <label class="f-22" for="divideName">Когда</label>
-                        <input name="divideName" type="text" id="divideName" class="form-contacts" placeholder="Введите дату доставки">
-                    </div>
-                    <div class="col-lg-8 mx-auto">
-                        <label class="f-22" for="divideName">Адрес</label>
-                        <input name="divideName" type="text" id="divideName" class="form-contacts" placeholder="Введите адрес доставки">
-                    </div>
-                    <div class="col-12 d-flex justify-content-center mt-3">
-                        <button class="catalog-button">Отправить</button>
+                    <div class="col-lg-6 form-group">
+                        <label for="organizationName">Название организации</label>
+                        <input name="organizationName" type="text" id="organizationName" class="form-control" placeholder="Ваша организация">
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label for="divideName">Контакты</label>
+                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Номер телефона или email">
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="divideName">Список товаров</label>
+                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Выберите товар">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label for="divideName">Количество</label>
+                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите количество товара">
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="divideName">Когда</label>
+                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите дату доставки">
+                    </div>
+                </div>
+                <div class="col-lg-6 mx-auto">
+                    <label for="divideName">Адрес</label>
+                    <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите адрес доставки">
+                </div>
+                <div class="col-12 d-flex justify-content-center mt-3">
+                    <button class="catalog-button">Отправить</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

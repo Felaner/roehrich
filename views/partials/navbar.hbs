@@ -14,45 +14,19 @@
                                 <div class="col-lg-7 col-xl-8">
                                     <div class="p-4">
                                         <div class="row">
-                                            <div class="col-lg-6 mb-4 megamenu-block">
-                                                <h6 class="font-weight-bold text-uppercase megamenu-title"><span class=""><img src="/images/icons/double-arrow-right.svg" alt=""></span> <a href="">1 категория</a></h6>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0">1 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">2 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">3 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Еще</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 mb-4 megamenu-block">
-                                                <h6 class="font-weight-bold text-uppercase megamenu-title"><span class=""><img src="/images/icons/double-arrow-right.svg"
-                                                                                                                               alt=""></span> <a href="">2 категория</a></h6>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">1 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">2 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">3 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Еще</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 mb-4 megamenu-block">
-                                                <h6 class="font-weight-bold text-uppercase megamenu-title"><span class=""><img src="/images/icons/double-arrow-right.svg"
-                                                                                                                               alt=""></span> <a href="">3 категория</a></h6>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">1 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">2 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">3 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Еще</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 mb-4 megamenu-block">
-                                                <h6 class="font-weight-bold text-uppercase megamenu-title"><span class=""><img src="/images/icons/double-arrow-right.svg"
-                                                                                                                               alt=""></span> <a href="">4 категория</a></h6>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">1 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">2 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">3 товар</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Еще</a></li>
-                                                </ul>
-                                            </div>
+                                            {{#if menuDivides}}
+                                                {{#each menuDivides}}
+                                                    <div class="col-lg-6 mb-4 megamenu-block">
+                                                        <h6 class="font-weight-bold text-uppercase megamenu-title"><span class=""><img src="/images/icons/double-arrow-right.svg" alt=""></span> <a href="/kategorii/{{id}}">{{name}}</a></h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="nav-link text-small pb-0">{{Products.[0].name}}</a></li>
+                                                            <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[1].id}}" class="nav-link text-small pb-0 ">{{Products.[1].name}}</a></li>
+                                                            <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[2].id}}" class="nav-link text-small pb-0 ">{{Products.[2].name}}</a></li>
+                                                            <li class="nav-item"><a href="/kategorii/{{id}}" class="nav-link text-small pb-0 ">Все товары</a></li>
+                                                        </ul>
+                                                    </div>
+                                                {{/each}}
+                                            {{/if}}
                                             <div class="col-12 megamenu-block">
                                                 <div class="divider"></div>
                                                 <a href="/kategorii" class="text-center megamenu-title all-divides mb-0"><p class="mb-0" style="font-size: 22px"><span class=""><img src="/images/icons/double-arrow-right.svg"
