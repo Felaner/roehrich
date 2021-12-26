@@ -4,9 +4,6 @@
     overflow: hidden;
     transition: 0.4s;
 }
-.card:hover{
-    transform: scale(1.1)
-}
 .card img{
     border: 1px solid #FFFFFF;
 }
@@ -159,18 +156,11 @@
 .card:hover .service .service-button{
     bottom: 3px;
 }
-.form-contacts{
-    z-index: 5;
-    background: transparent;
-    border: 1px solid #FFFFFF;
-    border-radius: 0;
-    color: #FFFFFF;
-    width: 100%;
-    height: 45px;
-    padding-left: 10px;
+.home-form {
+    background-image: url("/images/form-bg.svg");
+    background-size: cover;
+    padding: 43px 63px 63px 63px;
 }
-.form-contacts:focus{
-    background: #000000;
-    border-color:#FFFFFF;
-    color: #FFFFFF;
+.home-form h2 {
+    padding-bottom: 20px;
 }

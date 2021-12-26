@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5 p-0">
+<div class="container-fluid mt-3 p-0">
     <h2 class="f-48 text-center">Наши услуги</h2>
     <div class="divider"></div>
 </div>
@@ -6,79 +6,19 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="row mt-3">
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
+            <div class="row pt-5 pr-5 pl-5">
+                {{#if services}}
+                    {{#each services}}
+                        <div class="col-md-4 mb-3 col-sm-6">
+                            <div class="card d-flex align-items-center mx-auto">
+                                <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
+                                <div class="service f-24 text-center">{{name}}
+                                    <a href="/uslugi/{{id}}" class="service-button text-center">Подробнее</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img class="img-fluid h-100" src="/images/uslugi.png" alt="card-img">
-                        <div class="service f-24 text-center">Лазерная резка
-                            <a href="" class="service-button text-center">Подробнее</a>
-                        </div>
-                    </div>
-                </div>
+                    {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>
