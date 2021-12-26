@@ -1,7 +1,11 @@
 <div class="container">
     <div class="row justify-content-center mb-5 mt-5">
         <div class="col-12">
-            <h3 class="text-center mb-3">Редактирование видео для товара "{{productsSelected.name}}"</h3>
+            <h3 class="text-center mb-3">Редактирование видео для
+                {{#unless productsSelected}}услуги "{{servicesSelected.name}}"{{/unless}}
+                {{#unless servicesSelected}}товара "{{productsSelected.name}}"{{/unless}}
+                {{#if productsSelected}} {{#if servicesSelected}} товара "{{productsSelected.name}}" и услуги "{{servicesSelected.name}}"{{/if}}{{/if}}
+            </h3>
         </div>
         {{#if editSuccess}}
             <div class="col-7">
@@ -19,8 +23,9 @@
                     <select name="videoSelect" id="videoSelect" class="form-control">
                         {{#if products}}
                             <option value="" disabled>Выберите товар</option>
+                            <option value="">Для товара не нужно</option>
                             {{#each products}}
-                                    <option value="{{name}}" {{#ifeq this.id ../productsSelected.id}}selected{{/ifeq}}>{{name}}</option>
+                                    <option value="{{name}}" {{#if ../productsSelected}}{{#ifeq this.id ../productsSelected.id}}selected{{/ifeq}}{{/if}}>{{name}}</option>
                             {{/each}}
                         {{else}}
                             <option value="" selected disabled>Товары отсутствуют</option>
@@ -32,8 +37,9 @@
                     <select name="videoServiceSelect" id="videoServiceSelect" class="form-control">
                         {{#if services}}
                             <option value="" disabled>Выберите услугу</option>
+                            <option value="">Для услуги не нужно</option>
                             {{#each services}}
-                                <option value="{{name}}" {{#ifeq this.id ../servicesSelected.id}}selected{{/ifeq}}>{{name}}</option>
+                                <option value="{{name}}" {{#if ../servicesSelected}}{{#ifeq this.id ../servicesSelected.id}}selected{{/ifeq}}{{/if}}>{{name}}</option>
                             {{/each}}
                         {{else}}
                             <option value="" selected disabled>Услуги отсутствуют</option>

@@ -1,3 +1,13 @@
+nav .navbar-nav .nav-item .nav-link {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.megamenu .dropdown-menu {
+    transition: 0.6s;
+    display: none;
+}
+
 .megamenu {
     position: static
 }
@@ -6,6 +16,43 @@
     background: none;
     border: none;
     width: 100%
+}
+
+.megamenu .dropdown-megamenu {
+    background-color: #333333;
+}
+.megamenu span > img {
+    position: absolute;
+    left: -4px;
+    top: 3px;
+}
+.megamenu-block a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.megamenu-block .nav-link {
+    transition: 0.3s;
+}
+.megamenu-block .nav-link:hover {
+    transform: translateX(10px);
+}
+.megamenu-block .divider {
+    margin: 0;
+    background-color: #FFFFFF;
+}
+.megamenu-block .all-divides span > img {
+    transform: rotate(-90deg);
+    height: 20px;
+    top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.megamenu-block .all-divides p {
+    font-size: 22px
 }
 
 .text-uppercase {
@@ -36,3 +83,66 @@
 .company-name:hover{
     color: #ffffff;
 }
+
+.search button {
+    background: none;
+    border: none;
+}
+
+.search .form-control {
+    display: inline-block;
+    border: 0;
+    background: transparent;
+    width: 0%;
+    padding: 0;
+}
+.search .form-control.active{
+    width: 98%;
+    padding-left: 6px;
+    transition: all 0.4s 0.7s ease;
+}
+
+.search-wrap{
+    position: relative;
+    width: 0;
+    padding-right: 40px;
+    /*box-shadow: 0 0 10px rgba(0,0,0,0.5);*/
+    transition: all 0.5s ease;
+}
+
+.search-wrap .form-control{
+    border: 0;
+    background: none;
+    width: 0%;
+    color: #fff;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0;
+}
+
+.search-wrap img {
+    color: #fff;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.search-wrap.active{
+    width: 250px;
+    padding-left: 10px;
+    transition: all 0.5s ease;
+}
+
+.search-wrap .form-control.active{
+    width: 98%;
+    padding-left: 10px;
+    transition: all 0.5s 0.8s ease;
+    border: 1px solid #ffffff
+}
+
+.search-wrap input::placeholder {
+    color: #fff;
+}
+

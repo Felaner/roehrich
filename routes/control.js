@@ -568,9 +568,9 @@ router.get('/add-video', auth, async (req, res) => {
 
 router.post('/add-video', auth, async (req, res) => {
     const {videoUrl, videoSelect, videoServiceSelect} = req.body
-    let productId, serviceId
-    if (videoSelect !== undefined) {
-        productId = await Product.findOne({
+    let productId = null, serviceId = null
+    if (videoSelect !== '') {
+        const product = await Product.findOne({
             attributes: ['id'],
             where: {
                 name: videoSelect
@@ -578,8 +578,10 @@ router.post('/add-video', auth, async (req, res) => {
         }).catch(err => {
             console.log(err)
         })
-    } else if (videoServiceSelect !== undefined) {
-        serviceId = await Service.findOne({
+        productId = product.id
+    }
+    if (videoServiceSelect !== '') {
+        const service = await Service.findOne({
             attributes: ['id'],
             where: {
                 name: videoServiceSelect
@@ -587,15 +589,15 @@ router.post('/add-video', auth, async (req, res) => {
         }).catch(err => {
             console.log(err)
         })
-    } else {
-        await Video.create({
-            url: videoUrl,
-            ProductId: productId.id,
-            ServiceId: serviceId.id
-        }).catch(err => {
-            console.log(err)
-        })
+        serviceId = service.id
     }
+    await Video.create({
+        url: videoUrl,
+        ProductId: productId,
+        ServiceId: serviceId
+    }).catch(err => {
+        console.log(err)
+    })
     req.flash('addSuccess', "Видео успешно добавлено");
     res.redirect('/control/add-video');
 })
@@ -676,28 +678,44 @@ router.get('/edit-video/:id', auth, async (req, res) => {
 });
 
 router.post('/edit-video/:id', auth, async (req, res) => {
-    const {videoUrl, videoSelect} = req.body;
-    const productId = await Product.findOne({
-        attributes: ['id'],
-        where: {
-            name: videoSelect
-        }
-    })
+    const {videoUrl, videoSelect, videoServiceSelect} = req.body;
+    let productId = null, serviceId = null
+    if (videoSelect !== '') {
+        let product = await Product.findOne({
+            attributes: ['id'],
+            where: {
+                name: videoSelect
+            }
+        })
+        productId = product.id
+    }
+    if (videoServiceSelect !== '') {
+        let service = await Service.findOne({
+            attributes: ['id'],
+            where: {
+                name: videoServiceSelect
+            }
+        })
+        serviceId = service.id
+    }
+    console.log(serviceId)
     try {
         await Video.update(
             {
                 url: videoUrl,
-                ProductId: productId.id
+                ProductId: productId,
+                ServiceId: serviceId
             },
             {
                 where: {
                     id: req.params.id
                 }
+            }).catch(err => {
+            console.log(err)
             }
-        ).then(result => {
-            req.flash('editSuccess', "Видео успешно изменено")
-            res.redirect(`/control/edit-video/${req.params.id}`);
-        })
+        )
+        req.flash('editSuccess', "Видео успешно изменено")
+        res.redirect(`/control/edit-video/${req.params.id}`);
     } catch (e) {
         console.dir(e)
     }

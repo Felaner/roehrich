@@ -6,7 +6,7 @@ const fs = require('fs');
 
 router.get('/', (req, res) => {
     res.render('contacts', {
-        title: 'Контакты`',
+        title: 'Контакты',
         isContacts: true
     });
 });
