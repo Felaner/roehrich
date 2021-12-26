@@ -17,3 +17,35 @@
     background: #333333;
     padding: 20px;
 }
+
+.admin-dropdown {
+    right: -50px;
+}
+
+.admin-dropdown button {
+    width: 40px;
+    background: none;
+    border: none;
+}
+.admin-dropdown button img{
+    width: 36px;
+    color: white;
+}
+
+.admin-dropdown .dropdown-menu {
+    right: 0;
+    left: unset;
+    float: right;
+    background-color: #333333;
+    top: 153%;
+    border-top: 1px solid #FFFFFF;
+    border-radius: unset;
+    width: 240px;
+}
+.admin-dropdown .dropdown-menu a{
+    color: #FFFFFF;
+}
+
+button:focus {
+    outline: unset;
+}

@@ -46,4 +46,18 @@ $(function () {
             }, 550)
         }
     })
+
+    let adminClicks = 0
+    $('.admin-dropdown button').click(el => {
+        ++clicks
+        const menu = $('.admin-dropdown .dropdown-menu')
+        if (!menu.hasClass('animate__fadeInLeft')) {
+            menu.removeClass('animate__fadeOutRight').css({'display': 'block'}).addClass('animate__fadeInLeft')
+        } else {
+            menu.removeClass('animate__fadeInLeft').addClass('animate__fadeOutRight')
+            setTimeout(function () {
+                menu.css({'display': 'none'})
+            }, 550)
+        }
+    })
 })
