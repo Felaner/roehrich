@@ -35,8 +35,8 @@
 }
 .contacts-map-text{
     position: absolute;
-    right: 153px;
-    top: 60px;
+    right: 150px;
+    top: 50px;
     transition: 0.4s all;
 }
 .contacts-map:hover .contacts-map-block{

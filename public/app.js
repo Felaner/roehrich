@@ -43,7 +43,7 @@ $(function () {
             menu.removeClass('animate__fadeInLeft').addClass('animate__fadeOutRight')
             setTimeout(function () {
                 menu.css({'display': 'none'})
-            }, 550)
+            }, 1000)
         }
     })
 

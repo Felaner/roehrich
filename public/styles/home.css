@@ -1,3 +1,7 @@
+.home-carousel .carousel-inner, .home-carousel img {
+    height: 550px;
+}
+
 .card{
     width: 250px;
     height: 350px;
