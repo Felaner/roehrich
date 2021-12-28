@@ -24,6 +24,12 @@ $(function () {
     const megamenuBlock = $('.megamenu-block');
     megamenuBlock.each(function () {
         $(this).hover(function () {
+            const srcImage = $(this).find('input').val()
+            $('.megamenu-image').animate({'opacity': '0'},300,function (){
+                $(this).css({'background': `center center url('/${srcImage}') no-repeat`, 'background-size': 'cover'})
+                $(this).animate({'opacity': '1'}, 300)
+            })
+
             $(this).find('.megamenu-title span').fadeIn(300)
         }, function () {
             $(this).find('.megamenu-title span').fadeOut(300)
@@ -33,9 +39,7 @@ $(function () {
     $(".search-img").click(function(){
         $(".search-wrap, .search-wrap .form-control").toggleClass("active").focus();
     })
-    let clicks = 0;
     $('.nav-link.dropdown-toggle').click(el => {
-        ++clicks
         const menu = $('.megamenu .dropdown-menu')
         if (!menu.hasClass('animate__fadeInLeft')) {
             menu.removeClass('animate__fadeOutRight').css({'display': 'block'}).addClass('animate__fadeInLeft')
@@ -47,9 +51,7 @@ $(function () {
         }
     })
 
-    let adminClicks = 0
     $('.admin-dropdown button').click(el => {
-        ++clicks
         const menu = $('.admin-dropdown .dropdown-menu')
         if (!menu.hasClass('animate__fadeInLeft')) {
             menu.removeClass('animate__fadeOutRight').css({'display': 'block'}).addClass('animate__fadeInLeft')
