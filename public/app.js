@@ -20,6 +20,13 @@ function totalPrice(total, el, price) {
 }
 
 $(function () {
+    const price = $('.productPrice')
+    const input1 = parseInt(price.parent().parent().find('input')[0].value)
+    const input2 = parseInt(price.parent().parent().find('input')[1].value)
+    price[0].innerText = input1  * input2
+})
+
+$(function () {
     $('.megamenu-title span').fadeOut(300)
     const megamenuBlock = $('.megamenu-block');
     megamenuBlock.each(function () {
