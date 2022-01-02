@@ -7,9 +7,17 @@
     height: 350px;
     overflow: hidden;
     transition: 0.4s;
+    left: 1px;
+    top: 1px;
+    background: none;
 }
-.card img{
-    border: 1px solid #FFFFFF;
+.card-border{
+    position: relative;
+    width: 252px;
+    height: 352px;
+    background-image: linear-gradient(145deg, rgba(221,141,4,1) 0%, rgba(255,187,0,1) 25%, rgba(255,255,0,1) 50%, rgba(255,182,0,1) 75%, rgba(221,141,4,1) 100%);
+    background-size: 400% 400%;
+    animation: gradient 3s ease infinite;
 }
 .sale{
     position: absolute;
@@ -31,10 +39,16 @@
     transition: 0.3s all;
 }
 .card-button:hover{
-    color: #FFFFFF;
     background: #000000;
     border: 1px solid #FFFFFF;
     text-decoration: none;
+}
+.card-button:hover span{
+    background-image: linear-gradient(145deg, rgba(221,141,4,1) 0%, rgba(255,187,0,1) 25%, rgba(255,255,0,1) 50%, rgba(255,182,0,1) 75%, rgba(221,141,4,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
 }
 .service-button{
     font-size: 16px;
@@ -167,4 +181,20 @@
 }
 .home-form h2 {
     padding-bottom: 20px;
+}
+.form-button{
+    width: 200px;
+    height: 50px;
+    background: #FFFFFF;
+    color: #000000;
+    line-height: 48px;
+    transition: 0.3s background ease-out;
+    border: 1px solid transparent;
+}
+.form-button:hover{
+    background: linear-gradient(145deg, rgba(221,141,4,1) 0%, rgba(255,187,0,1) 25%, rgba(255,255,0,1) 50%, rgba(255,182,0,1) 75%, rgba(221,141,4,1) 100%);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    border: 1px solid #FFFFFF;
+    text-decoration: none;
 }
