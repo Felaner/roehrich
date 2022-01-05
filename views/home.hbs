@@ -49,24 +49,30 @@
             <h2 class="f-36 text-center">Выгодные предложения</h2>
             <div class="row mt-4">
                 <div class="col-md-4 mb-3 mb-md-0 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
-                        <a href="#" class="card-button text-center"><span class="gold-text">Купить сейчас</span></a>
+                    <div class="card-border mx-auto">
+                        <div class="card d-flex align-items-center ">
+                            <img src="/images/card-img.png" alt="card-img">
+                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3 mb-md-0 col-sm-6">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
-                        <a href="#" class="card-button text-center">Купить сейчас</a>
+                    <div class="card-border mx-auto">
+                        <div class="card d-flex align-items-center">
+                            <img src="/images/card-img.png" alt="card-img">
+                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card d-flex align-items-center mx-auto">
-                        <img src="/images/card-img.png" alt="card-img">
-                        <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
-                        <a href="#" class="card-button text-center">Купить сейчас</a>
+                    <div class="card-border mx-auto">
+                        <div class="card d-flex align-items-center">
+                            <img src="/images/card-img.png" alt="card-img">
+                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,16 +89,18 @@
                 {{#if products}}
                     {{#each products}}
                         <div class="col-md-4 mb-4 col-sm-6">
-                            <div class="card d-flex align-items-center mx-auto">
-                                <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
-                                <div class="product-name f-18 text-center">{{Products.[0].name}}</div>
-                                <div class="product-price f-26 text-center">{{Products.[0].price}} руб.</div>
-                                <a class="cart-link" href="#">
-                                    <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                                </a>
-                                <a class="buy-link" href="/kategorii/{{id}}/{{Products.[0].id}}">
-                                    <div class="buy text-center">Купить</div>
-                                </a>
+                            <div class="card-border mx-auto">
+                                <div class="card d-flex align-items-center">
+                                    <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
+                                    <div class="product-name f-18 text-center">{{Products.[0].name}}</div>
+                                    <div class="product-price f-26 text-center">{{Products.[0].price}} руб.</div>
+                                    <a class="cart-link" href="#">
+                                        <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
+                                    </a>
+                                    <a class="buy-link" href="/kategorii/{{id}}/{{Products.[0].id}}">
+                                        <div class="buy text-center">Купить</div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     {{/each}}
@@ -155,18 +163,6 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="gif">
-                <h1 class="text-center mt-5 mb-5">ТУТ БУДЕТ ГИФКА</h1>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="container">
-    <div class="row">
         <div class="col-9 mx-auto">
             <form class="home-form">
                 <h2 class="text-center f-36 gold-text">Свяжитесь с нами</h2>
@@ -205,7 +201,7 @@
                     <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите адрес доставки">
                 </div>
                 <div class="col-12 d-flex justify-content-center mt-3">
-                    <button class="catalog-button">Отправить</button>
+                    <button class="form-button">Отправить</button>
                 </div>
             </form>
         </div>
