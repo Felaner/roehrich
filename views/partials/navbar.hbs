@@ -8,7 +8,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="/" class="nav-link font-weight-bold text-uppercase">Главная</a></li>
                 <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">Товары</a>
-                    <div aria-labelledby="megamenu" class="animate__animated dropdown-menu border-0 p-0 m-0">
+                    <div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
                         <div class="container">
                             <div class="row rounded-0 m-0 shadow-sm dropdown-megamenu border-top">
                                 <div class="col-lg-7 col-xl-8">
@@ -17,12 +17,12 @@
                                             {{#if menuDivides}}
                                                 {{#each menuDivides}}
                                                     <div class="col-lg-6 mb-4 megamenu-block">
-                                                        <h6 class="font-weight-bold text-uppercase megamenu-title gold-text"><span class=""><img src="/images/icons/double-arrow-right.svg" alt=""></span> <a href="/kategorii/{{id}}">{{name}}</a></h6>
+                                                        <h6 class="font-weight-bold text-uppercase megamenu-title gold-text"><span class=""><img src="/images/icons/double-arrow-right.svg" alt=""></span> <a href="/kategorii/{{id}}/tovary">{{name}}</a></h6>
                                                         <ul class="list-unstyled">
                                                             <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="nav-link text-small pb-0">{{Products.[0].name}}</a></li>
                                                             <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[1].id}}" class="nav-link text-small pb-0 ">{{Products.[1].name}}</a></li>
                                                             <li class="nav-item"><a href="/kategorii/{{id}}/tovary/{{Products.[2].id}}" class="nav-link text-small pb-0 ">{{Products.[2].name}}</a></li>
-                                                            <li class="nav-item"><a href="/kategorii/{{id}}" class="nav-link text-small pb-0 ">Все товары</a></li>
+                                                            <li class="nav-item"><a href="/kategorii/{{id}}/tovary" class="nav-link text-small pb-0 ">Все товары</a></li>
                                                         </ul>
                                                         <input type="hidden" value="{{srcImage}}">
                                                     </div>
@@ -43,27 +43,47 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item"><a href="/uslugi" class="nav-link font-weight-bold text-uppercase">Услуги</a></li>
+                {{#if services}}
+                    <li class="nav-item"><a href="/uslugi" class="nav-link font-weight-bold text-uppercase">Услуги</a></li>
+                {{/if}}
                 <li class="nav-item"><a href="/o-nas" class="nav-link font-weight-bold text-uppercase">О нас</a></li>
                 <li class="nav-item"><a href="/kontakty" class="nav-link font-weight-bold text-uppercase">Контакы</a></li>
             </ul>
             <div class="row m-0 ml-3 position-relative">
-                <a class="mr-2" href="/korzina"><svg width="35" height="35" viewBox="0 0 30 27" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <g clip-path="url(#clip0_17_48)">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="white"/>
-                    </g>
-                    <defs>
-                        <clipPath id="clip0_17_48">
-                            <rect width="30" height="27" fill="white"/>
-                        </clipPath>
-                    </defs>
-                </svg>
+                <a class="mr-2" id="open-cart" href="/korzina">
+                    <svg width="35" height="35" viewBox="0 0 30 27" fill="white" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_17_48)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="white"/>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_17_48">
+                                <rect width="30" height="27" fill="white"/>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <div class="position-absolute">
+                        <p class="cart-count text-center"></p>
+                    </div>
                 </a>
                 <div class="search-wrap">
-                    <form action="" method="get">
-                        <input name="search" class="form-control" id="search" placeholder="Поиск..." type="search">
-                    </form>
+                    <section class="position-relative">
+                        <input name="search" class="form-control" id="search" placeholder="Поиск..." type="text">
+                        <div class="result-block position-absolute">
+                            <ul id="result-list" class="list-unstyled">
+                                {{#each divides}}
+                                    <li><a href="/kategorii/{{id}}/tovary">{{name}}</a></li>
+                                    {{#each Products}}
+                                        <li><a href="/kategorii/{{../id}}/tovary/{{id}}">{{name}}</a></li>
+                                    {{/each}}
+                                {{/each}}
+                                {{#each services}}
+                                    <li><a href="/uslugi/{{id}}">{{name}}</a></li>
+                                {{/each}}
+                                <p>Ничего не найдено</p>
+                            </ul>
+                        </div>
+                    </section>
                     <img class="search-img" src="/images/icons/search.svg" alt="search">
                 </div>
 

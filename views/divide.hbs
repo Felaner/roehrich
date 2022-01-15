@@ -1,16 +1,21 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">{{divide.name}}</h2>
+            <h2 class="f-48 text-center mt-3">{{divide.name}}</h2>
             <div class="row">
                 {{#if divide.Products}}
                     {{#each divide.Products}}
-                        <div class="col-md-4 mt-4">
-                            <div class="product-card d-flex flex-column align-items-center justify-content-around">
-                                <div class="productions-title f-36 text-center">{{name}}</div>
-                                <div class="product-img"><img class="img-fluid" src="/{{Images.[0].srcImage}}" alt="product-img"></div>
-                                <a href="/kategorii/{{../divide.id}}/tovary/{{id}}" class="productions-button text-center">Посмотреть товар</a>
-                            </div>
+                        <div class="col-md-3 mt-4 col-sm-6">
+                            <a href="/kategorii/{{../divide.id}}/tovary/{{id}}" class="a-hover">
+                                <div class="card d-flex align-items-center">
+                                    <div class="card-box-img">
+                                        <img src="/{{Images.[0].srcImage}}" alt="card-img">
+                                    </div>
+                                    <div class="gold-border">
+                                        <div class="f-24 text-center pt-3">{{name}}</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     {{/each}}
                 {{/if}}

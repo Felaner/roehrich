@@ -61,19 +61,30 @@
             <!--            Инпуты-->
             <div class="col-8 offset-4 mt-5">
                 <div class="row justify-content-center">
+                    <input class="service-buy-name" type="hidden" value="{{service.name}}">
+                    <input class="service-buy-image" type="hidden" value="/{{service.Images.[0].srcImage}}">
                     <p class="productPriceBox text-center">Стоимость: <span class="productPrice">{{service.price}}</span> руб.</p>
-                    <button type="button" class="divide-button cartBuy">В корзину<span><svg width="30" height="27" viewBox="0 0 30 27" fill="black" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_17_48)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_17_48">
-<rect width="30" height="27" fill="currentColor"/>
-</clipPath>
-</defs>
-</svg>
-</span></button>
+                    <button type="button" class="divide-button cartBuyService" data-id="0{{service.id}}">В корзину
+                        <span>
+                            <svg width="30" height="27" viewBox="0 0 30 27" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_17_48)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="black"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_17_48">
+                                        <rect width="30" height="27" fill="currentColor"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="add-success position-fixed gold-border animate__animated">
+                        <p>Услуга добавлена</p>
+                        <div class="col-12 d-flex justify-content-center">
+                            <a href="/korzina" class="divide-button p-2">Перейти в корзину</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

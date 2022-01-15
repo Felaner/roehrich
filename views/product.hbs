@@ -1,7 +1,8 @@
 <div class="container">
-    <div class="row">
+    <div class="row productBox">
         <div class="col-12">
-            <h2 class="m-3 pb-3 border-bottom gold-text"><span class="mr-2"><img src="/images/icons/double-arrow-right.svg" alt="" width="30px"></span>{{product.name}}</h2>
+            <h2 class="mt-3 ml-3 pb-3 mb-0">{{product.name}}</h2>
+            <div class="gold-divider mb-3"></div>
         </div>
         <div class="col-lg-6">
             <ul class="nav nav-pills mb-3 justify-content-center" id="pills-about-tab" role="tablist">
@@ -21,7 +22,24 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="pills-char" role="tabpanel" aria-labelledby="pills-char-tab">
-                    <div class="row mb-3 justify-content-center">
+                    {{#each product.Sizes}}
+                        <section class="d-none size-{{id}}">
+                            <input type="hidden" value="{{weight}}">
+                            <input type="hidden" value="{{volume}}">
+                            <input type="hidden" value="{{gost}}">
+                        </section>
+                    {{/each}}
+                    {{#if product.Sizes}}
+                        <label for="productSizes">Выберите размер</label>
+                        <select name="productSizes" id="productSizes" class="form-control">
+                            {{#each product.Sizes}}
+                                <option value="size-{{id}}">
+                                    {{weight}}x{{volume}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    {{/if}}
+                    <div class="row mb-3 mt-3 justify-content-center">
                         {{#if product.pressure}}
                             <div class="col-3">
                                 <div class="character-box text-center">
@@ -48,18 +66,14 @@
                         {{/if}}
                     </div>
                     <h3 class="text-center">Характеристики</h3>
-                    {{#if product.weight}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Вес</p>
-                            <p class="mb-1">{{product.weight}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.volume}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Объем</p>
-                            <p class="mb-1">{{product.volume}}</p>
-                        </div>
-                    {{/if}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Вес</p>
+                        <p class="mb-1 product-weight"></p>
+                    </div>
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Объем</p>
+                        <p class="mb-1 product-volume"></p>
+                    </div>
                     {{#if product.environ}}
                         <div class="row justify-content-between border-bottom mb-2">
                             <p class="mb-1">Рабочая среда</p>
@@ -96,12 +110,10 @@
                             <p class="mb-1">{{product.dimension}}</p>
                         </div>
                     {{/if}}
-                    {{#if product.gost}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Соответствие ГОСТ</p>
-                            <p class="mb-1">{{product.gost}}</p>
-                        </div>
-                    {{/if}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Соответствие ГОСТ</p>
+                        <p class="mb-1 product-gost"></p>
+                    </div>
                     {{#if product.pressure}}
                         <div class="row justify-content-between border-bottom mb-2">
                             <p class="mb-1">Номинальное давление PN, МПа</p>
@@ -178,23 +190,54 @@
                     <label for="productCount">* Минимальное количество заказа {{product.count}}{{product.dimension}}.</label>
                 </div>
                 <div class="row justify-content-center">
-                    <input type="hidden" value="{{product.count}}">
-                    <input type="hidden" value="{{product.price}}">
+                    <input class="product-buy-name" type="hidden" value="{{product.name}}">
+                    <input class="product-buy-image" type="hidden" value="/{{product.Images.[0].srcImage}}">
+                    <input class="product-buy-min-count" type="hidden" value="{{product.count}}">
+                    <input class="product-buy-price" type="hidden" value="{{product.price}}">
                     <p class="productPriceBox text-center">Стоимость: <span class="productPrice"></span> руб.</p>
-                    <button type="button" class="divide-button cartBuy">В корзину<span><svg width="30" height="27" viewBox="0 0 30 27" fill="black" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_17_48)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="black"/>
-</g>
-<defs>
-<clipPath id="clip0_17_48">
-<rect width="30" height="27" fill="currentColor"/>
-</clipPath>
-</defs>
-</svg>
-</span></button>
+                    <button type="button" class="divide-button cartBuy" data-id="{{product.id}}">В корзину
+                        <span>
+                            <svg width="30" height="27" viewBox="0 0 30 27" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_17_48)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.935 21.7822C9.3712 21.8021 10.5213 22.9789 10.5081 24.4152C10.495 25.8514 9.32348 27.007 7.88717 27.0005C6.45085 26.994 5.28989 25.8278 5.28975 24.3915C5.29391 23.6945 5.57509 23.0278 6.07131 22.5383C6.56752 22.0489 7.23803 21.7769 7.935 21.7822ZM16.7633 21.7822C18.1979 21.8082 19.3423 22.9877 19.3251 24.4224C19.3078 25.8572 18.1354 27.0088 16.7005 27.0003C15.2657 26.9918 14.107 25.8263 14.1068 24.3915C14.1199 22.9375 15.3092 21.7694 16.7633 21.7822ZM30 4.5H7.5L3.75 0H0L10.5 15H19.5L18 17.25H6.75L3.75 20.25H19.5L30 4.5Z" fill="black"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 6H22L20.5 7.5H8.5L7 6ZM9.25 9H19L17.5 10.5H10.75L9.25 9Z" fill="black"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_17_48">
+                                        <rect width="30" height="27" fill="currentColor"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="add-success position-fixed gold-border animate__animated">
+                        <p>Товар добавлен</p>
+                        <div class="col-12 d-flex justify-content-center">
+                            <a href="/korzina" class="divide-button p-2">Перейти в корзину</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {{#if thisDivide.arrayProducts}}
+    <div class="divider"></div>
+    <h2 class="f-36 text-center">Похожие товары</h2>
+    <div class="row">
+        {{#each thisDivide.arrayProducts}}
+        <div class="col-md-3 mt-4 col-sm-6">
+            <a href="/kategorii/{{../thisDivide.id}}/tovary/{{id}}" class="a-hover">
+                <div class="card d-flex align-items-center">
+                    <div class="card-box-img">
+                        <img src="/{{Images.[0].srcImage}}" alt="card-img">
+                    </div>
+                    <div class="gold-border">
+                        <div class="f-24 text-center pt-4">{{name}}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
 </div>

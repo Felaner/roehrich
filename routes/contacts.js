@@ -3,7 +3,7 @@
 const {Router} = require('express');
 const router = Router();
 const fs = require('fs');
-const { divide: Divide, product: Product } = require('../models/divide')
+const { divide: Divide, product: Product, service: Service } = require('../models/divide')
 
 router.get('/', async (req, res) => {
     await Divide.findAll({
@@ -13,12 +13,18 @@ router.get('/', async (req, res) => {
             attributes: ['id', 'name']
         }]
     }).then(divides => {
-        const menuDivides = divides.slice(0, 4)
-        res.render('contacts', {
-            title: 'Контакты',
-            isContacts: true,
-            menuDivides
-        });
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('contacts', {
+                title: 'Контакты',
+                isContacts: true,
+                services,
+                menuDivides,
+                divides
+            });
+        })
     })
 });
 

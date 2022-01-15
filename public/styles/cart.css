@@ -1,0 +1,35 @@
+.table td, .table th {
+    color: #FFFFFF;
+}
+
+#cart_content button {
+    background: none;
+    width: 30px;
+    border: none;
+}
+
+#cart_content .text-right {
+    padding-top: 7px;
+}
+
+td[data-th="Quantity"] input {
+    font-size: 20px;
+    width: 64%;
+}
+
+td[data-th="Quantity"] input:focus-visible {
+    outline: none;
+}
+
+.modal-content {
+    background-color: #333333;
+}
+
+.modal-content .close {
+    color: #FFFFFF;
+}
+
+.error-input:focus {
+    border-color: red !important;
+    box-shadow: 1px 1px red !important;
+}

@@ -5,8 +5,8 @@
 .card{
     width: 250px;
     height: 350px;
-    overflow: hidden;
     transition: 0.4s;
+    overflow: hidden;
     left: 1px;
     top: 1px;
     background: none;
@@ -123,7 +123,7 @@
     height: 130px;
     background: #FFFFFF;
     transform: rotate(-45deg);
-    line-height: 50px;
+    line-height: 40px;
     font-size: 18px;
 }
 .cart-link{

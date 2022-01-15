@@ -7,11 +7,18 @@
             </div>
         </div>
     {{/if}}
-    {{#if divide}}
+    {{#if editSuccess}}
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <div class="alert alert-success text-center">{{editSuccess}}</div>
+            </div>
+        </div>
+    {{/if}}
+    {{#if divides}}
         <div class="row mt-4">
             <div class="col-3">
                 <ul class="nav nav-pills d-flex flex-column" id="productsTabs" role="tablist">
-                    {{#each divide}}
+                    {{#each divides}}
                         <li class="nav-item">
                             <a class="nav-link {{#ifeq @index "0"}}active{{else}}{{/ifeq}}" id="divide{{id}}-tab" data-toggle="pill" href="#divide{{id}}" role="tab" aria-controls="divide{{id}}" aria-selected="{{#ifeq @index "0"}}true{{else}}false{{/ifeq}}">{{name}}</a>
                         </li>
@@ -20,7 +27,7 @@
             </div>
             <div class="col-9">
                 <div class="tab-content" id="myTabContent">
-                    {{#each divide}}
+                    {{#each divides}}
                         <div class="tab-pane fade {{#ifeq @index "0"}}show active{{else}}{{/ifeq}} row" id="divide{{id}}" role="tabpanel" aria-labelledby="divide{{id}}-tab">
                             <div class="row">
                                 {{#each Products}}

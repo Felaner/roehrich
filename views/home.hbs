@@ -88,20 +88,17 @@
             <div class="row mt-4">
                 {{#if products}}
                     {{#each products}}
-                        <div class="col-md-4 mb-4 col-sm-6">
-                            <div class="card-border mx-auto">
+                        <div class="col-md-3 mt-4 col-sm-6">
+                            <a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="a-hover">
                                 <div class="card d-flex align-items-center">
-                                    <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
-                                    <div class="product-name f-18 text-center">{{Products.[0].name}}</div>
-                                    <div class="product-price f-26 text-center">{{Products.[0].price}} руб.</div>
-                                    <a class="cart-link" href="#">
-                                        <div class="cart text-center f-20"><img src="/images/icons/cart.svg" alt="cart"></div>
-                                    </a>
-                                    <a class="buy-link" href="/kategorii/{{id}}/{{Products.[0].id}}">
-                                        <div class="buy text-center">Купить</div>
-                                    </a>
+                                    <div class="card-box-img">
+                                        <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
+                                    </div>
+                                    <div class="gold-border">
+                                        <div class="f-24 text-center pt-3">{{Products.[0].name}}</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     {{/each}}
                 {{/if}}
@@ -113,6 +110,8 @@
     </div>
 </div>
 
+{{#if homeServices}}
+
 <div class="divider mt-5"></div>
 
 <div class="container">
@@ -120,7 +119,6 @@
         <div class="col-12">
             <h2 class="f-36 text-center">Наши услуги</h2>
             <div class="row mt-4">
-                {{#if homeServices}}
                     {{#each homeServices}}
                         <div class="col-md-4 mb-4 col-sm-6">
                             <div class="card d-flex align-items-center mx-auto">
@@ -131,11 +129,12 @@
                             </div>
                         </div>
                     {{/each}}
-                {{/if}}
             </div>
         </div>
     </div>
 </div>
+
+{{/if}}
 
 <div class="divider mt-3"></div>
 
@@ -164,42 +163,46 @@
 <div class="container">
     <div class="row">
         <div class="col-9 mx-auto">
-            <form class="home-form">
+            <div class="add-success position-fixed gold-border animate__animated">
+                <p>Успешно отправлено<br>В ближайшее время с вами свяжется наш сотрудник</p>
+            </div>
+            <form class="home-form" method="POST" action="/">
                 <h2 class="text-center f-36 gold-text">Свяжитесь с нами</h2>
                 <div class="row">
                     <div class="col-lg-6 form-group">
-                        <label for="contactName">ФИО</label>
-                        <input name="contactName" type="text" id="contactName" class="form-control" placeholder="Ваше имя">
+                        <label for="contactName">ФИО *</label>
+                        <input name="contactName" type="text" id="contactName" class="form-control required" placeholder="Ваше имя">
                     </div>
                     <div class="col-lg-6 form-group">
-                        <label for="organizationName">Название организации</label>
-                        <input name="organizationName" type="text" id="organizationName" class="form-control" placeholder="Ваша организация">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 form-group">
-                        <label for="divideName">Контакты</label>
-                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Номер телефона или email">
-                    </div>
-                    <div class="col-lg-6 form-group">
-                        <label for="divideName">Список товаров</label>
-                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Выберите товар">
+                        <label for="contactOrganization">Название организации *</label>
+                        <input name="contactOrganization" type="text" id="contactOrganization" class="form-control required" placeholder="Ваша организация">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 form-group">
-                        <label for="divideName">Количество</label>
-                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите количество товара">
+                        <label for="contactContact">Контакты *</label>
+                        <input name="contactContact" type="text" id="contactContact" class="form-control required" placeholder="Номер телефона или email">
                     </div>
                     <div class="col-lg-6 form-group">
-                        <label for="divideName">Когда</label>
-                        <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите дату доставки">
+                        <label for="contactProduct">Товар *</label>
+                        <input name="contactProduct" type="text" id="contactProduct" class="form-control required" placeholder="Введите наименование товара">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 form-group">
+                        <label for="contactCount">Количество *</label>
+                        <input name="contactCount" type="number" id="contactCount" class="form-control required" placeholder="Введите количество товара">
+                    </div>
+                    <div class="col-lg-6 form-group">
+                        <label for="contactDate">Когда *</label>
+                        <input name="contactDate" type="text" id="contactDate" class="form-control required" placeholder="Введите дату доставки">
                     </div>
                 </div>
                 <div class="col-lg-8 mx-auto">
-                    <label for="divideName">Адрес</label>
-                    <input name="divideName" type="text" id="divideName" class="form-control" placeholder="Введите адрес доставки">
+                    <label for="contactAddress">Адрес *</label>
+                    <input name="contactAddress" type="text" id="contactAddress" class="form-control required" placeholder="Введите адрес доставки">
                 </div>
+                <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcDmBQeAAAAADOEL0zfoXRA_5VKwnv0KQ96DKNt" data-callback="onSubmitReCaptcha" data-size="invisible"></div>
                 <div class="col-12 d-flex justify-content-center mt-3">
                     <button class="form-button">Отправить</button>
                 </div>

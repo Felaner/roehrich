@@ -7,18 +7,50 @@ const auth = require('../middleware/auth');
 const sharp = require('sharp');
 const { divide: Divide, service: Service, product: Product, image: Image, video: Video, size: Size } = require('../models/divide')
 
-router.get('/', auth, (req, res) => {
-    res.render('control/control', {
-        title: 'Управление сайтом',
-        isControl: true
-    });
+router.get('/', auth, async (req, res) => {
+    await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    }).then(divides => {
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('control/control', {
+                title: 'Управление сайтом',
+                isControl: true,
+                services,
+                divides,
+                menuDivides
+            });
+        })
+    })
 });
 
 // Категории
-router.get('/add-divide', auth, (req, res) => {
-    res.render('control/addDivide', {
-        title: 'Добавление категорий'
-    });
+router.get('/add-divide', auth, async (req, res) => {
+    await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    }).then(divides => {
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('control/addDivide', {
+                title: 'Добавление категорий',
+                services,
+                divides,
+                menuDivides
+            });
+        })
+    })
 });
 
 router.post('/add-divide', auth, async (req, res) => {
@@ -56,21 +88,50 @@ router.post('/add-divide', auth, async (req, res) => {
 });
 
 router.get('/edit-divide', auth, async (req, res) => {
-    const divide = await Divide.findAll()
-    res.render('control/divides', {
-        title: 'Редактирование категорий',
-        deleteSuccess: req.flash('deleteSuccess'),
-        divide
-    });
+    await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    }).then(divides => {
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('control/divides', {
+                title: 'Редактирование категорий',
+                deleteSuccess: req.flash('deleteSuccess'),
+                services,
+                divides,
+                menuDivides
+            });
+        })
+    })
 });
 
 router.get('/edit-divide/:id', auth, async (req, res) => {
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
     const divide = await Divide.findByPk(req.params.id);
-    res.render('control/editDivide', {
-        title: `Редактирование категории "${divide.name}"`,
-        editSuccess: req.flash('editSuccess'),
-        divide
-    });
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/editDivide', {
+            title: `Редактирование категории "${divide.name}"`,
+            editSuccess: req.flash('editSuccess'),
+            services,
+            divide,
+            divides,
+            menuDivides
+        });
+    })
 });
 
 router.post('/edit-divide/:id', auth, async (req, res) => {
@@ -183,10 +244,26 @@ router.post('/edit-divide/:id/remove', auth, async (req, res) => {
 });
 
 // Услуги
-router.get('/add-service', auth, (req, res) => {
-    res.render('control/addService', {
-        title: 'Добавление услуг'
-    });
+router.get('/add-service', auth, async (req, res) => {
+    await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    }).then(divides => {
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('control/addService', {
+                title: 'Добавление услуг',
+                services,
+                menuDivides,
+                divides
+            });
+        })
+    })
 });
 
 router.post('/add-service', auth, async (req, res) => {
@@ -249,20 +326,50 @@ router.get('/edit-service', auth, async (req, res) => {
             [Image, 'id', 'ASC']
         ]
     })
-    res.render('control/services', {
-        title: 'Редактирование услуг',
-        deleteSuccess: req.flash('deleteSuccess'),
-        service
-    });
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/services', {
+            title: 'Редактирование услуг',
+            deleteSuccess: req.flash('deleteSuccess'),
+            services,
+            service,
+            divides,
+            menuDivides
+        });
+    })
 });
 
 router.get('/edit-service/:id', auth, async (req, res) => {
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
     const service = await Service.findByPk(req.params.id);
-    res.render('control/editService', {
-        title: `Редактирование услуги "${service.name}"`,
-        editSuccess: req.flash('editSuccess'),
-        service
-    });
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/editService', {
+            title: `Редактирование услуги "${service.name}"`,
+            editSuccess: req.flash('editSuccess'),
+            services,
+            service,
+            divides,
+            menuDivides
+        });
+    })
 });
 
 router.post('/edit-service/:id', auth, async (req, res) => {
@@ -350,16 +457,27 @@ router.post('/edit-service/:id/remove', auth, async (req, res) => {
 // Товары
 router.get('/add-product', auth, async (req, res) => {
     const divides = await Divide.findAll({
-        attributes: ['name']
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
     })
-    res.render('control/addProduct', {
-        title: 'Добавление товаров',
-        addSuccess: req.flash('addSuccess'),
-        divides
-    });
+    const menuDivides = divides.slice(0, 4)
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/addProduct', {
+            title: 'Добавление товаров',
+            addSuccess: req.flash('addSuccess'),
+            services,
+            divides,
+            menuDivides
+        });
+    })
 });
 
-router.post('/add-product', auth, async (req, res) => {
+router.post('/add-product', auth, async (req, res, next) => {
     try {
         if (!req.files['productImage']) {
             req.flash('fileError', "Добавьте изображения для товара");
@@ -369,11 +487,11 @@ router.post('/add-product', auth, async (req, res) => {
             });
         }
         const {productName, productCategory, productDescription,
-            productCount, productWeight, productVolume,
-            productEnviron, productTemp, productMaterial,
-            productConnect, productDiameter, productDimension,
-            productGost, productPressure, productDepth, productExternalDiameter,
-            productPrice} = req.body
+            productCount, productEnviron, productTemp,
+            productMaterial, productConnect, productDiameter,
+            productDimension, productPressure, productDepth,
+            productExternalDiameter, productWeight,
+            productVolume, productGost, productPrice} = req.body
         const divideId = await Divide.findOne({
             attributes: ['id'],
             where: {
@@ -382,12 +500,32 @@ router.post('/add-product', auth, async (req, res) => {
         })
         await Product.create({
             name: productName, category: productCategory, description: productDescription,
-            count: productCount, weight: productWeight, volume: productVolume,
-            environ: productEnviron, temp: productTemp, material: productMaterial,
+            count: productCount, environ: productEnviron, temp: productTemp, material: productMaterial,
             connect: productConnect, diameter: productDiameter, dimension: productDimension,
-            gost: productGost, pressure: productPressure, depth: productDepth,
-            externalDiameter: productExternalDiameter, price: productPrice, DivideId: divideId.id
-        }).catch(err => {
+            pressure: productPressure, depth: productDepth, externalDiameter: productExternalDiameter,
+            price: productPrice, DivideId: divideId.id
+        }).then(result => {
+            if (Array.isArray(productWeight)) {
+                for(let i = 0; i < productWeight.length; i++){
+                    Size.create({
+                        ProductId: result.id,
+                        weight: productWeight[i],
+                        volume: productVolume[i],
+                        gost: productGost[i]
+                    })
+                }
+            } else if ((productWeight !== undefined)) {
+                Size.create({
+                    ProductId: req.params.id,
+                    weight: productWeight,
+                    volume: productVolume,
+                    gost: productGost
+                })
+            } else {
+                next()
+            }
+        })
+    .catch(err => {
             console.log(err)
         })
         const productId = await Product.findOne({
@@ -422,7 +560,7 @@ router.post('/add-product', auth, async (req, res) => {
 });
 
 router.get('/edit-product', auth, async (req, res) => {
-    const divide = await Divide.findAll({
+    const divides = await Divide.findAll({
         include: [{
             model: Product,
             include: [{
@@ -436,27 +574,52 @@ router.get('/edit-product', auth, async (req, res) => {
             [Product, 'id', 'ASC']
         ]
     })
-    res.render('control/products', {
-        title: 'Редактирование товаров',
-        deleteSuccess: req.flash('deleteSuccess'),
-        divide
-    });
+    const menuDivides = divides.slice(0, 4)
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/products', {
+            title: 'Редактирование товаров',
+            deleteSuccess: req.flash('deleteSuccess'),
+            editSuccess: req.flash('editSuccess'),
+            services,
+            divides,
+            menuDivides
+        });
+    })
 });
 
 router.get('/edit-product/:id', auth, async (req, res) => {
-    const product = await Product.findByPk(req.params.id);
-    const divides = await Divide.findAll({
-        attributes: ['name']
-    })
-    res.render('control/editProduct', {
-        title: `Редактирование товара "${product.name}"`,
-        editSuccess: req.flash('editSuccess'),
-        divides,
-        product
+    const product = await Product.findOne({
+        include: [{
+            model: Size
+        }],
+        where: {
+            id: req.params.id
+        }
     });
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/editProduct', {
+            title: `Редактирование товара "${product.name}"`,
+            services,
+            divides,
+            product,
+            menuDivides
+        });
+    })
 });
 
-router.post('/edit-product/:id', auth, async (req, res) => {
+router.post('/edit-product/:id', auth, async (req, res, next) => {
     const {productName, productCategory, productDescription,
         productCount, productWeight, productVolume,
         productEnviron, productTemp, productMaterial,
@@ -490,6 +653,7 @@ router.post('/edit-product/:id', auth, async (req, res) => {
                 });
             })
         }
+        console.log(req.body)
         await Product.update(
             {
                 name: productName, category: productCategory, description: productDescription,
@@ -505,8 +669,34 @@ router.post('/edit-product/:id', auth, async (req, res) => {
                 }
             }
         ).then(result => {
+            Size.destroy({
+                where: {
+                    ProductId: req.params.id
+                }
+            }).then(e => {
+                if (Array.isArray(productWeight)) {
+                    for(let i = 0; i < productWeight.length; i++){
+                        Size.create({
+                            ProductId: req.params.id,
+                            weight: productWeight[i],
+                            volume: productVolume[i],
+                            gost: productGost[i]
+                        })
+                    }
+                } else if ((productWeight !== undefined)) {
+                    Size.create({
+                        ProductId: req.params.id,
+                        weight: productWeight,
+                        volume: productVolume,
+                        gost: productGost
+                    })
+                } else {
+                    next()
+                }
+            })
+        }).then(result => {
             req.flash('editSuccess', 'Товар успешно изменен')
-            res.redirect(`/control/edit-product/${req.params.id}`);
+            res.redirect(`/control/edit-product`);
         })
     } catch (e) {
         console.dir(e)
@@ -557,12 +747,20 @@ router.get('/add-video', auth, async (req, res) => {
         attributes: ['name']
     })
     const services = await Service.findAll({
-        attributes: ['name']
+        attributes: ['id', 'name']
     })
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
     res.render('control/addVideo', {
         title: 'Добавление видео',
         addSuccess: req.flash('addSuccess'),
-        products, services
+        products, services, divides, menuDivides
     });
 });
 
@@ -603,6 +801,14 @@ router.post('/add-video', auth, async (req, res) => {
 })
 
 router.get('/edit-video', auth, async (req, res) => {
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
     const video = await Video.findAll({
         attributes: ['id'],
         include: [{
@@ -631,14 +837,26 @@ router.get('/edit-video', auth, async (req, res) => {
     }).catch(e => {
         console.log(e)
     })
-    res.render('control/videos', {
-        title: 'Редактирование видео',
-        deleteSuccess: req.flash('deleteSuccess'),
-        video
-    });
+    Service.findAll({
+        attributes: ['id', 'name']
+    }).then(services => {
+        res.render('control/videos', {
+            title: 'Редактирование видео',
+            deleteSuccess: req.flash('deleteSuccess'),
+            video, divides, menuDivides, services
+        });
+    })
 });
 
 router.get('/edit-video/:id', auth, async (req, res) => {
+    const divides = await Divide.findAll({
+        attributes: ['id', 'name', 'srcImage'],
+        include: [{
+            model: Product,
+            attributes: ['id', 'name']
+        }]
+    })
+    const menuDivides = divides.slice(0, 4)
     const video = await Video.findByPk(req.params.id);
     const products = await Product.findAll({
         attributes: ['id', 'name']
@@ -673,7 +891,9 @@ router.get('/edit-video/:id', auth, async (req, res) => {
         productsSelected,
         products,
         servicesSelected,
-        services
+        services,
+        divides,
+        menuDivides
     });
 });
 

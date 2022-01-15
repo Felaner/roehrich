@@ -16,11 +16,11 @@
         <div class="col-8">
             <form action="/control/add-product" method="post" enctype="multipart/form-data">
                 <div class="form-group f-18">
-                    <label for="productName">Название товара</label>
+                    <label for="productName">Название товара *</label>
                     <input name="productName" type="text" id="productName" class="form-control">
                 </div>
                 <div class="form-group f-18">
-                    <label for="productCategory">Категория товара</label>
+                    <label for="productCategory">Категория товара *</label>
                     <select name="productCategory" id="productCategory" class="form-control">
                         {{#if divides}}
                             <option value="" selected disabled>Выберите категорию</option>
@@ -33,79 +33,21 @@
                     </select>
                 </div>
                 <div class="form-group f-18">
-                    <label for="productDescription">Описание товара</label>
+                    <label for="productDescription">Описание товара *</label>
                     <textarea name="productDescription" id="productDescription" class="form-control"></textarea>
                 </div>
                 <!--Характеристики-->
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group f-18">
-                            <label for="productCount">Количество в упаковке</label>
-                            <input name="productCount" type="number" id="productCount" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group f-18">
-                            <label for="productWeight">Вес</label>
-                            <input name="productWeight" type="number" step="0.01" id="productWeight" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group f-18">
-                            <label for="productVolume">Объем</label>
-                            <input name="productVolume" type="number" step="0.00001" id="productVolume" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group f-18">
-                            <label for="productEnviron">Рабочая среда</label>
-                            <input name="productEnviron" type="text" id="productEnviron" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group f-18">
-                            <label for="productTemp">Максимальная температура рабочей среды, C<sup>о</sup></label>
-                            <input name="productTemp" type="number" step="0.01" id="productTemp" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group f-18">
-                            <label for="productMaterial">Материал корпуса</label>
-                            <input name="productMaterial" type="text" id="productMaterial" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group f-18">
-                            <label for="productConnect">Тип соединения</label>
-                            <input name="productConnect" type="text" id="productConnect" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group f-18">
                             <label for="productDiameter">Диаметр условный DN, мм</label>
                             <input name="productDiameter" type="number" step="0.01" id="productDiameter" class="form-control">
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-6">
                         <div class="form-group f-18">
-                            <label for="productDimension">Единица измерения</label>
-                            <input name="productDimension" type="text" id="productDimension" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group f-18">
-                            <label for="productGost">Соответствие ГОСТ</label>
-                            <input name="productGost" type="text" id="productGost" class="form-control">
+                            <label for="productExternalDiameter">Внешний диаметр, мм</label>
+                            <input name="productExternalDiameter" type="number" step="0.01" id="productExternalDiameter" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -124,10 +66,44 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-5">
+                        <div class="form-group f-18">
+                            <label for="productEnviron">Рабочая среда</label>
+                            <input name="productEnviron" type="text" id="productEnviron" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="form-group f-18">
+                            <label for="productTemp">Максимальная температура рабочей среды, C<sup>о</sup></label>
+                            <input name="productTemp" type="number" step="0.01" id="productTemp" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group f-18">
+                            <label for="productMaterial">Материал корпуса</label>
+                            <input name="productMaterial" type="text" id="productMaterial" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group f-18">
+                            <label for="productConnect">Тип соединения</label>
+                            <input name="productConnect" type="text" id="productConnect" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group f-18">
+                            <label for="productDimension">Единица измерения</label>
+                            <input name="productDimension" type="text" id="productDimension" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-6">
                         <div class="form-group f-18">
-                            <label for="productExternalDiameter">Внешний диаметр, мм</label>
-                            <input name="productExternalDiameter" type="number" step="0.01" id="productExternalDiameter" class="form-control">
+                            <label for="productCount">Минимальное количество для заказа</label>
+                            <input name="productCount" type="number" id="productCount" class="form-control">
                         </div>
                     </div>
                     <div class="col-6">
@@ -137,7 +113,35 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <h3>Размеры</h3>
+                <section class="sizes">
+                    <div class="form-group add-sizes position-relative">
+                        <div class="divider"></div>
+                        <div class="row mb-5">
+                            <div class="col-4">
+                                <div class="form-group f-18">
+                                    <label for="productWeight">Вес</label>
+                                    <input name="productWeight" type="number" step="0.01" id="productWeight" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group f-18">
+                                    <label for="productVolume">Объем</label>
+                                    <input name="productVolume" type="number" step="0.00001" id="productVolume" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group f-18">
+                                    <label for="productGost">Соответствие ГОСТ</label>
+                                    <input name="productGost" type="text" id="productGost" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <a class="delete-size"><img src="/images/icons/close.svg" alt=""></a>
+                    </div>
+                </section>
+                <a class="divide-button add-size p-2">Добавить размер</a>
+                <div class="form-group mt-3">
                     <label class="f-18" for="divideImage">Добавьте изображения</label>
                     <div class="fileinput-wrapper">
                         <div class="file-upload">

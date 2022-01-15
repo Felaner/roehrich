@@ -7,6 +7,48 @@
     background: rgba(51, 51, 51, 0.76);
     padding: 20px 0 20px 0;
 }
+
+.reason-block.reason-big {
+    opacity: 1;
+    transform: scale(1);
+}
+
 .reason-block{
+    position: relative;
     background: #333333;
+    padding: 14px;
+    opacity: 0.3;
+    transform: scale(0.8);
+    transition: all .6s ease-in-out;
+}
+
+.reason-block .gold-border {
+    padding: 50px 94px 35px 70px;
+}
+
+.reason-title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 45px;
+    background-image: linear-gradient(145deg, rgba(221,141,4,1) 0%, rgba(255,187,0,1) 25%, rgba(255,255,0,1) 50%, rgba(255,182,0,1) 75%, rgba(221,141,4,1) 100%);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite;
+    border: 1px solid #FFFFFF;
+    color: #000000;
+}
+
+.reason-description {
+    text-align: justify
+}
+
+.reason-image {
+    position: absolute;
+    right: -30px;
+    bottom: -50px;
+}
+
+.reason-image img {
+    height: 120px;
 }

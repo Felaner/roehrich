@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
                 title: 'Услуги',
                 isServicesCategories: true,
                 services,
-                menuDivides
+                menuDivides,
+                divides
             });
         })
     })
@@ -58,13 +59,19 @@ router.get('/:id', async (req, res) => {
                 order: ['Image', 'id', 'ASC']
             }]
         }).then(divides => {
-            const menuDivides = divides.slice(0, 4)
-            res.render('service', {
-                title: `Услуга "${service.name}"`,
-                isService: true,
-                service,
-                menuDivides
-            });
+            Service.findAll({
+                attributes: ['id', 'name']
+            }).then(services => {
+                const menuDivides = divides.slice(0, 4)
+                res.render('service', {
+                    title: `Услуга "${service.name}"`,
+                    isService: true,
+                    services,
+                    service,
+                    menuDivides,
+                    divides
+                });
+            })
         })
     })
 });

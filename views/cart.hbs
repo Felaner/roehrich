@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-lg-12 col-md-12 col-12">
+            <div class="add-success position-fixed gold-border animate__animated">
+                <p>Заказ успешно отправлен</p>
+            </div>
+            <h3 class="display-5 mb-4 mt-2 f-36 text-center">Корзина</h3>
+            <table id="shoppingCart" class="table table-condensed table-responsive">
+                <thead>
+                <tr class="f-20">
+                    <th style="width:54%">Товар</th>
+                    <th style="width:18%">Количество</th>
+                    <th style="width:16%">Цена</th>
+                    <th style="width:1%">Удалить</th>
+                </tr>
+                </thead>
+                <tbody id="cart_content">
+
+                </tbody>
+            </table>
+            <div class="float-right text-right">
+                <h4>В итоге:</h4>
+                <h1><span class="totalPrice"></span> руб.</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-sm-6 order-md-2 text-right">
+            <a id="clear-cart" class="divide-button btn-lg pl-5 pr-5">Очистить корзину</a>
+            <a class="divide-button mb-4 btn-lg pl-5 pr-5" data-toggle="modal" data-target="#callModal">Заказать</a>
+        </div>
+        <div class="col-sm-6 order-md-1 text-md-left">
+            <a href="/kategorii" class="divide-button btn-lg pl-5 pr-5">Каталог</a>
+        </div>
+    </div>
+    <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcDmBQeAAAAADOEL0zfoXRA_5VKwnv0KQ96DKNt" data-callback="onSubmitReCaptcha" data-size="invisible"></div>
+    <div class="modal fade" id="callModal" tabindex="-1" aria-labelledby="callModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content form-box">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="col-12 text-center pb-1" id="callModalLabel">Заполните поля</h3>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="cartInputName">Имя *</label>
+                                <input name="name" type="text" class="form-control required" id="cartInputName" placeholder="Введите имя">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="cartInputPhone">Номер телефона *</label>
+                                <input name="phone" type="tel" class="form-control required" id="cartInputPhone" placeholder="Введите телефон">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="cartTextareaMessage">Email *</label>
+                                <input name="email" type="email" class="form-control required" id="cartInputEmail" placeholder="Введите email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pt-2">
+                        <button id="cartBuy" class="divide-button">Заказать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

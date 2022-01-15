@@ -1,15 +1,17 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="f-48 text-center">Категории</h2>
+            <h2 class="f-48 text-center mt-3">Категории</h2>
             <div class="row">
                 {{#if divides}}
                     {{#each divides}}
-                        <div class="col-lg-4 col-md-6 mt-4">
-                            <div class="product-card d-flex flex-column align-items-center justify-content-around">
-                                <div class="productions-title f-36 text-center">{{name}}</div>
-                                <div class="product-img"><img class="img-fluid" src="/{{srcImage}}" alt="product-img"></div>
-                                <a href="/kategorii/{{id}}" class="productions-button text-center">Посмотреть все</a>
+                        <div class="col-md-3 col-sm-6 mt-4">
+                            <div class="card d-flex justify-content-around">
+                                <div class="w-100 productions-title f-26 text-center position-absolute">{{name}}</div>
+                                <img class="img-fluid" src="/{{srcImage}}" alt="product-img">
+                                <div class="w-100 position-absolute d-flex justify-content-center" style="bottom: 0">
+                                    <a href="/kategorii/{{id}}/tovary" class="d-block divide-button text-center w-75">Посмотреть все</a>
+                                </div>
                             </div>
                         </div>
                     {{/each}}

@@ -74,11 +74,11 @@ svg path {
     stroke:inherit;
     stroke-width:inherit;
 }
-.cartBuy svg {
+.cartBuy svg, .cartBuyService svg {
     margin-bottom: 5px;
     margin-left: 15px;
     transition: 0.4s;
 }
-.cartBuy:hover svg {
+.cartBuy:hover svg, .cartBuyService:hover svg {
     fill: white;
 }

@@ -7,7 +7,7 @@ const {loginValidators} = require('../utils/validators');
 const Admin = require('../models/admin');
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
-const { divide: Divide, product: Product } = require('../models/divide')
+const { divide: Divide, product: Product, service: Service } = require('../models/divide')
 
 router.get('/', async (req, res) => {
     await Divide.findAll({
@@ -17,13 +17,19 @@ router.get('/', async (req, res) => {
             attributes: ['id', 'name']
         }]
     }).then(divides => {
-        const menuDivides = divides.slice(0, 4)
-        res.render('control/admin', {
-            title: 'Главная',
-            isAdmin: true,
-            loginError: req.flash('loginError'),
-            menuDivides
-        });
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('control/admin', {
+                title: 'Главная',
+                isAdmin: true,
+                loginError: req.flash('loginError'),
+                services,
+                menuDivides,
+                divides
+            });
+        })
     })
 });
 

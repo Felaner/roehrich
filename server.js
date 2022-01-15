@@ -27,6 +27,7 @@ const dividesRoute = require('./routes/divides');
 const servicesRoute = require('./routes/services');
 const aboutRoute = require('./routes/about');
 const contactsRoute = require('./routes/contacts');
+const cartRoute = require('./routes/cart');
 const adminRoute = require('./routes/admin');
 const controlRoute = require('./routes/control');
 
@@ -97,8 +98,16 @@ app.use('/kategorii', dividesRoute);
 app.use('/uslugi', servicesRoute);
 app.use('/o-nas', aboutRoute);
 app.use('/kontakty', contactsRoute);
+app.use('/korzina', cartRoute);
 app.use('/admin', adminRoute);
 app.use('/control', controlRoute);
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.use(errorHandler);
 

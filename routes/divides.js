@@ -3,7 +3,7 @@
 const {Router} = require('express');
 const router = Router();
 const fs = require('fs');
-const { divide: Divide, product: Product, image: Image, video: Video, size: Size } = require('../models/divide')
+const { divide: Divide, product: Product, service: Service, image: Image, video: Video, size: Size } = require('../models/divide')
 
 router.get('/', async (req, res) => {
     await Divide.findAll({
@@ -12,17 +12,22 @@ router.get('/', async (req, res) => {
             attributes: ['id', 'name']
         }
     }).then(divides => {
-        const menuDivides = divides.slice(0, 4)
-        res.render('divides', {
-            title: 'Категории товаров',
-            isProductions: true,
-            divides,
-            menuDivides
-        });
+        Service.findAll({
+            attributes: ['id', 'name']
+        }).then(services => {
+            const menuDivides = divides.slice(0, 4)
+            res.render('divides', {
+                title: 'Категории товаров',
+                isProductions: true,
+                services,
+                divides,
+                menuDivides
+            });
+        })
     })
 });
 
-router.get('/:divideId', async (req, res) => {
+router.get('/:divideId/tovary', async (req, res) => {
     await Divide.findOne({
         include: {
             model: Product,
@@ -40,23 +45,48 @@ router.get('/:divideId', async (req, res) => {
                 attributes: ['id', 'name']
             }
         }).then(divides => {
-            const menuDivides = divides.slice(0, 4)
-            res.render('divide', {
-                title: `Категория "${divide.name}"`,
-                divide,
-                menuDivides
-            });
+            Service.findAll({
+                attributes: ['id', 'name']
+            }).then(services => {
+                const menuDivides = divides.slice(0, 4)
+                res.render('divide', {
+                    title: `Категория "${divide.name}"`,
+                    services,
+                    divide,
+                    menuDivides,
+                    divides
+                });
+            })
         })
     }).catch(e => {
         console.log(e)
     })
 });
 
+function arrayRandElement(array) {
+    let currentIndex = array.length,  randomIndex;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
 router.get('/:divideId/tovary/:productId', async (req, res) => {
     await Product.findOne({
         include: [
             {model: Image},
-            {model: Video}
+            {model: Video},
+            {model: Size}
         ],
         where: {
             id: req.params.productId
@@ -68,12 +98,33 @@ router.get('/:divideId/tovary/:productId', async (req, res) => {
                 attributes: ['id', 'name']
             }
         }).then(divides => {
-            const menuDivides = divides.slice(0, 4)
-            res.render('product', {
-                title: `Товар "${product.name}"`,
-                product,
-                menuDivides
-            });
+            Divide.findOne({
+                include: {
+                    model: Product,
+                    attributes: ['id', 'name'],
+                    include: {
+                        model: Image
+                    }
+                },
+                where: {
+                    id: req.params.divideId
+                }
+            }).then(thisDivide => {
+                thisDivide.arrayProducts = arrayRandElement(thisDivide.Products)
+                Service.findAll({
+                    attributes: ['id', 'name']
+                }).then(services => {
+                    const menuDivides = divides.slice(0, 4)
+                    res.render('product', {
+                        title: `Товар "${product.name}"`,
+                        services,
+                        product,
+                        menuDivides,
+                        divides,
+                        thisDivide
+                    });
+                })
+            })
         })
     }).catch(e => {
         console.log(e)

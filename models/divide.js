@@ -58,15 +58,23 @@ const product = sequelize.define('Product', {
         type: Sequelize.TEXT,
         allowNull: false
     },
+    diameter: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    pressure: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    depth: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    externalDiameter: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
     count: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    weight: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    volume: {
         type: Sequelize.FLOAT,
         allowNull: true
     },
@@ -86,28 +94,8 @@ const product = sequelize.define('Product', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    diameter: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
     dimension: {
         type: Sequelize.STRING,
-        allowNull: true
-    },
-    gost: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    pressure: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    depth: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    externalDiameter: {
-        type: Sequelize.FLOAT,
         allowNull: true
     },
     price: {
@@ -184,14 +172,22 @@ const size = sequelize.define('Size', {
         allowNull: false,
         type: Sequelize.INTEGER
     },
-    size: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
     ProductId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         foreignKey : true
+    },
+    weight: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    volume: {
+        type: Sequelize.FLOAT,
+        allowNull: true
+    },
+    gost: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 })
 
