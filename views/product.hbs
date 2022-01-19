@@ -6,10 +6,10 @@
         </div>
         <div class="col-lg-6">
             <ul class="nav nav-pills mb-3 justify-content-center" id="pills-about-tab" role="tablist">
-                <li class="nav-item col-6">
+                <li class="nav-item col-sm-6 col-8">
                     <a class="nav-link active text-center" id="pills-descr-tab" data-toggle="pill" href="#pills-descr" role="tab" aria-controls="pills-descr" aria-selected="true">Описание</a>
                 </li>
-                <li class="nav-item col-6">
+                <li class="nav-item col-sm-6 col-8">
                     <a class="nav-link text-center" id="pills-char-tab" data-toggle="pill" href="#pills-char" role="tab" aria-controls="pills-char" aria-selected="false">Характеристики</a>
                 </li>
             </ul>
@@ -41,24 +41,24 @@
                     {{/if}}
                     <div class="row mb-3 mt-3 justify-content-center">
                         {{#if product.pressure}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
+                            <div class="col-sm-3 col-6 mb-md-0 mb-3">
+                                <div class="character-box text-center pl-2 pr-2">
                                     <p>{{product.pressure}}</p>
                                     <p>Номинальное давление PN, МПа</p>
                                 </div>
                             </div>
                         {{/if}}
                         {{#if product.depth}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
+                            <div class="col-sm-3 col-6 mb-md-0 mb-3">
+                                <div class="character-box text-center pl-2 pr-2">
                                     <p>{{product.depth}}</p>
                                     <p>Толщина стенки, мм</p>
                                 </div>
                             </div>
                         {{/if}}
                         {{#if product.externalDiameter}}
-                            <div class="col-3">
-                                <div class="character-box text-center">
+                            <div class="col-sm-3 col-6">
+                                <div class="character-box text-center pl-2 pr-2">
                                     <p>{{product.externalDiameter}}</p>
                                     <p>Внешний диаметр, мм</p>
                                 </div>
@@ -137,11 +137,11 @@
         </div>
         <div class="col-lg-6">
             <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
-                <li class="nav-item col-6">
+                <li class="nav-item col-sm-6 col-8">
                     <a class="nav-link active text-center" id="pills-images-tab" data-toggle="pill" href="#pills-images" role="tab" aria-controls="pills-images" aria-selected="true">Изображения</a>
                 </li>
                 {{#if product.Videos}}
-                <li class="nav-item col-6">
+                <li class="nav-item col-sm-6 col-8">
                     <a class="nav-link text-center" id="pills-videos-tab" data-toggle="pill" href="#pills-videos" role="tab" aria-controls="pills-videos" aria-selected="false">Видео</a>
                 </li>
                 {{/if}}
@@ -183,13 +183,13 @@
 
 
             <!--            Инпуты-->
-            <div class="col-8 offset-4">
+            <div class="col-md-8 offset-md-4 col-12">
                 <div class="form-group mb-0 mt-3">
                     <label for="productCount">Введите количество</label>
                     <input id="productCount" class="form-control" name="productCount" type="number" min="{{product.count}}" value="{{product.count}}" onkeyup="totalPrice($('.productPrice')[0], this, {{product.price}})" onchange="totalPrice($('.productPrice')[0], this, {{product.price}})">
                     <label for="productCount">* Минимальное количество заказа {{product.count}}{{product.dimension}}.</label>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-md-center justify-content-between flex-sm-row flex-column align-items-center">
                     <input class="product-buy-name" type="hidden" value="{{product.name}}">
                     <input class="product-buy-image" type="hidden" value="/{{product.Images.[0].srcImage}}">
                     <input class="product-buy-min-count" type="hidden" value="{{product.count}}">
@@ -225,7 +225,7 @@
     <h2 class="f-36 text-center">Похожие товары</h2>
     <div class="row">
         {{#each thisDivide.arrayProducts}}
-        <div class="col-md-3 mt-4 col-sm-6">
+        <div class="col-lg-3 col-sm-4 mt-4 col-12 mb-3 d-flex justify-content-center">
             <a href="/kategorii/{{../thisDivide.id}}/tovary/{{id}}" class="a-hover">
                 <div class="card d-flex align-items-center">
                     <div class="card-box-img">

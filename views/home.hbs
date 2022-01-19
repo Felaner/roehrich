@@ -48,29 +48,29 @@
         <div class="col-12">
             <h2 class="f-36 text-center">Выгодные предложения</h2>
             <div class="row mt-4">
-                <div class="col-md-4 mb-3 mb-md-0 col-sm-6">
+                <div class="col-md-4 mb-3 mb-md-0 col-sm-4">
                     <div class="card-border mx-auto">
                         <div class="card d-flex align-items-center ">
                             <img src="/images/card-img.png" alt="card-img">
-                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <div class="sale f-24 d-flex justify-content-center align-items-center font-weight-bold">-30% объекты</div>
                             <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3 mb-md-0 col-sm-6">
+                <div class="col-md-4 mb-3 mb-md-0 col-sm-4">
                     <div class="card-border mx-auto">
                         <div class="card d-flex align-items-center">
                             <img src="/images/card-img.png" alt="card-img">
-                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <div class="sale f-24 d-flex justify-content-center align-items-center font-weight-bold">-30% объекты</div>
                             <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-4">
                     <div class="card-border mx-auto">
                         <div class="card d-flex align-items-center">
                             <img src="/images/card-img.png" alt="card-img">
-                            <div class="sale f-24 d-flex justify-content-center align-items-center">-30% объекты</div>
+                            <div class="sale f-24 d-flex justify-content-center align-items-center font-weight-bold">-30% объекты</div>
                             <a href="#" class="card-button text-center"><span>Купить сейчас</span></a>
                         </div>
                     </div>
@@ -88,14 +88,14 @@
             <div class="row mt-4">
                 {{#if products}}
                     {{#each products}}
-                        <div class="col-md-3 mt-4 col-sm-6">
+                        <div class="col-lg-3 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center">
                             <a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="a-hover">
                                 <div class="card d-flex align-items-center">
                                     <div class="card-box-img">
                                         <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
                                     </div>
                                     <div class="gold-border">
-                                        <div class="f-24 text-center pt-3">{{Products.[0].name}}</div>
+                                        <div class="f-24 text-center pt-3 font-weight-bold">{{Products.[0].name}}</div>
                                     </div>
                                 </div>
                             </a>
@@ -119,16 +119,18 @@
         <div class="col-12">
             <h2 class="f-36 text-center">Наши услуги</h2>
             <div class="row mt-4">
-                    {{#each homeServices}}
-                        <div class="col-md-4 mb-4 col-sm-6">
-                            <div class="card d-flex align-items-center mx-auto">
-                                <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
-                                <div class="service f-24 text-center">{{name}}
-                                    <a href="/uslugi/{{id}}" class="service-button text-center">Подробнее</a>
-                                </div>
+                {{#each homeServices}}
+                    <div class="col-lg-3 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center">
+                        <div class="card-services d-flex flex-column align-items-center justify-content-around mx-auto">
+                            <h2 class="card-services-title f-22 text-center font-weight-bold gold-text">{{name}}</h2>
+                            <div class="service-divider"></div>
+                            <div class="card-services-description f-18 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             </div>
+                            <a href="/uslugi/{{id}}" class="service-button text-center">Подробнее</a>
                         </div>
-                    {{/each}}
+                    </div>
+                {{/each}}
             </div>
         </div>
     </div>
@@ -198,7 +200,7 @@
                         <input name="contactDate" type="text" id="contactDate" class="form-control required" placeholder="Введите дату доставки">
                     </div>
                 </div>
-                <div class="col-lg-8 mx-auto">
+                <div class="col-lg-8 p-0 mx-auto">
                     <label for="contactAddress">Адрес *</label>
                     <input name="contactAddress" type="text" id="contactAddress" class="form-control required" placeholder="Введите адрес доставки">
                 </div>

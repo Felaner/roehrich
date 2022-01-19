@@ -16,7 +16,7 @@
     {{/if}}
     {{#if divides}}
         <div class="row mt-4">
-            <div class="col-3">
+            <div class="col-sm-3 col-12">
                 <ul class="nav nav-pills d-flex flex-column" id="productsTabs" role="tablist">
                     {{#each divides}}
                         <li class="nav-item">
@@ -25,7 +25,7 @@
                     {{/each}}
                 </ul>
             </div>
-            <div class="col-9">
+            <div class="col-sm-9 col-12">
                 <div class="tab-content" id="myTabContent">
                     {{#each divides}}
                         <div class="tab-pane fade {{#ifeq @index "0"}}show active{{else}}{{/ifeq}} row" id="divide{{id}}" role="tabpanel" aria-labelledby="divide{{id}}-tab">

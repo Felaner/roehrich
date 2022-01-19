@@ -8,7 +8,7 @@
                 <div class="alert alert-success text-center">{{addSuccess}}</div>
             </div>
         {{/if}}
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <form action="/control/add-video" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="videoUrl">Ссылка на видео из YouTube</label>
@@ -42,7 +42,7 @@
                         {{/if}}
                     </select>
                 </div>
-                <div class="form-group mt-3">
+                <div class="form-group mt-3 d-sm-block d-flex justify-content-center">
                     <button type="submit" class="divide-button">Добавить</button>
                 </div>
             </form>
