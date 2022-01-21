@@ -52,3 +52,10 @@
 .reason-image img {
     height: 120px;
 }
+
+.carousel-control-next {
+    right: -10%;
+}
+.carousel-control-prev {
+    left: -10%;
+}

@@ -19,6 +19,12 @@
     line-height: 40px;
     transition: 0.3s all;
 }
+.productions-button:hover{
+    text-decoration: none;
+    color: #FFFFFF;
+    background: #000000;
+    border: 1px solid #FFFFFF;
+}
 
 .productions-title {
     color: #FFFFFF;

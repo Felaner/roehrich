@@ -10,11 +10,11 @@
     {{#if divides}}
         <div class="row">
             {{#each divides}}
-                <div class="col-md-4 mt-4">
-                    <div class="product-card row flex-column align-items-center justify-content-around mx-auto">
+                <div class="col-md-4 col-12 mt-4">
+                    <div class="product-card d-flex flex-column align-items-center justify-content-around mx-auto">
                         <div class="productions-title f-36 text-center">{{name}}</div>
-                        <div class="product-img"><img class="img-fluid" src="../{{srcImage}}" alt="product-img"></div>
-                        <a href="/control/edit-divide/{{id}}" class="productions-button text-center">Редактировать</a>
+                        <div class="product-img mb-3"><img class="" src="../{{srcImage}}" alt="product-img"></div>
+                        <a href="/control/edit-divide/{{id}}" class="productions-button text-center mb-2">Редактировать</a>
                     </div>
                 </div>
             {{/each}}

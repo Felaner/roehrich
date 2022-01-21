@@ -41,11 +41,12 @@ document.getElementById("search").addEventListener('keyup', search);
     let scene;
     let reasons = document.querySelectorAll('.scale')
     reasons.forEach(function (el, i) {
-        let height = el.clientHeight + 62;
+        let height = el.clientHeight + 70;
         let rb = el.querySelector('.reason-block')
         scene = new ScrollMagic.Scene({
             triggerElement: el,
             duration: height,
+            offset: -50,
             reverse: true
         })
             .setClassToggle(rb, "reason-big")

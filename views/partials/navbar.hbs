@@ -1,10 +1,14 @@
 
 <nav class="navbar navbar-expand-lg py-3 shadow-sm main-navbar">
     <div class="container">
-        <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none company-name"><img src="/images/logo/Logo.svg" alt=""></a>
-        <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button>
+        <a href="/" class="navbar-brand font-weight-bold d-block d-lg-none company-name"><img src="/images/logo/Logo.svg" alt=""></a>
+        <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler p-0 pt-1 pb-1">
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div id="navbarContent" class="collapse navbar-collapse justify-content-between">
-            <a href="#" class="navbar-brand font-weight-bold company-name"><img src="/images/logo/Logo.svg" alt=""></a>
+            <a href="/" class="navbar-brand font-weight-bold company-name d-lg-block d-none"><img src="/images/logo/Logo.svg" alt=""></a>
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="/" class="nav-link font-weight-bold text-uppercase">Главная</a></li>
                 <li class="nav-item dropdown megamenu"><a id="megamenu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">Товары</a>
@@ -49,7 +53,7 @@
                 <li class="nav-item"><a href="/o-nas" class="nav-link font-weight-bold text-uppercase">О нас</a></li>
                 <li class="nav-item"><a href="/kontakty" class="nav-link font-weight-bold text-uppercase">Контакы</a></li>
             </ul>
-            <div class="row m-0 ml-3 position-relative">
+            <div class="row m-0 ml-3 mt-lg-0 mt-3 position-relative d-flex flex-xl-row flex-column">
                 <a class="mr-2" id="open-cart" href="/korzina">
                     <svg width="35" height="35" viewBox="0 0 30 27" fill="white" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_17_48)">
@@ -66,7 +70,7 @@
                         <p class="cart-count text-center"></p>
                     </div>
                 </a>
-                <div class="search-wrap">
+                <div class="search-wrap mt-sm-0 mt-3">
                     <section class="position-relative">
                         <input name="search" class="form-control" id="search" placeholder="Поиск..." type="text">
                         <div class="result-block position-absolute">
@@ -88,7 +92,7 @@
                 </div>
 
                 {{#if isAuth}}
-                    <div class="dropdown position-absolute float-right admin-dropdown">
+                    <div class="dropdown position-absolute float-md-right float-none admin-dropdown">
                         <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="/images/icons/admin.svg" alt="admin">
                         </button>
