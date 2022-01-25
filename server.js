@@ -30,6 +30,7 @@ const contactsRoute = require('./routes/contacts');
 const cartRoute = require('./routes/cart');
 const adminRoute = require('./routes/admin');
 const controlRoute = require('./routes/control');
+const policyRoute = require('./routes/policy');
 
 const keys = require('./keys');
 
@@ -101,6 +102,7 @@ app.use('/kontakty', contactsRoute);
 app.use('/korzina', cartRoute);
 app.use('/admin', adminRoute);
 app.use('/control', controlRoute);
+app.use('/policy', policyRoute);
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", req.headers.origin);
