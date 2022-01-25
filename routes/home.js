@@ -46,17 +46,17 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-    try {
-        if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-            return res.json({"responseError" : "captcha error"});
+    if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+        return res.sendStatus(501);
+    }
+    const secretKey = "6Le1XSkeAAAAAGO5lUqZfNTkBwqmoVsyOwuS7nOK";
+    const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    request(verificationURL, function (error, response, body) {
+        body = JSON.parse(body);
+        if (body.success !== undefined && !body.success) {
+            return res.sendStatus(501);
         }
-        const secretKey = "6LcDmBQeAAAAAGk6QMlOIktEREu8S97YRBcSvZ-a";
-        const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
-        request(verificationURL,function(error,response,body) {
-            body = JSON.parse(body);
-            if(body.success !== undefined && !body.success) {
-                return res.json({"responseError" : "Failed captcha verification"});
-            }
+        try {
             if (!req.body) return res.sendStatus(400);
             const {contactName, contactOrganization, contactContact, contactProduct, contactCount, contactDate, contactAddress} = req.body;
             const message = {
@@ -74,10 +74,10 @@ router.post('/', async (req, res) => {
             };
             mailer(message)
             return res.sendStatus(200);
-        });
-    } catch(e) {
-        console.log(e);
-    }
+        } catch(e) {
+            console.log(e);
+        }
+    })
 })
 
 module.exports = router;

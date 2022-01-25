@@ -24,11 +24,13 @@ function addToCart(el){
         itemTitle = parentBox.querySelector('.product-buy-name').value, // название товара
         productCount = parseInt(parentBox.parentNode.querySelector('#productCount').value),
         minCount = parseInt(parentBox.parentNode.querySelector('#productCount').value),
-        itemPrice = parentBox.querySelector('.product-buy-price').value; // стоимость товара
+        itemPrice = parentBox.querySelector('.product-buy-price').value, // стоимость товара
+        productWeight = parentBox.parentNode.parentNode.parentNode.querySelector('.product-weight').innerText,
+        productVolume = parentBox.parentNode.parentNode.parentNode.querySelector('.product-volume').innerText;
     if(cartData.hasOwnProperty(itemId)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
         cartData[itemId][2] += productCount;
     } else { // если товара в корзине еще нет, то добавляем в объект
-        cartData[itemId] = [itemImage, itemTitle, productCount, itemPrice, minCount];
+        cartData[itemId] = [itemImage, itemTitle, productCount, itemPrice, minCount, productWeight, productVolume];
     }
     if(!setCartData(cartData)){ // Обновляем данные в LocalStorage
         el.disabled = false; // разблокируем кнопку после обновления LS
@@ -71,6 +73,8 @@ function openCart() {
                         '</div>' +
                         '<div class="col-md-7 text-left mt-sm-2">' +
                                 `<h4>${cartData[items][1]}</h4>` +
+                                `<p class="cart-weight">Вес: ${cartData[items][5]}</p>` +
+                                `<p class="cart-volume">Объем: ${cartData[items][6]}</p>` +
                         '</div>' +
                     '</div>' +
                 '</td>' +
@@ -166,6 +170,17 @@ function fadeAddSuccess() {
     }, 5000)
 }
 
+function fadeAddFailed() {
+    const box = $('.add-failed');
+    box.removeClass('animate__slideOutUp').css('display', 'block').addClass('animate__slideInDown');
+    setTimeout(function () {
+        box.removeClass('animate__slideInDown').addClass('animate__slideOutUp')
+        setTimeout(function () {
+            box.css('display', 'none')
+        }, 1200)
+    }, 5000)
+}
+
 $(function () {
     if(web_storage()){
         countCart()
@@ -197,6 +212,6 @@ $(function () {
             })
         }
     } else{
-        // нет поддержки localStorage
+        alert('В вашем браузере нет поддержки localstorage')
     }
 })

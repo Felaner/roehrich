@@ -8,12 +8,15 @@
         height: 292px;
     }
     .home-form{
-        background: none;
+        background: url("/images/form-bg-lg.svg") 100% 100% no-repeat;
     }
 
 }
 
 @media (max-width: 991px) {
+    .home-form{
+        background: url("/images/form-bg-md.svg") 100% 100% no-repeat;
+    }
     .card{
         width: 210px;
         height: 300px;
@@ -69,11 +72,12 @@
     .admin-dropdown{
         right: 0;
     }
-
-
 }
 
 @media (max-width: 767px) {
+    .home-form{
+        background: none;
+    }
     .f-26 {
         font-size: 20px;
     }

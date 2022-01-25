@@ -1,45 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 p-0">
-            <div id="carouselExampleCaptions" class="home-carousel carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/images/slider/slide-2.jpg" class="d-block w-100" alt="example">
-                        <div class="carousel-caption">
-                            <h5>Метка первого слайда</h5>
-                            <p>Некоторый репрезентативный заполнитель для первого слайда.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/slider/slide-1.jpg" class="d-block w-100" alt="example">
-                        <div class="carousel-caption">
-                            <h5>Метка второго слайда</h5>
-                            <p>Некоторый репрезентативный заполнитель для второго слайда.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/slider/slide-3.jpg" class="d-block w-100" alt="example">
-                        <div class="carousel-caption">
-                            <h5>Метка третьего слайда</h5>
-                            <p>Некоторый репрезентативный заполнитель для третьего слайда.</p>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Предыдущий</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Следующий</span>
-                </a>
-            </div>
-        </div>
+        <img src="/images/GIFMode.gif" alt="gif">
     </div>
 </div>
 
@@ -168,6 +129,9 @@
             <div class="add-success position-fixed gold-border animate__animated">
                 <p>Успешно отправлено<br>В ближайшее время с вами свяжется наш сотрудник</p>
             </div>
+            <div class="add-failed position-fixed gold-border animate__animated">
+                <p>Письмо не отправлено<br>Введите капчу</p>
+            </div>
             <form class="home-form" method="POST" action="/">
                 <h2 class="text-center f-36 gold-text">Свяжитесь с нами</h2>
                 <div class="row">
@@ -200,11 +164,13 @@
                         <input name="contactDate" type="text" id="contactDate" class="form-control required" placeholder="Введите дату доставки">
                     </div>
                 </div>
-                <div class="col-lg-8 p-0 mx-auto">
+                <div class="col-lg-8 p-0 mx-auto mb-3">
                     <label for="contactAddress">Адрес *</label>
                     <input name="contactAddress" type="text" id="contactAddress" class="form-control required" placeholder="Введите адрес доставки">
                 </div>
-                <div id="recaptcha" class="g-recaptcha" data-sitekey="6LcDmBQeAAAAADOEL0zfoXRA_5VKwnv0KQ96DKNt" data-callback="onSubmitReCaptcha" data-size="invisible"></div>
+                <div class="col-12">
+                    <div id="grecaptcha1" class="d-flex justify-content-center g-recaptcha" data-widget-id="1"></div>
+                </div>
                 <div class="col-12 d-flex justify-content-center mt-3">
                     <button class="form-button">Отправить</button>
                 </div>

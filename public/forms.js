@@ -1,3 +1,21 @@
+let checkCaptch = false
+
+function onloadCallback() {
+    $('.g-recaptcha').each(function(index, el) {
+        const widgetId = grecaptcha.render(el, {'sitekey' : '6Le1XSkeAAAAALSe-93I7BO9V35wtopU_a5cWuad', 'callback': verifyCallback});
+        $(this).attr('data-widget-id', widgetId);
+    });
+};
+
+function verifyCallback(response) {
+    if (response === "") {
+        checkCaptch = false;
+    }
+    else {
+        checkCaptch = true;
+    }
+}
+
 $(function() {
     $('input.required').on('input focus blur', function () {
         validateInputs($(this))
@@ -17,28 +35,35 @@ $(function() {
         if (result === false) {
             return false
         } else {
-            grecaptcha.execute();
-            let $form = $(this)
-            $.ajax({
-                type: $form.attr('method'),
-                url: $form.attr('action'),
-                data: $form.serialize(),
-                error: function (jqXHR, textStatus, err) {
-                    console.log('error: ' + err)
-                },
-                beforeSend: function () {
-                    console.log('loading')
-                },
-                success: function (result) {
-                    $('.home-form')[0].reset();
-                    fadeAddSuccess()
-                }
-            })
-            e.preventDefault();
-            return false;
+            if (checkCaptch && grecaptcha.getResponse(0) !== "") {
+                checkCaptch = false;
+                let $form = $(this)
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    error: function (jqXHR, textStatus, err) {
+                        grecaptcha.reset(0);
+                        console.log('error: ' + err)
+                    },
+                    beforeSend: function () {
+                        console.log('loading')
+                    },
+                    success: function (result) {
+                        grecaptcha.reset(0);
+                        $('.home-form')[0].reset();
+                        fadeAddSuccess()
+                    }
+                })
+                e.preventDefault();
+                return false;
+            } else {
+                fadeAddFailed()
+            }
         }
     })
-    $("#cartBuy")[0].addEventListener('click', function (e) {
+    $(".cart-form").submit(function (e) {
+        event.preventDefault();
         let result = true
         $("input.required").each(function (){
             if ($(this).attr('type') === 'email') {
@@ -70,39 +95,50 @@ $(function() {
         if (result === false) {
             return false
         } else {
-            grecaptcha.execute();
-            let contacts = {
-                name: document.querySelector('#cartInputName').value,
-                phone: document.querySelector('#cartInputPhone').value,
-                email: document.querySelector('#cartInputEmail').value
-            }
-            let products = {}
-            products['customer'] = contacts
-            document.querySelectorAll('tbody tr').forEach((el, i) => {
-                let name = el.querySelector('h4').innerText
-                let count = el.querySelector('input').value
-                let price = el.querySelector('span[data-th="Price"]').innerText
-                products[i] = [name, count, price]
-            })
-            $.ajax({
-                type: 'POST',
-                url: '/korzina',
-                data: products,
-                error: function(jqXHR, textStatus, err) {
-                    console.log('error: ' + err)
-                },
-                beforeSend: function() {
-                    console.log('loading')
-                },
-                success: function(data) {
-                    clearForm()
-                    deleteCartItems()
-                    countCart()
-                    fadeAddSuccess()
+            if (checkCaptch && grecaptcha.getResponse(0) !== "") {
+                let $form = $(this)
+                checkCaptch = false;
+                let contacts = {
+                    name: document.querySelector('#cartInputName').value,
+                    phone: document.querySelector('#cartInputPhone').value,
+                    email: document.querySelector('#cartInputEmail').value
                 }
-            })
-            e.preventDefault();
-            return false;
+                let products = {}
+                products['customer'] = contacts
+                products['g-recaptcha-response'] = grecaptcha.getResponse(0)
+                document.querySelectorAll('tbody tr').forEach((el, i) => {
+                    let name = el.querySelector('h4').innerText
+                    let count = el.querySelector('input').value
+                    let price = el.querySelector('span[data-th="Price"]').innerText
+                    let weight = el.querySelector('.cart-weight').innerText
+                    let volume = el.querySelector('.cart-volume').innerText
+                    products[i] = [name, count, price, weight, volume]
+                })
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: products,
+                    error: function(jqXHR, textStatus, err) {
+                        grecaptcha.reset(0);
+                        console.log('error: ' + err)
+                    },
+                    beforeSend: function() {
+                        console.log('loading')
+                    },
+                    success: function(data) {
+                        grecaptcha.reset(0);
+                        clearForm()
+                        deleteCartItems()
+                        cartTotalPrice()
+                        countCart()
+                        fadeAddSuccess()
+                    }
+                })
+                e.preventDefault();
+                return false;
+            } else {
+                fadeAddFailed()
+            }
         }
     })
 });

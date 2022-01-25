@@ -767,7 +767,7 @@ router.get('/add-video', auth, async (req, res) => {
 router.post('/add-video', auth, async (req, res) => {
     const {videoUrl, videoSelect, videoServiceSelect} = req.body
     let productId = null, serviceId = null
-    if (videoSelect !== '') {
+    if (videoSelect !== '' && videoSelect !== undefined) {
         const product = await Product.findOne({
             attributes: ['id'],
             where: {
@@ -778,7 +778,7 @@ router.post('/add-video', auth, async (req, res) => {
         })
         productId = product.id
     }
-    if (videoServiceSelect !== '') {
+    if (videoServiceSelect !== '' && videoServiceSelect !== undefined) {
         const service = await Service.findOne({
             attributes: ['id'],
             where: {
