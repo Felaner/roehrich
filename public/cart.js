@@ -15,6 +15,10 @@ function setCartData(el){
     return false;
 }
 
+function getRandomInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function addToCart(el){
     el.disabled = true; // блокируем кнопку на время операции с корзиной
     const cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
@@ -23,14 +27,24 @@ function addToCart(el){
         itemImage = parentBox.querySelector('.product-buy-image').value,
         itemTitle = parentBox.querySelector('.product-buy-name').value, // название товара
         productCount = parseInt(parentBox.parentNode.querySelector('#productCount').value),
-        minCount = parseInt(parentBox.parentNode.querySelector('#productCount').value),
-        itemPrice = parentBox.querySelector('.product-buy-price').value, // стоимость товара
-        productWeight = parentBox.parentNode.parentNode.parentNode.querySelector('.product-weight').innerText,
-        productVolume = parentBox.parentNode.parentNode.parentNode.querySelector('.product-volume').innerText;
+        minCount = parseInt(parentBox.parentNode.querySelector('.min-count').innerHTML),
+        itemPrice = parentBox.parentNode.querySelector('.size-price').value, // стоимость товара
+        sizeSelect = parentBox.parentNode.parentNode.parentNode.querySelector('#productSizes'),
+        productSize = sizeSelect.options[sizeSelect.selectedIndex].text
     if(cartData.hasOwnProperty(itemId)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
-        cartData[itemId][2] += productCount;
+        let exits = false
+        for (let items in cartData) {
+            if (cartData[items][1] === itemTitle && cartData[items][5] === productSize) {
+                cartData[items][2] += productCount;
+                exits = true
+            }
+        }
+        if (exits !== true) {
+            let difSizes = getRandomInRange(0, 5000) + itemId
+            cartData[difSizes] = [itemImage, itemTitle, productCount, itemPrice, minCount, productSize];
+        }
     } else { // если товара в корзине еще нет, то добавляем в объект
-        cartData[itemId] = [itemImage, itemTitle, productCount, itemPrice, minCount, productWeight, productVolume];
+        cartData[itemId] = [itemImage, itemTitle, productCount, itemPrice, minCount, productSize];
     }
     if(!setCartData(cartData)){ // Обновляем данные в LocalStorage
         el.disabled = false; // разблокируем кнопку после обновления LS
@@ -46,7 +60,7 @@ function addToCartService(el){
         itemImage = parentBox.querySelector('.service-buy-image').value,
         itemTitle = parentBox.querySelector('.service-buy-name').value, // название товара
         itemCount = 1,
-        itemPrice = parseInt(parentBox.querySelector('.productPrice').innerHTML); // стоимость товара
+        itemPrice = parseFloat(parentBox.querySelector('.productPrice').innerHTML); // стоимость товара
     if(cartData.hasOwnProperty(itemId)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
         cartData[itemId][2] += itemCount;
     } else { // если товара в корзине еще нет, то добавляем в объект
@@ -64,7 +78,7 @@ function openCart() {
         totalItems = '';
     if (cartData !== null) {
         for(let items in cartData){
-            const price = parseInt(cartData[items][3]) * parseInt(cartData[items][2])
+            const price = (parseFloat(cartData[items][3]) * parseInt(cartData[items][2])).toFixed(2)
             totalItems += `<tr data-id="${items}">` +
                 '<td data-th="Product">' +
                     '<div class="row">' +
@@ -73,15 +87,14 @@ function openCart() {
                         '</div>' +
                         '<div class="col-md-7 text-left mt-sm-2">' +
                                 `<h4>${cartData[items][1]}</h4>` +
-                                `<p class="cart-weight">Вес: ${cartData[items][5]}</p>` +
-                                `<p class="cart-volume">Объем: ${cartData[items][6]}</p>` +
+                                `<p class="cart-diameter">Размер: ${cartData[items][5]}</p>` +
                         '</div>' +
                     '</div>' +
                 '</td>' +
                 '<td data-th="Quantity">' +
                     `<input type="number" class="form-control" min="${cartData[items][4]}" value="${cartData[items][2]}" onkeyup="itemCartPrice(this)">` +
                 '</td>' +
-                `<input type="hidden" value="${parseInt(cartData[items][3])}">` +
+                `<input type="hidden" value="${parseFloat(cartData[items][3])}">` +
                 `<td class="f-24" style="padding-top: 16px;"><span data-th="Price">${price}</span> руб.</td>` +
                 '<td class="actions" data-th="">' +
                     '<div class="text-right">' +
@@ -94,7 +107,7 @@ function openCart() {
         }
         cartCont.innerHTML = totalItems;
     } else {
-        cartCont.innerHTML = '<h3 class="f-24 m-3" style="color: #FFFFFF">В корзине пусто!<h3>';
+        cartCont.innerHTML = '<h3 class="f-20 m-3" style="color: #FFFFFF">В корзине пусто!<h3>';
     }
     return false;
 }
@@ -113,7 +126,7 @@ function itemCartPrice(el) {
         price = parentBox.querySelector('span[data-th="Price"]'),
         priceOne = parentBox.querySelector('input[type="hidden"]').value
     if (el.value !== '') {
-        price.innerHTML = parseInt(priceOne) * parseInt(el.value)
+        price.innerHTML = (parseFloat(priceOne) * parseFloat(el.value)).toFixed(2)
     } else {
         price.innerHTML = '0'
     }
@@ -124,7 +137,7 @@ function cartTotalPrice() {
     const price = $('[data-th="Price"]')
     let totalPrice = 0;
     for(let el of price) {
-        totalPrice += parseInt(el.innerHTML)
+        totalPrice += parseFloat(el.innerHTML)
     }
     $('.totalPrice')[0].innerText = totalPrice
 }

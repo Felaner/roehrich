@@ -67,19 +67,33 @@ function selectedImg(el, index) {
         .find('#product' + index)[0].src = img.attr('src')
 }
 
-function totalPrice(total, el, price) {
-    if (!el.value) {
-        total.innerText = 0
+function totalPrice() {
+    const count = document.querySelector('#productCount'),
+        price = document.querySelector('.size-price'),
+        totalPrice = document.querySelector('.productPrice');
+    if (count.value === '') {
+        totalPrice.innerText = 0
     } else {
-        total.innerText = parseInt(el.value) * parseInt(price)
+        totalPrice.innerText = (parseInt(count.value) * parseFloat(price.value)).toFixed(2)
     }
 }
 
 $(function () {
-    const price = $('.productPrice')
-    const input1 = parseInt(price.parent().parent().find('input')[2].value)
-    const input2 = parseInt(price.parent().parent().find('input')[3].value)
-    price[0].innerText = input1 * input2
+    if (document.location.pathname === '/korzina') {
+        const price = $('.productPrice')
+        const input1 = parseInt(price.parent().parent().find('input')[2].value)
+        const input2 = parseFloat(price.parent().parent().find('input')[3].value)
+        price[0].innerText = (input1 * input2).toFixed(2)
+    }
+})
+
+$(function () {
+    if (document.location.pathname.indexOf('tovary') > -1) {
+        document.querySelector('#productSizes').addEventListener('change', el => {
+            setTimeout(totalPrice, 200)
+        })
+        setTimeout(totalPrice, 200)
+    }
 })
 
 $(function () {
@@ -151,22 +165,64 @@ $(document).ready( function() {
             let size = '<div class="form-group add-sizes position-relative">' +
                 '<div class="divider"></div>' +
                 '<div class="row mb-5">' +
-                    '<div class="col-4">' +
+                    '<div class="col-lg-4 col-12">' +
                         '<div class="form-group f-18">' +
-                        '<label for="productWeight">Вес</label>' +
-                        '<input name="productWeight" type="number" step="0.01" id="productWeight" class="form-control">' +
+                            '<label for="productLength">Длина L, мм</label>' +
+                            '<input name="productLength" type="number" step="0.01" id="productLength"' +
+                                   ' class="form-control">' +
                         '</div>' +
                     '</div>' +
-                    '<div class="col-4">' +
+                    '<div class="col-lg-4 col-12">' +
                         '<div class="form-group f-18">' +
-                        '<label for="productVolume">Объем</label>' +
-                        '<input name="productVolume" type="number" step="0.00001" id="productVolume" class="form-control">' +
+                            '<label for="productExternalDiameter">Внешний диаметр D, мм</label>' +
+                            '<input name="productExternalDiameter" type="number" step="0.01" id="productExternalDiameter"' +
+                                   ' class="form-control">' +
                         '</div>' +
                     '</div>' +
-                    '<div class="col-4">' +
+                    '<div class="col-lg-4 col-12">' +
                         '<div class="form-group f-18">' +
-                        '<label for="productGost">Соответствие ГОСТ</label>' +
-                        '<input name="productGost" type="text" id="productGost" class="form-control">' +
+                            '<label for="productDiameter">Диаметр Dy, мм</label>' +
+                            '<input name="productDiameter" type="number" step="0.01" id="productDiameter"' +
+                                   ' class="form-control">' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-12">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productDiameter1">Диаметр Dy1, мм</label>' +
+                            '<input name="productDiameter1" type="number" step="0.01" id="productDiameter1"' +
+                                   ' class="form-control">' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-12">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productDiameter2">Диаметр Dy2, мм</label>' +
+                            '<input name="productDiameter2" type="number" step="0.01" id="productDiameter2"' +
+                                   ' class="form-control">' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-12">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productDepth">Толщина стенки, мм</label>' +
+                            '<input name="productDepth" type="number" step="0.01" id="productDepth" class="form-control">' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-6">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productWeight">Вес</label>' +
+                            '<input name="productWeight" type="number" step="0.01" id="productWeight" class="form-control">' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-12">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productCount">Мин. кол-во заказа *</label>' +
+                            '<input name="productCount" type="number" id="productCount" class="form-control" required>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="col-lg-4 col-12">' +
+                        '<div class="form-group f-18">' +
+                            '<label for="productPrice">Стоимость (за единицу) *</label>' +
+                            '<input name="productPrice" type="number" step="0.01" id="productPrice" class="form-control"' +
+                                   ' required>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -184,7 +240,33 @@ $(document).ready( function() {
 function selectedSize() {
     const select = document.querySelector('#productSizes');
     const option = '.' + select.value + ' input'
-    document.querySelector('.product-weight').innerHTML = document.querySelectorAll(option)[0].value
-    document.querySelector('.product-volume').innerHTML = document.querySelectorAll(option)[1].value
-    document.querySelector('.product-gost').innerHTML = document.querySelectorAll(option)[2].value
+    if (document.querySelector('.product-length')) {
+        document.querySelector('.product-length').innerHTML = document.querySelectorAll(option)[0].value
+    }
+    if (document.querySelector('.product-externalDiameter')) {
+        document.querySelector('.product-externalDiameter').innerHTML = document.querySelectorAll(option)[1].value
+    }
+    if (document.querySelector('.product-diameter')) {
+        document.querySelector('.product-diameter').innerHTML = document.querySelectorAll(option)[2].value
+    }
+    if (document.querySelector('.product-diameter1')) {
+        document.querySelector('.product-diameter1').innerHTML = document.querySelectorAll(option)[3].value
+    }
+    if (document.querySelector('.product-diameter2')) {
+        document.querySelector('.product-diameter2').innerHTML = document.querySelectorAll(option)[4].value
+    }
+    if (document.querySelector('.product-depth')) {
+        document.querySelector('.product-depth').innerHTML = document.querySelectorAll(option)[5].value
+    }
+    if (document.querySelector('.product-weight')) {
+        document.querySelector('.product-weight').innerHTML = document.querySelectorAll(option)[6].value
+    }
+    if (document.querySelector('#productCount')) {
+        document.querySelector('#productCount').value = document.querySelectorAll(option)[7].value
+        document.querySelector('#productCount').setAttribute('min', document.querySelectorAll(option)[7].value)
+        document.querySelector('.min-count').innerHTML = document.querySelectorAll(option)[7].value
+    }
+    if (document.querySelector('.size-price')) {
+        document.querySelector('.size-price').value = document.querySelectorAll(option)[8].value
+    }
 }

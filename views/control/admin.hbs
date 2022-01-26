@@ -1,11 +1,11 @@
 <div class="container">
     <div class="col-12 mt-5">
         <div class="row justify-content-center">
-            <div class="login-form col-6">
+            <div class="login-form col-lg-6 col-sm-8 col-10">
                 {{#if loginError}}
                     <div class="alert alert-danger">{{loginError}}</div>
                 {{/if}}
-                <h3 class="text-center">Вход в административную панель</h3>
+                <h3 class="text-center f-24">Вход в административную панель</h3>
                 <form class="d-flex flex-column align-items-center mt-3" action="/admin" method="POST">
                     <div class="form-group">
                         <label for="email">Email *</label>
@@ -22,22 +22,22 @@
                         <input type="submit" class="btnSubmit" value="Войти" />
                     </div>
                 </form>
-<!--                <form action="/admin/register" method="POST">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="email">Email *</label>-->
-<!--                        <input id="remail" name="email" type="email" class="form-control" placeholder="Email" value="" required/>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="rpassword">Пароль *</label>-->
-<!--                        <input id="rpassword" name="password" type="password" class="form-control" placeholder="Пароль" value="" required/>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="hidden" name="_csrf" value="{{csrf}}">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="submit" class="btnSubmit" value="Зарегистрироваться" />-->
-<!--                    </div>-->
-<!--                </form>-->
+                <form action="/admin/register" method="POST">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input id="remail" name="email" type="email" class="form-control" placeholder="Email" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="rpassword">Пароль *</label>
+                        <input id="rpassword" name="password" type="password" class="form-control" placeholder="Пароль" value="" required/>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="_csrf" value="{{csrf}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Зарегистрироваться" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>

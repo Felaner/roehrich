@@ -11,6 +11,23 @@
         background: url("/images/form-bg-lg.svg") 100% 100% no-repeat;
     }
 
+    label {
+        font-size: 18px;
+    }
+
+    .card .card-box-img {
+        height: 60%;
+    }
+
+    .card .gold-border {
+        padding-top: 0;
+    }
+
+    .card .gold-border div {
+        font-size: 16px;
+        padding: 10px;
+    }
+
 }
 
 @media (max-width: 991px) {
@@ -85,8 +102,12 @@
         font-size: 22px;
     }
     .card{
-        width: 150px;
-        height: 210px;
+        width: auto;
+        height: auto;
+    }
+    .home-card .card {
+        width: 210px;
+        height: 300px;
     }
     .card-border {
         width: 152px;
@@ -137,5 +158,16 @@
 }
 
 @media (max-width: 380px) {
-
+    label {
+        font-size: 16px;
+    }
+    .f-20 {
+        font-size: 18px;
+    }
+    .f-18 {
+        font-size: 16px;
+    }
+    .divide-button {
+        width: 210px;
+    }
 }

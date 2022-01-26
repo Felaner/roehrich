@@ -154,10 +154,14 @@
     position: absolute;
     bottom: 0;
     background: #333333;
-    height: 50px;
     width: 100%;
-    transition: 0.3s all;
+    height: 45%;
 }
+.service p{
+    font-size: 19px;
+    margin-top: 15px;
+}
+
 .service .service-button{
     bottom: -115%;
     margin-left: auto;
@@ -165,9 +169,6 @@
     left: 0;
     right: 0;
     margin-bottom: 8px;
-}
-.card:hover .service{
-    height: 100px;
 }
 .card:hover .service .service-button{
     bottom: 3px;

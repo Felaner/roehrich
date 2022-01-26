@@ -49,18 +49,20 @@
             <div class="row mt-4">
                 {{#if products}}
                     {{#each products}}
-                        <div class="col-lg-3 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center">
-                            <a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="a-hover">
-                                <div class="card d-flex align-items-center">
-                                    <div class="card-box-img">
-                                        <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
+                        {{#if Products}}
+                            <div class="col-lg-4 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center home-card">
+                                <a href="/kategorii/{{id}}/tovary/{{Products.[0].id}}" class="a-hover">
+                                    <div class="card d-flex align-items-center">
+                                        <div class="card-box-img">
+                                            <img src="/{{Products.[0].Images.[0].srcImage}}" alt="card-img">
+                                        </div>
+                                        <div class="gold-border">
+                                            <div class="text-center pt-xl-3 font-weight-bold">{{Products.[0].name}}</div>
+                                        </div>
                                     </div>
-                                    <div class="gold-border">
-                                        <div class="f-24 text-center pt-3 font-weight-bold">{{Products.[0].name}}</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                                </a>
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
                 <div class="col-12 d-flex justify-content-center">

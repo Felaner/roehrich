@@ -16,7 +16,7 @@ body{
     background: rgba(255, 255, 255, 0.53)
 }
 img{
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .form-control:focus {
@@ -134,7 +134,7 @@ img{
     transition: 0.4s;
 }
 .a-hover:hover img{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .card .gold-border {
@@ -163,4 +163,8 @@ img{
     right: 15px;
     bottom: -30px;
     cursor: pointer;
+}
+
+.logo {
+    width: 151px;
 }

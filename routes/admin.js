@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
         }).then(services => {
             const menuDivides = divides.slice(0, 4)
             res.render('control/admin', {
-                title: 'Главная',
+                title: 'Вход в админку',
                 isAdmin: true,
                 loginError: req.flash('loginError'),
                 services,

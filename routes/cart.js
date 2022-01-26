@@ -61,8 +61,6 @@ router.post('/', async (req, res) => {
                             messageBody += `Стоимость: ${el} руб.<br>`
                         } else if (i === 3) {
                             messageBody += `${el}<br>`
-                        } else if (i === 4) {
-                            messageBody += `${el}<br>`
                         }
                     })
                     messageBody += '</li><br>'

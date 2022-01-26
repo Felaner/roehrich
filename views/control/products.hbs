@@ -31,13 +31,17 @@
                         <div class="tab-pane fade {{#ifeq @index "0"}}show active{{else}}{{/ifeq}} row" id="divide{{id}}" role="tabpanel" aria-labelledby="divide{{id}}-tab">
                             <div class="row">
                                 {{#each Products}}
-                                    <div class="col-lg-4">
-                                        <div class="card d-flex align-items-center mx-auto mb-4">
-                                            <img class="img-fluid h-100" src="/{{Images.[0].srcImage}}" alt="card-img">
-                                            <div class="service f-24 text-center">{{name}}
-                                                <a href="/control/edit-product/{{id}}" class="service-button text-center">Редактировать</a>
+                                    <div class="col-lg-4 col-md-6 mt-4 col-12 mb-3 d-flex justify-content-center">
+                                        <a href="/control/edit-product/{{id}}" class="a-hover">
+                                            <div class="card d-flex align-items-center">
+                                                <div class="card-box-img">
+                                                    <img src="/{{Images.[0].srcImage}}" alt="card-img">
+                                                </div>
+                                                <div class="gold-border">
+                                                    <div class="text-center pt-xl-3 font-weight-bold">{{name}}</div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 {{/each}}
                             </div>

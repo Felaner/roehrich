@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row justify-content-center mb-5 mt-5">
+    <div class="row justify-content-center mb-3 mt-3">
         <div class="col-12">
             <h3 class="text-center mb-3">Добавление товара</h3>
         </div>
@@ -17,11 +17,11 @@
             <form action="/control/add-product" method="post" enctype="multipart/form-data">
                 <div class="form-group f-18">
                     <label for="productName">Название товара *</label>
-                    <input name="productName" type="text" id="productName" class="form-control">
+                    <input name="productName" type="text" id="productName" class="form-control" required>
                 </div>
                 <div class="form-group f-18">
                     <label for="productCategory">Категория товара *</label>
-                    <select name="productCategory" id="productCategory" class="form-control">
+                    <select name="productCategory" id="productCategory" class="form-control" required>
                         {{#if divides}}
                             <option value="" selected disabled>Выберите категорию</option>
                             {{#each divides}}
@@ -34,45 +34,17 @@
                 </div>
                 <div class="form-group f-18">
                     <label for="productDescription">Описание товара *</label>
-                    <textarea name="productDescription" id="productDescription" class="form-control"></textarea>
+                    <textarea name="productDescription" id="productDescription" class="form-control" required rows="7"></textarea>
                 </div>
                 <!--Характеристики-->
                 <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="form-group f-18">
-                            <label for="productDiameter">Диаметр условный DN, мм</label>
-                            <input name="productDiameter" type="number" step="0.01" id="productDiameter" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="form-group f-18">
-                            <label for="productExternalDiameter">Внешний диаметр, мм</label>
-                            <input name="productExternalDiameter" type="number" step="0.01" id="productExternalDiameter" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="form-group f-18">
-                            <label for="productPressure">Номинальное давление PN,МПа</label>
-                            <input name="productPressure" type="number" step="0.01" id="productPressure" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="form-group f-18">
-                            <label for="productDepth">Толщина стенки, мм</label>
-                            <input name="productDepth" type="number" step="0.01" id="productDepth" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-5 col-12">
+                    <div class="col-xl-5 col-lg-4 col-12">
                         <div class="form-group f-18">
                             <label for="productEnviron">Рабочая среда</label>
                             <input name="productEnviron" type="text" id="productEnviron" class="form-control">
                         </div>
                     </div>
-                    <div class="col-xl-7 col-12">
+                    <div class="col-xl-7 col-lg-8 col-12">
                         <div class="form-group f-18">
                             <label for="productTemp">Максимальная температура рабочей среды, C<sup>о</sup></label>
                             <input name="productTemp" type="number" step="0.01" id="productTemp" class="form-control">
@@ -80,36 +52,36 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-12">
+                    <div class="col-xl-5 col-lg-6 col-12">
                         <div class="form-group f-18">
                             <label for="productMaterial">Материал корпуса</label>
                             <input name="productMaterial" type="text" id="productMaterial" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-xl-7 col-lg-6 col-12">
+                        <div class="form-group f-18">
+                            <label for="productPressure">Номинальное давление PN,МПа</label>
+                            <input name="productPressure" type="number" step="0.01" id="productPressure" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-12">
                         <div class="form-group f-18">
                             <label for="productConnect">Тип соединения</label>
                             <input name="productConnect" type="text" id="productConnect" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-4 col-12">
+                    <div class="col-lg-4 col-12">
                         <div class="form-group f-18">
-                            <label for="productDimension">Единица измерения</label>
-                            <input name="productDimension" type="text" id="productDimension" class="form-control">
+                            <label for="productGost">Соответствие ГОСТ *</label>
+                            <input name="productGost" type="text" id="productGost" class="form-control">
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-6 col-12">
+                    <div class="col-lg-4 col-12">
                         <div class="form-group f-18">
-                            <label for="productCount">Минимальное количество для заказа</label>
-                            <input name="productCount" type="number" id="productCount" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-12">
-                        <div class="form-group f-18">
-                            <label for="productPrice">Цена товара (за единицу)</label>
-                            <input name="productPrice" type="number" step="0.01" id="productPrice" class="form-control">
+                            <label for="productDimension">Единица измерения *</label>
+                            <input name="productDimension" type="text" id="productDimension" class="form-control" required>
                         </div>
                     </div>
                 </div>
@@ -118,22 +90,58 @@
                     <div class="form-group add-sizes position-relative">
                         <div class="divider"></div>
                         <div class="row mb-5">
-                            <div class="col-lg-4 col-6">
+                            <div class="col-xl-4 col-lg-3 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productLength">Длина L, мм</label>
+                                    <input name="productLength" type="number" step="0.01" id="productLength" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-5 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productExternalDiameter">Внешний диаметр D, мм</label>
+                                    <input name="productExternalDiameter" type="number" step="0.01" id="productExternalDiameter" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productDiameter">Диаметр Dy, мм</label>
+                                    <input name="productDiameter" type="number" step="0.01" id="productDiameter" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productDiameter1">Диаметр Dy1, мм</label>
+                                    <input name="productDiameter1" type="number" step="0.01" id="productDiameter1" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productDiameter2">Диаметр Dy2, мм</label>
+                                    <input name="productDiameter2" type="number" step="0.01" id="productDiameter2" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productDepth">Толщина стенки, мм</label>
+                                    <input name="productDepth" type="number" step="0.01" id="productDepth" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-12">
                                 <div class="form-group f-18">
                                     <label for="productWeight">Вес</label>
                                     <input name="productWeight" type="number" step="0.01" id="productWeight" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-6">
-                                <div class="form-group f-18">
-                                    <label for="productVolume">Объем</label>
-                                    <input name="productVolume" type="number" step="0.00001" id="productVolume" class="form-control">
-                                </div>
-                            </div>
                             <div class="col-lg-4 col-12">
                                 <div class="form-group f-18">
-                                    <label for="productGost">Соответствие ГОСТ</label>
-                                    <input name="productGost" type="text" id="productGost" class="form-control">
+                                    <label for="productCount">Мин. кол-во заказа *</label>
+                                    <input name="productCount" type="number" id="productCount" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-5 col-12">
+                                <div class="form-group f-18">
+                                    <label for="productPrice">Стоимость (за единицу) *</label>
+                                    <input name="productPrice" type="number" step="0.01" id="productPrice" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +158,7 @@
                                 <span>Выбрать файл</span>
                             </label>
                         </div>
-                        <input type="text" id="filename" class="filename" placeholder="Название изображения" disabled>
+                        <input type="text" id="filename" class="filename" placeholder="image" disabled>
                     </div>
                     <label for="divideImage">* Первое выбранное изображение будет отображаться на превью товара</label>
                 </div>

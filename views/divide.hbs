@@ -5,14 +5,14 @@
             <div class="row">
                 {{#if divide.Products}}
                     {{#each divide.Products}}
-                        <div class="col-lg-3 col-sm-4 mt-4 col-12 mb-3 d-flex justify-content-center">
+                        <div class="col-lg-4 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center">
                             <a href="/kategorii/{{../divide.id}}/tovary/{{id}}" class="a-hover">
                                 <div class="card d-flex align-items-center">
                                     <div class="card-box-img">
                                         <img src="/{{Images.[0].srcImage}}" alt="card-img">
                                     </div>
                                     <div class="gold-border">
-                                        <div class="f-24 text-center pt-3">{{name}}</div>
+                                        <div class="text-center pt-xl-3">{{name}}</div>
                                     </div>
                                 </div>
                             </a>

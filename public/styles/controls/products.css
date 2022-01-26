@@ -1,6 +1,4 @@
-.products .service, .videos .service{
-    height: 100px;
-}
+
 .products .service-button, .videos .service-button{
     bottom: 3px;
 }

@@ -110,9 +110,8 @@ $(function() {
                     let name = el.querySelector('h4').innerText
                     let count = el.querySelector('input').value
                     let price = el.querySelector('span[data-th="Price"]').innerText
-                    let weight = el.querySelector('.cart-weight').innerText
-                    let volume = el.querySelector('.cart-volume').innerText
-                    products[i] = [name, count, price, weight, volume]
+                    let size = el.querySelector('.cart-diameter').innerText
+                    products[i] = [name, count, price, size]
                 })
                 $.ajax({
                     type: $form.attr('method'),

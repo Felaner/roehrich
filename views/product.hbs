@@ -24,9 +24,15 @@
                 <div class="tab-pane fade" id="pills-char" role="tabpanel" aria-labelledby="pills-char-tab">
                     {{#each product.Sizes}}
                         <section class="d-none size-{{id}}">
+                            <input type="hidden" value="{{length}}">
+                            <input type="hidden" value="{{externalDiameter}}">
+                            <input type="hidden" value="{{diameterDy}}">
+                            <input type="hidden" value="{{diameterDy1}}">
+                            <input type="hidden" value="{{diameterDy2}}">
+                            <input type="hidden" value="{{depth}}">
                             <input type="hidden" value="{{weight}}">
-                            <input type="hidden" value="{{volume}}">
-                            <input type="hidden" value="{{gost}}">
+                            <input type="hidden" value="{{count}}">
+                            <input type="hidden" value="{{price}}">
                         </section>
                     {{/each}}
                     {{#if product.Sizes}}
@@ -34,58 +40,35 @@
                         <select name="productSizes" id="productSizes" class="form-control">
                             {{#each product.Sizes}}
                                 <option value="size-{{id}}">
-                                    Вес: {{weight}}   Объем: {{volume}}
+                                    {{#if diameterDy}}
+                                        Ду {{diameterDy}}мм;
+                                    {{/if}}
+                                    {{#if length}}
+                                        L {{length}}мм
+                                    {{/if}}
                                 </option>
                             {{/each}}
                         </select>
                     {{/if}}
                     <div class="row mb-3 mt-3 justify-content-center">
-                        {{#if product.pressure}}
+                        {{#if product.Sizes.depth}}
                             <div class="col-sm-3 col-6 mb-md-0 mb-3">
                                 <div class="character-box text-center pl-2 pr-2">
-                                    <p>{{product.pressure}}</p>
-                                    <p>Номинальное давление PN, МПа</p>
-                                </div>
-                            </div>
-                        {{/if}}
-                        {{#if product.depth}}
-                            <div class="col-sm-3 col-6 mb-md-0 mb-3">
-                                <div class="character-box text-center pl-2 pr-2">
-                                    <p>{{product.depth}}</p>
+                                    <p class="product-depth"></p>
                                     <p>Толщина стенки, мм</p>
                                 </div>
                             </div>
                         {{/if}}
-                        {{#if product.externalDiameter}}
+                        {{#if product.Sizes.externalDiameter}}
                             <div class="col-sm-3 col-6">
                                 <div class="character-box text-center pl-2 pr-2">
-                                    <p>{{product.externalDiameter}}</p>
+                                    <p class="product-externalDiameter">{{product.externalDiameter}}</p>
                                     <p>Внешний диаметр, мм</p>
                                 </div>
                             </div>
                         {{/if}}
                     </div>
                     <h3 class="text-center">Характеристики</h3>
-                    <div class="row justify-content-between border-bottom mb-2">
-                        <p class="mb-1">Вес</p>
-                        <p class="mb-1 product-weight"></p>
-                    </div>
-                    <div class="row justify-content-between border-bottom mb-2">
-                        <p class="mb-1">Объем</p>
-                        <p class="mb-1 product-volume"></p>
-                    </div>
-                    {{#if product.environ}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Рабочая среда</p>
-                            <p class="mb-1">{{product.environ}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.temp}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Максимальная температура рабочей среды C</p>
-                            <p class="mb-1">{{product.temp}}</p>
-                        </div>
-                    {{/if}}
                     {{#if product.material}}
                         <div class="row justify-content-between border-bottom mb-2">
                             <p class="mb-1">Материал корпуса</p>
@@ -98,38 +81,78 @@
                             <p class="mb-1">{{product.connect}}</p>
                         </div>
                     {{/if}}
-                    {{#if product.diameter}}
+                    {{#if product.environ}}
                         <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Диаметр условный DN,мм</p>
-                            <p class="mb-1">{{product.diameter}}</p>
+                            <p class="mb-1">Рабочая среда</p>
+                            <p class="mb-1">{{product.environ}}</p>
                         </div>
+                    {{/if}}
+                    {{#if product.temp}}
+                        <div class="row justify-content-between border-bottom mb-2">
+                            <p class="mb-1">Максимальная температура рабочей среды C</p>
+                            <p class="mb-1">{{product.temp}}</p>
+                        </div>
+                    {{/if}}
+                    {{#if product.pressure}}
+                        <div class="col-sm-3 col-6 mb-md-0 mb-3">
+                            <div class="character-box text-center pl-2 pr-2">
+                                <p>{{product.pressure}}</p>
+                                <p>Номинальное давление PN, МПа</p>
+                            </div>
+                        </div>
+                    {{/if}}
+                    {{#if product.gost}}
+                        <div class="row justify-content-between border-bottom mb-2">
+                            <p class="mb-1">Соответствие ГОСТ</p>
+                            <p class="mb-1">{{product.gost}}</p>
+                        </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].length}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Длина, мм</p>
+                        <p class="mb-1 product-length"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].externalDiameter}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Внешний диаметр, мм</p>
+                        <p class="mb-1 product-externalDiameter"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].diameterDy}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Ду, мм</p>
+                        <p class="mb-1 product-diameter"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].diameterDy1}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Ду1, мм</p>
+                        <p class="mb-1 product-diameter1"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].diameterDy2}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Ду2, мм</p>
+                        <p class="mb-1 product-diameter2"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].depth}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Толщина стенки</p>
+                        <p class="mb-1 product-depth"></p>
+                    </div>
+                    {{/if}}
+                    {{#if product.Sizes.[0].weight}}
+                    <div class="row justify-content-between border-bottom mb-2">
+                        <p class="mb-1">Вес</p>
+                        <p class="mb-1 product-weight"></p>
+                    </div>
                     {{/if}}
                     {{#if product.dimension}}
                         <div class="row justify-content-between border-bottom mb-2">
                             <p class="mb-1">Единица измерения</p>
                             <p class="mb-1">{{product.dimension}}</p>
-                        </div>
-                    {{/if}}
-                    <div class="row justify-content-between border-bottom mb-2">
-                        <p class="mb-1">Соответствие ГОСТ</p>
-                        <p class="mb-1 product-gost"></p>
-                    </div>
-                    {{#if product.pressure}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Номинальное давление PN, МПа</p>
-                            <p class="mb-1">{{product.pressure}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.depth}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Толщина стенки, мм</p>
-                            <p class="mb-1">{{product.depth}}</p>
-                        </div>
-                    {{/if}}
-                    {{#if product.externalDiameter}}
-                        <div class="row justify-content-between border-bottom mb-2">
-                            <p class="mb-1">Внешний диаметр, мм</p>
-                            <p class="mb-1">{{product.externalDiameter}}</p>
                         </div>
                     {{/if}}
                 </div>
@@ -186,13 +209,13 @@
             <div class="col-md-8 offset-md-4 col-12">
                 <div class="form-group mb-0 mt-3">
                     <label for="productCount">Введите количество</label>
-                    <input id="productCount" class="form-control" name="productCount" type="number" min="{{product.count}}" value="{{product.count}}" onkeyup="totalPrice($('.productPrice')[0], this, {{product.price}})" onchange="totalPrice($('.productPrice')[0], this, {{product.price}})">
-                    <label for="productCount">* Минимальное количество заказа {{product.count}}{{product.dimension}}.</label>
+                    <input type="hidden" class="size-price">
+                    <input id="productCount" class="form-control" name="productCount" type="number" onkeyup="totalPrice()" onchange="totalPrice()">
+                    <label for="productCount">* Минимальное количество заказа <span class="min-count"></span>{{product.dimension}}.</label>
                 </div>
                 <div class="row justify-content-md-center justify-content-between flex-sm-row flex-column align-items-center">
                     <input class="product-buy-name" type="hidden" value="{{product.name}}">
                     <input class="product-buy-image" type="hidden" value="/{{product.Images.[0].srcImage}}">
-                    <input class="product-buy-min-count" type="hidden" value="{{product.count}}">
                     <input class="product-buy-price" type="hidden" value="{{product.price}}">
                     <p class="productPriceBox text-center">Стоимость: <span class="productPrice"></span> руб.</p>
                     <button type="button" class="divide-button cartBuy" data-id="{{product.id}}">В корзину
@@ -225,14 +248,14 @@
     <h2 class="f-36 text-center">Похожие товары</h2>
     <div class="row">
         {{#each thisDivide.arrayProducts}}
-        <div class="col-lg-3 col-sm-4 mt-4 col-12 mb-3 d-flex justify-content-center">
+            <div class="col-lg-4 col-sm-6 mt-4 col-12 mb-3 d-flex justify-content-center">
             <a href="/kategorii/{{../thisDivide.id}}/tovary/{{id}}" class="a-hover">
                 <div class="card d-flex align-items-center">
                     <div class="card-box-img">
                         <img src="/{{Images.[0].srcImage}}" alt="card-img">
                     </div>
                     <div class="gold-border">
-                        <div class="f-24 text-center pt-4">{{name}}</div>
+                        <div class="text-center pt-xl-3">{{name}}</div>
                     </div>
                 </div>
             </a>

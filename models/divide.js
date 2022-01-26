@@ -58,24 +58,12 @@ const product = sequelize.define('Product', {
         type: Sequelize.TEXT,
         allowNull: false
     },
-    diameter: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    pressure: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    depth: {
+    gost: {
         type: Sequelize.STRING,
         allowNull: true
     },
-    externalDiameter: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    count: {
-        type: Sequelize.FLOAT,
+    material: {
+        type: Sequelize.STRING,
         allowNull: true
     },
     environ: {
@@ -83,10 +71,10 @@ const product = sequelize.define('Product', {
         allowNull: true
     },
     temp: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: true
     },
-    material: {
+    pressure: {
         type: Sequelize.STRING,
         allowNull: true
     },
@@ -96,10 +84,6 @@ const product = sequelize.define('Product', {
     },
     dimension: {
         type: Sequelize.STRING,
-        allowNull: true
-    },
-    price: {
-        type: Sequelize.FLOAT,
         allowNull: true
     }
 })
@@ -177,17 +161,41 @@ const size = sequelize.define('Size', {
         allowNull: false,
         foreignKey : true
     },
-    weight: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    volume: {
-        type: Sequelize.FLOAT,
-        allowNull: true
-    },
-    gost: {
+    length: { // Длина
         type: Sequelize.STRING,
         allowNull: true
+    },
+    externalDiameter: { // Внешний диаметр
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    diameterDy: { // Диаметр Ду
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    diameterDy1: { // Диаметр Ду1
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    diameterDy2: { // Диаметр Ду2
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    depth: { // Толщина стенки
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    weight: { // Вес
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    count: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    price: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 

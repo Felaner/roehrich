@@ -486,40 +486,50 @@ router.post('/add-product', auth, async (req, res, next) => {
                 fileError: req.flash('fileError')
             });
         }
-        const {productName, productCategory, productDescription,
-            productCount, productEnviron, productTemp,
-            productMaterial, productConnect, productDiameter,
-            productDimension, productPressure, productDepth,
-            productExternalDiameter, productWeight,
-            productVolume, productGost, productPrice} = req.body
+        const {productName, productCategory, productDescription, productEnviron, productTemp, productPressure,
+            productMaterial, productConnect,
+            productLength, productExternalDiameter, productDiameter, productDiameter1, productDiameter2, productDepth, productWeight,  productCount, productPrice,
+            productGost, productDimension} = req.body
         const divideId = await Divide.findOne({
             attributes: ['id'],
             where: {
                 name: productCategory
             }
         })
+        console.log(req.body)
         await Product.create({
+            DivideId: divideId.id,
             name: productName, category: productCategory, description: productDescription,
-            count: productCount, environ: productEnviron, temp: productTemp, material: productMaterial,
-            connect: productConnect, diameter: productDiameter, dimension: productDimension,
-            pressure: productPressure, depth: productDepth, externalDiameter: productExternalDiameter,
-            price: productPrice, DivideId: divideId.id
+            environ: productEnviron, temp: productTemp, material: productMaterial,
+            connect: productConnect, pressure: productPressure, dimension: productDimension, gost: productGost
         }).then(result => {
             if (Array.isArray(productWeight)) {
                 for(let i = 0; i < productWeight.length; i++){
                     Size.create({
                         ProductId: result.id,
+                        length: productLength[i],
+                        externalDiameter: productExternalDiameter[i],
+                        diameterDy: productDiameter[i],
+                        diameterDy1: productDiameter1[i],
+                        diameterDy2: productDiameter2[i],
+                        depth: productDepth[i],
                         weight: productWeight[i],
-                        volume: productVolume[i],
-                        gost: productGost[i]
+                        count: productCount[i],
+                        price: productPrice[i]
                     })
                 }
             } else if ((productWeight !== undefined)) {
                 Size.create({
-                    ProductId: req.params.id,
+                    ProductId: result.id,
+                    length: productLength,
+                    externalDiameter: productExternalDiameter,
+                    diameterDy: productDiameter,
+                    diameterDy1: productDiameter1,
+                    diameterDy2: productDiameter2,
+                    depth: productDepth,
                     weight: productWeight,
-                    volume: productVolume,
-                    gost: productGost
+                    count: productCount,
+                    price: productPrice
                 })
             } else {
                 next()
@@ -620,12 +630,10 @@ router.get('/edit-product/:id', auth, async (req, res) => {
 });
 
 router.post('/edit-product/:id', auth, async (req, res, next) => {
-    const {productName, productCategory, productDescription,
-        productCount, productWeight, productVolume,
-        productEnviron, productTemp, productMaterial,
-        productConnect, productDiameter, productDimension,
-        productGost, productPressure, productDepth, productExternalDiameter,
-        productPrice} = req.body
+    const {productName, productCategory, productDescription, productEnviron, productTemp, productPressure,
+        productMaterial, productConnect,
+        productLength, productExternalDiameter, productDiameter, productDiameter1, productDiameter2, productDepth, productWeight,  productCount, productPrice,
+        productGost, productDimension} = req.body
 
     const divideId = await Divide.findOne({
         attributes: ['id'],
@@ -656,12 +664,10 @@ router.post('/edit-product/:id', auth, async (req, res, next) => {
         console.log(req.body)
         await Product.update(
             {
+                DivideId: divideId.id,
                 name: productName, category: productCategory, description: productDescription,
-                count: productCount, weight: productWeight, volume: productVolume,
                 environ: productEnviron, temp: productTemp, material: productMaterial,
-                connect: productConnect, diameter: productDiameter, dimension: productDimension,
-                gost: productGost, pressure: productPressure, depth: productDepth,
-                externalDiameter: productExternalDiameter, price: productPrice, DivideId: divideId.id
+                connect: productConnect, pressure: productPressure, dimension: productDimension, gost: productGost
             },
             {
                 where: {
@@ -678,17 +684,29 @@ router.post('/edit-product/:id', auth, async (req, res, next) => {
                     for(let i = 0; i < productWeight.length; i++){
                         Size.create({
                             ProductId: req.params.id,
+                            length: productLength[i],
+                            externalDiameter: productExternalDiameter[i],
+                            diameterDy: productDiameter[i],
+                            diameterDy1: productDiameter1[i],
+                            diameterDy2: productDiameter2[i],
+                            depth: productDepth[i],
                             weight: productWeight[i],
-                            volume: productVolume[i],
-                            gost: productGost[i]
+                            count: productCount[i],
+                            price: productPrice[i]
                         })
                     }
                 } else if ((productWeight !== undefined)) {
                     Size.create({
                         ProductId: req.params.id,
+                        length: productLength,
+                        externalDiameter: productExternalDiameter,
+                        diameterDy: productDiameter,
+                        diameterDy1: productDiameter1,
+                        diameterDy2: productDiameter2,
+                        depth: productDepth,
                         weight: productWeight,
-                        volume: productVolume,
-                        gost: productGost
+                        count: productCount,
+                        price: productPrice
                     })
                 } else {
                     next()

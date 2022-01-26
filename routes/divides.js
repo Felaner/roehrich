@@ -86,7 +86,13 @@ router.get('/:divideId/tovary/:productId', async (req, res) => {
         include: [
             {model: Image},
             {model: Video},
-            {model: Size}
+            {
+                model: Size,
+                order: [
+                    [Size, 'diameterDy', 'ASC'],
+                    [Size, 'length', 'ASC']
+                ]
+            }
         ],
         where: {
             id: req.params.productId
